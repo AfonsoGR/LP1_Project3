@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BootlegRoguelike
 {
@@ -9,18 +7,17 @@ namespace BootlegRoguelike
         private Renderer graphics;
         private SceneManager scene;
         private int lvl;
-        private int rows;
-        private int cols;
 
         public GameLoopController(int rows, int cols, int lvl = 1)
         {
             this.lvl = lvl;
-            this.rows = rows;
-            this.cols = cols;
 
-            scene = new SceneManager(cols, rows, lvl);
+            scene = new SceneManager(cols, rows);
 
-            graphics = new Renderer(scene.Room);
+            scene.GenerateNewScene(lvl);
+
+            graphics = new Renderer(scene.Room, scene.Player, scene.AllEnemies);
+
 
             ScheduledUpdate();
         }
@@ -33,15 +30,12 @@ namespace BootlegRoguelike
                 CheckIfOnExit();
             }
         }
+
         private void MovePlayer()
         {
             char choice = ' ';
 
-            scene.Room[scene.Player.Position.Row, scene.Player.Position.Col] = '@';
-
             graphics.Render();
-
-            scene.Room[scene.Player.Position.Row, scene.Player.Position.Col] = '.';
 
             while (choice != 'W' && choice != 'A' && choice != 'S' && choice != 'D')
             {
@@ -50,20 +44,19 @@ namespace BootlegRoguelike
 
             scene.Player.Movement(choice);
 
-            scene.Room[scene.Player.Position.Row, scene.Player.Position.Col] = '@';
-
             graphics.Render();
-
-            scene.Room[scene.Player.Position.Row, scene.Player.Position.Col] = '.';
         }
+
         private void CheckIfOnExit()
         {
             if (scene.Player.Position.Row == scene.Room.Exit.Row &&
                 scene.Player.Position.Col == scene.Room.Exit.Col)
             {
-                scene = new SceneManager(cols, rows, lvl++);
+                lvl++;
 
-                graphics = new Renderer(scene.Room);
+                scene.GenerateNewScene(lvl);
+
+                graphics = new Renderer(scene.Room, scene.Player, scene.AllEnemies);
 
                 ScheduledUpdate();
             }
