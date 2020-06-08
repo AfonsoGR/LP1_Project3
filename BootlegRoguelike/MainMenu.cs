@@ -7,7 +7,7 @@ namespace BootlegRoguelike
         private int cols;
         private int rows;
 
-        private StartupMenu(int menuChoice)
+        private void StartupMenu(int menuChoice)
         {
             Console.WriteLine("Hello and Welcome to...\n\tBOOTLEG ROGUELIKE" +
                 "\n\nPlease select one of the following options:\n" +
@@ -15,15 +15,13 @@ namespace BootlegRoguelike
                 "4 - Credits\n\t5 - Quit\n\n Select an option using the " + 
                 "numbers...");
 
-            //menuChoice = Convert.ToInt32(Console.ReadKey());
-
-            while (!int.TryParse(Console.ReadKey(), menuChoice)
+            while (!int.TryParse(Console.ReadLine(), out menuChoice)
                     || menuChoice < 1 || menuChoice > 5)
 
             switch (menuChoice)
             {
                 case 1:
-                    NewGame();
+                    NewGame(cols, rows);
                     break;
                 case 2:
                     Highscores();
