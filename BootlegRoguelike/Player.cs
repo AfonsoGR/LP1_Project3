@@ -3,13 +3,13 @@ namespace BootlegRoguelike
 {
     public class Player
     {
-        int HP ;
-        public Position Position;
-        public Enums Type {get; }
+        private int  HP ;
+        Position Position;
+        Enums Type {get; }
         public Player (int rows, int columns)
         {
             HP = (rows*columns)/4;
-            Position = new Position (rows, columns);
+            Position = new Position (1, columns);
             Type = Enums.Player;
 
         }
