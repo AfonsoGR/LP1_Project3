@@ -1,4 +1,4 @@
-# LP1_Projeto 3 - NOME DO PROJETO
+# LP1_Projeto 3 - Bootleg Roguelike
 
 ## Autoria
 
