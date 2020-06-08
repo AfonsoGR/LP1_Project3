@@ -25,48 +25,48 @@ namespace BootlegRoguelike
         /// <summary>
         /// Returns the value of the position or gives it a new value
         /// </summary>
-        /// <param name="x"> The X on the array </param>
-        /// <param name="y"> The Y on the array </param>
+        /// <param name="r"> The X on the array </param>
+        /// <param name="c"> The Y on the array </param>
         /// <returns> The ColorChoice of the players </returns>
-        public char this[int x, int y]
+        public char this[int r, int c]
         {
-            get => roomLayout[x, y];
-            set => roomLayout[x, y] = value;
+            get => roomLayout[r, c];
+            set => roomLayout[r, c] = value;
         }
 
         /// <summary>
         /// Generates the basic visual structure of the board
         /// </summary>
-        public void SetBoardToInitState(int cols, int rows, int rnd)
+        public void SetBoardToInitState(int rows, int cols, int rnd)
         {
-            roomLayout = new char[rows,cols + 1];
+            roomLayout = new char[rows +1, cols];
 
             // Checks the upper part of the board
-            for (int y = 0; y < cols; y++)
+            for (int c = 0; c < cols; c++)
             {
-                for (int x = 0; x < rows; x++)
+                for (int r = 0; r < rows; r++)
                 {
-                    if (x == 0 || x == rows - 1 || y == 0 || y == cols - 1)
+                    if (r == 0 || r == rows - 1 || c == 0 || c == cols - 1)
                     {
-                        char tmp = x == 0 || x == rows - 1 ? '-' : '|';
+                        char tmp = r == 0 || r == rows - 1 ? '|' : '-';
 
-                        roomLayout[x, y] = tmp;
+                        roomLayout[r, c] = tmp;
                     }
                     else
                     {
-                        roomLayout[x, y] = '.';
+                        roomLayout[r, c] = '.';
                     }
                 }
-                GenerateRoomExit(cols, rnd);
             }
+            GenerateRoomExit(rows, rnd);
         }
-        private void GenerateRoomExit(int cols, int rnd)
+        private void GenerateRoomExit(int rows, int rnd)
         {
-            roomLayout[rnd, cols -1] = '.';
+            roomLayout[rows -1,rnd] = '.';
 
-            roomLayout[rnd, cols] = 'E';
-            roomLayout[rnd + 1, cols] = '-';
-            roomLayout[rnd - 1, cols] = '-';
+            roomLayout[rows ,rnd] = 'E';
+            roomLayout[rows ,rnd + 1] = '-';
+            roomLayout[rows ,rnd - 1] = '-';
 
         }
     }

@@ -14,11 +14,12 @@ namespace BootlegRoguelike
 
         public void Render()
         {
-            for (int x = 0; x < level.SizeX; x++)
+            Console.SetCursorPosition(0, 0);
+            for (int c = 0; c < level.SizeY; c++)
             {
-                for (int y = 0; y < level.SizeY; y++)
+                for (int r = 0; r < level.SizeX; r++)
                 {
-                    Console.Write(level[x, y]);
+                    Console.Write(level[r, c]);
                 }
                 Console.WriteLine();
             }

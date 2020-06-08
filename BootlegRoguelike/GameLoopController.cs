@@ -9,10 +9,13 @@ namespace BootlegRoguelike
         private Renderer graphics;
         private SceneManager scene;
         private object save;
+        private int lvl;
 
-        public GameLoopController(int cols, int rows)
+        public GameLoopController(int rows, int cols, int lvl = 0)
         {
-            scene = new SceneManager(cols, rows);
+            this.lvl = lvl;
+
+            scene = new SceneManager(cols, rows, lvl);
 
             graphics = new Renderer(scene.Room);
 
@@ -21,6 +24,23 @@ namespace BootlegRoguelike
 
         private void ScheduledUpdate()
         {
+            while (true)
+            {
+                MovePlayer();
+                MovePlayer();
+            }
+        }
+        private void MovePlayer()
+        {
+            char choice = ' ';
+
+            graphics.Render();
+
+            while (choice != 'W' && choice != 'A' && choice != 'S' && choice != 'D')
+            {
+                choice = Console.ReadLine().ToUpper()[0];
+            }
+
             graphics.Render();
         }
     }

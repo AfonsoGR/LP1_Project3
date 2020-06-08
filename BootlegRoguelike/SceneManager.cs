@@ -10,21 +10,28 @@ namespace BootlegRoguelike
         private Random rnd;
         private int col;
         private int row;
-
+        private int lvl;
         public RoomGenerator Room { get; }
 
-        public SceneManager(int col, int row)
+        public Player Player { get; private set; }
+        public object[] Enemies { get; private set; }
+        public object[] PowerUps { get; private set; }
+
+        public SceneManager(int row, int col, int lvl)
         {
+            this.lvl = lvl;
             this.col = col;
             this.row = row;
 
             rnd = new Random();
             Room = new RoomGenerator();
+
             CreateNewRoomStructure();
+            CreateNewPlayer();
         }
         private void CreateNewPlayer()
         {
-
+            Player = new Player(row, col);
         }
         private void CreateNewEnemies()
         {
@@ -36,7 +43,7 @@ namespace BootlegRoguelike
         }
         private void CreateNewRoomStructure()
         {
-            Room.SetBoardToInitState(col, row, rnd.Next(1, row));
+            Room.SetBoardToInitState(row, col, rnd.Next(1, col -1));
         }
     }
 }
