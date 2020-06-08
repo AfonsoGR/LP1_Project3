@@ -23,6 +23,11 @@ namespace BootlegRoguelike
         public int SizeY => roomLayout.GetLength(1);
 
         /// <summary>
+        /// Where the exit of the level is located
+        /// </summary>
+        public Position Exit { get; private set; }
+
+        /// <summary>
         /// Returns the value of the position or gives it a new value
         /// </summary>
         /// <param name="r"> The X on the array </param>
@@ -63,6 +68,8 @@ namespace BootlegRoguelike
         private void GenerateRoomExit(int rows, int rnd)
         {
             roomLayout[rows -1,rnd] = '.';
+
+            Exit = new Position(rows, rnd);
 
             roomLayout[rows ,rnd] = 'E';
             roomLayout[rows ,rnd + 1] = '-';

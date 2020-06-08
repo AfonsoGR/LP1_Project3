@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BootlegRoguelike
 {
-    class SceneManager
+    public class SceneManager
     {
-        object physics;
-        private Random rnd;
-        private int col;
-        private int row;
-        private int lvl;
-        public RoomGenerator Room { get; }
+        private readonly Random rnd;
+        private readonly int col;
+        private readonly int row;
+        private readonly int lvl;
 
+        public RoomGenerator Room { get; }
+        
         public Player Player { get; private set; }
-        public object[] Enemies { get; private set; }
+        public Enemies[] AllEnemies { get; private set; }
         public object[] PowerUps { get; private set; }
 
         public SceneManager(int row, int col, int lvl)
@@ -28,22 +26,34 @@ namespace BootlegRoguelike
 
             CreateNewRoomStructure();
             CreateNewPlayer();
+            CreateNewEnemies();
         }
+
         private void CreateNewPlayer()
         {
             Player = new Player(row, col);
         }
+
         private void CreateNewEnemies()
         {
+            int x = (int)(11 * Math.Log(3.3 * lvl));
+            x = rnd.Next(x);
 
+            AllEnemies = new Enemies[x];
+
+            for (int n = 0; n < x; n++)
+            {
+                AllEnemies[n] = new Enemies();
+            }
         }
+
         private void CreateNewPowerUps()
         {
-
         }
+
         private void CreateNewRoomStructure()
         {
-            Room.SetBoardToInitState(row, col, rnd.Next(1, col -1));
+            Room.SetBoardToInitState(row, col, rnd.Next(1, col - 1));
         }
     }
 }

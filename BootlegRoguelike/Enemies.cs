@@ -12,7 +12,7 @@ namespace BootlegRoguelike
         public Enemies ()
         {
             // The position of the enemy will be random on the map
-            Position = new Position (rndX, rndY);
+            Position = new Position (/*rndX, rndY*/);
             Up = new Position (Position.Row, Position.Col+1);
             Down = new Position (Position.Row, Position.Col-1);
             Left = new Position (Position.Row-1, Position.Col);
@@ -22,13 +22,13 @@ namespace BootlegRoguelike
 
         private void CheckPlayer()
         {
-            //Goes throw all von Neumann positions 
-            foreach(Position position in checkingArea)
-                //Later maybe change to a switch case
-                //Checks enum type
-                if(GetType(position) == Player)
-                    //calls  the method attack
-                    Attack()
+            ////Goes throw all von Neumann positions 
+            //foreach(Position position in checkingArea)
+            //    //Later maybe change to a switch case
+            //    //Checks enum type
+            //    if(GetType(position) == Player)
+            //        //calls  the method attack
+            //        Attack()
         }
 
 
