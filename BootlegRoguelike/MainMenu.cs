@@ -7,6 +7,8 @@ namespace BootlegRoguelike
         private int cols;
         private int rows;
 
+        InfoRules infoRules;
+
         private void StartupMenu(int menuChoice)
         {
             Console.WriteLine("Hello and Welcome to...\n\tBOOTLEG ROGUELIKE" +
@@ -53,10 +55,14 @@ namespace BootlegRoguelike
         {}
 
         private void Instructions()
-        {}
+        {
+            infoRules.Rules();
+        }
 
         private void Credits()
-        {}
+        {
+            infoRules.Credits();            
+        }
 
         private void Quit()
         {
