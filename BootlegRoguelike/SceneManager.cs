@@ -6,12 +6,12 @@ namespace BootlegRoguelike
 {
     class SceneManager
     {
-        object[] ents;
         object physics;
         private Random rnd;
         private int col;
         private int row;
-        private RoomGenerator room;
+
+        public RoomGenerator Room { get; }
 
         public SceneManager(int col, int row)
         {
@@ -19,10 +19,8 @@ namespace BootlegRoguelike
             this.row = row;
 
             rnd = new Random();
-            room = new RoomGenerator();
+            Room = new RoomGenerator();
             CreateNewRoomStructure();
-            Renderer a = new Renderer(room);
-            a.Render();
         }
         private void CreateNewPlayer()
         {
@@ -36,13 +34,9 @@ namespace BootlegRoguelike
         {
 
         }
-        private void CreateNewExitPortal()
-        {
-
-        }
         private void CreateNewRoomStructure()
         {
-            room.SetBoardToInitState(col, row);
+            Room.SetBoardToInitState(col, row, rnd.Next(1, row));
         }
     }
 }

@@ -37,25 +37,37 @@ namespace BootlegRoguelike
         /// <summary>
         /// Generates the basic visual structure of the board
         /// </summary>
-        public void SetBoardToInitState(int cols, int rows)
+        public void SetBoardToInitState(int cols, int rows, int rnd)
         {
-            roomLayout = new char[rows, cols];
+            roomLayout = new char[rows,cols + 1];
 
             // Checks the upper part of the board
-            for (int x = 0; x < cols; x++)
+            for (int y = 0; y < cols; y++)
             {
-                for (int y = 0; y < rows; y++)
+                for (int x = 0; x < rows; x++)
                 {
-                    if (x == 0 || x == cols -1 || y == 0 || y == rows -1)
+                    if (x == 0 || x == rows - 1 || y == 0 || y == cols - 1)
                     {
-                        roomLayout[x, y] = 'b';
+                        char tmp = x == 0 || x == rows - 1 ? '-' : '|';
+
+                        roomLayout[x, y] = tmp;
                     }
                     else
                     {
                         roomLayout[x, y] = '.';
                     }
                 }
+                GenerateRoomExit(cols, rnd);
             }
+        }
+        private void GenerateRoomExit(int cols, int rnd)
+        {
+            roomLayout[rnd, cols -1] = '.';
+
+            roomLayout[rnd, cols] = 'E';
+            roomLayout[rnd + 1, cols] = '-';
+            roomLayout[rnd - 1, cols] = '-';
+
         }
     }
 }

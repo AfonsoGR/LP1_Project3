@@ -6,10 +6,22 @@ namespace BootlegRoguelike
 {
     public class GameLoopController
     {
-        private object[] allobjs;
-        private object resnder;
+        private Renderer graphics;
         private SceneManager scene;
         private object save;
 
+        public GameLoopController(int cols, int rows)
+        {
+            scene = new SceneManager(cols, rows);
+
+            graphics = new Renderer(scene.Room);
+
+            ScheduledUpdate();
+        }
+
+        private void ScheduledUpdate()
+        {
+            graphics.Render();
+        }
     }
 }
