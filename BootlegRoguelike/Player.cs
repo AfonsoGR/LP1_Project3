@@ -4,8 +4,8 @@ namespace BootlegRoguelike
     public class Player
     {
         private int  HP ;
-        Position Position;
-        Enums Type {get; }
+        private Position Position;
+        public Enums Type {get; }
         public Player (int rows, int columns)
         {
             HP = (rows*columns)/4;
