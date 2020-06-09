@@ -30,8 +30,15 @@ namespace BootlegRoguelike
                 //{
                 //    scene.Player.HP -= 1;
                 //}
-                graphics.Render();
+
+                graphics.Render("Hello");
+
+                scene.Room[scene.Player.Position] = Enums.Empty;
+
                 MovePlayer();
+
+                scene.Room[scene.Player.Position] = Enums.Player;
+
                 CheckIfOnExit();
             }
         }
@@ -40,7 +47,8 @@ namespace BootlegRoguelike
         {
             char choice = ' ';
 
-            while (choice != 'W' && choice != 'A' && choice != 'S' && choice != 'D')
+            while (choice != 'W' && choice != 'A' 
+                && choice != 'S' && choice != 'D')
             {
                 choice = char.ToUpper(Console.ReadKey(true).KeyChar);
             }
@@ -55,7 +63,7 @@ namespace BootlegRoguelike
             {
                 lvl++;
 
-                scene.GenerateNewScene(lvl);
+                scene.GenerateNewScene(lvl, false);
 
                 graphics = new Renderer(scene.Room, scene.Player, scene.AllEnemies);
 

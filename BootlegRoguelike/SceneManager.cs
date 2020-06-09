@@ -23,13 +23,23 @@ namespace BootlegRoguelike
             rnd = new Random();
             Room = new RoomGenerator();
         }
-        public void GenerateNewScene(int lvl)
+        public void GenerateNewScene(int lvl, bool generatePlayer = true)
         {
             AllEnemies = new List<Enemies>();
 
+            int hp = -1;
+
+            if (!generatePlayer)
+                hp = Player.HP;
+
             CreateNewRoomStructure();
-            CreateNewPlayer();
             CreateNewEnemies(lvl);
+            CreateNewPlayer();
+
+            if (hp != -1)
+            {
+                Player.HP = hp;
+            }
         }
         private void CreateNewPlayer()
         {
@@ -55,6 +65,16 @@ namespace BootlegRoguelike
         private void CreateNewRoomStructure()
         {
             Room.SetBoardToInitState(row, col, rnd.Next(1, col - 1));
+
+            int nObstacles = rnd.Next(Math.Min(row, col) - 1);
+
+            for (int i = 0; i < nObstacles; i++)
+            {
+                Position startPos =
+                    new Position(rnd.Next(1, row - 2), rnd.Next(1, col - 2));
+
+                Room[startPos] = Enums.Block;
+            }
         }
     }
 }
