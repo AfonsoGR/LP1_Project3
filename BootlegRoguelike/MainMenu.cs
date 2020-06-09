@@ -8,12 +8,15 @@ namespace BootlegRoguelike
         private int rows {get; set;}
 
         private InfoRules infoRules;
+        private ScoresManager scoresManager;
 
-        private void StartupMenu(int menuChoice)
+        private void StartupMenu()
         {
             infoRules = new InfoRules();
 
             infoRules.WelcomeText();
+
+            int menuChoice;
 
             while (!int.TryParse(Console.ReadLine(), out menuChoice)
                     || menuChoice < 1 || menuChoice > 5)
@@ -50,7 +53,11 @@ namespace BootlegRoguelike
         }
 
         private void Highscores()
-        {}
+        {
+            scoresManager = new ScoresManager();
+
+            scoresManager.DisplayScores();
+        }
 
         private void Instructions()
         {
@@ -64,7 +71,22 @@ namespace BootlegRoguelike
 
         private void Quit()
         {
-            System.Environment.Exit(1);
+            string quitChoice;
+
+            Console.WriteLine("Are you certain of this?\t(y/n)");
+
+            quitChoice = Console.ReadLine();
+            quitChoice.ToLower();
+            
+            if (quitChoice == "y")
+                System.Environment.Exit(1);
+            else if (quitChoice == "n")
+                StartupMenu();
+            else
+            {
+                Console.WriteLine("Please input a valid choice...");
+                Quit();
+            }            
         }
     }
 }
