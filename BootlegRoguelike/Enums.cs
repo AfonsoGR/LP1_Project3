@@ -2,14 +2,15 @@ namespace BootlegRoguelike
 {
     public enum Enums
     {
-        Player,
-        Boss,
-        Enemy,
-        Block,
-        Empty,
-        PowerMin,
-        PowerMed,
-        PowerMax
+        Player = '@',
+        Boss = 'O',
+        Enemy = 'o',
+        Block = 'w',
+        Empty = ' ',
+        PowerMin = '.',
+        PowerMed = ':',
+        PowerMax = '!',
+        Exit = 'E'
 
     }
 }

@@ -26,12 +26,19 @@ namespace BootlegRoguelike
         {
             while (true)
             {
-                if (Console.Read() == 'l')
-                {
-                    scene.Player.HP -= 1;
-                }
+                //if (Console.Read() == 'l')
+                //{
+                //    scene.Player.HP -= 1;
+                //}
+
                 graphics.Render("Hello");
+
+                scene.Room[scene.Player.Position] = Enums.Empty;
+
                 MovePlayer();
+
+                scene.Room[scene.Player.Position] = Enums.Player;
+
                 CheckIfOnExit();
             }
         }

@@ -70,7 +70,10 @@ namespace BootlegRoguelike
 
             for (int i = 0; i < nObstacles; i++)
             {
-                Room[rnd.Next(1, row -2), rnd.Next(1, col -2)] = 'w';
+                Position startPos =
+                    new Position(rnd.Next(1, row - 2), rnd.Next(1, col - 2));
+
+                Room[startPos] = Enums.Block;
             }
         }
     }
