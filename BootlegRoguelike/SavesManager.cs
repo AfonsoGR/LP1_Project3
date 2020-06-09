@@ -10,6 +10,8 @@ namespace BootlegRoguelike
         {}
 
         private void LoadGame()
-        {}
+        {
+            //! must work with -l in as an arg
+        }
     }
 }

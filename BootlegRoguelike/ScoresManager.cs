@@ -25,11 +25,10 @@ namespace BootlegRoguelike
             nameRegister = Console.ReadLine();
 
             // Adds highscores
-            //scores.Add(new Highscore(nameRegister, THEPLAYERSCORE));
+            //!scores.Add(new Highscore(nameRegister, THEPLAYERSCORE));
 
             // Orders highscores
-            /* Fizemos isto nas aulas, a struct Highscore tem de implementar
-               IComparable<float>, etc... */
+            //! Check class
 
             // Saves highscores into a file
             foreach (Highscore highscore in scores)
