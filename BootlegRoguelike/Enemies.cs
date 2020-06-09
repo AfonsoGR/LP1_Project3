@@ -9,6 +9,9 @@ namespace BootlegRoguelike
         protected Position Left; 
         protected Position Right; 
         List <Position> checkingArea;
+        protected  RoomGenerator Room;
+        protected int attack; 
+        protected Player player;
         public Enemies ()
         {
             // The position of the enemy will be random on the map
@@ -22,52 +25,52 @@ namespace BootlegRoguelike
 
         protected void Movement(Player player)
         {
-            int ShortMov ;
-            int[] ValueMovs = new int[4] ;
+            int shortMov ;
+            int[] valueMovs = new int[4] ;
             int i = 0; 
             int aux;
             Position min = new Position(0,0) ;  
             foreach(Position position in checkingArea)
             {
                 //Checks if are blocked passages 
-                if(GetType(position) != Block)
+                if(Room[position] != Enums.Block)
                 {
                     //Saves the positions
-                    ShortMov = (player.Position.Row - position.Row)+
+                    shortMov = (player.Position.Row - position.Row)+
                     (player.Position.Col - position.Col);
-                    //Puts the ShortMov in to a array  
-                    ValueMovs [i] = ShortMov ;
+                    //Puts the shortMov in to a array  
+                    valueMovs [i] = shortMov ;
                     //increment
                     i++;
                 }
                 
             }
             //Auxiliary variable
-            aux = ValueMovs [0];
-            for(i=0; i< ValueMovs[i]; i++)
+            aux = valueMovs [0];
+            for(i=0; i< valueMovs[i]; i++)
             {
-                if(ValueMovs[i] < aux)
+                if(valueMovs[i] < aux)
                 {
                     min = checkingArea[i];
                 }
             }
             
             Position = min;
-            CheckPlayer()
+            CheckPlayer();
         }
 
         protected void CheckPlayer()
         {
-            ////Goes throw all von Neumann positions 
-            //foreach(Position position in checkingArea)
-            //    //Later maybe change to a switch case
-            //    //Checks enum type
-            //    if(GetType(position) == Player)
-            //        //calls  the method attack
-            //        Attack()
+            //Goes throw all von Neumann positions 
+            foreach(Position position in checkingArea)
+            // Later maybe change to a switch case
+            //    /Checks enum type
+                if(Room[position] == Enums.Player)
+            //calls  the method attack
+                    Attack();
         }
 
-        protected void Attack(Player player)
+        protected void Attack()
         {
             player.HP -= attack;
         }

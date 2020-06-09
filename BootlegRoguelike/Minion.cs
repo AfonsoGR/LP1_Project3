@@ -1,10 +1,8 @@
 namespace BootlegRoguelike
 {
-    public class Boss : Enemies
+    public class Minion : Enemies
     {
-
-           
-        public Boss (RoomGenerator Room, Player player)
+        public Minion (RoomGenerator Room, Player player)
         {
             attack = 10;
             this.Room = Room;
