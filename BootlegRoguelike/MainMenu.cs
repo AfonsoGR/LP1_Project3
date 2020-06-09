@@ -56,7 +56,7 @@ namespace BootlegRoguelike
 
         private void Instructions()
         {
-            infoRules.Rules();
+            infoRules.Intro();
         }
 
         private void Credits()
