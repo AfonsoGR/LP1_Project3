@@ -26,6 +26,7 @@ namespace BootlegRoguelike
         {
             while (true)
             {
+                graphics.Render();
                 MovePlayer();
                 CheckIfOnExit();
             }
@@ -35,16 +36,12 @@ namespace BootlegRoguelike
         {
             char choice = ' ';
 
-            graphics.Render();
-
             while (choice != 'W' && choice != 'A' && choice != 'S' && choice != 'D')
             {
-                choice = Console.ReadLine().ToUpper()[0];
+                choice = char.ToUpper(Console.ReadKey(true).KeyChar);
             }
 
             scene.Player.Movement(choice);
-
-            graphics.Render();
         }
 
         private void CheckIfOnExit()
