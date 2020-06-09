@@ -6,7 +6,7 @@ namespace BootlegRoguelike
     {
         static void Main(string[] args)
         {
-            _ = new GameLoopController(10, 20);
+            //_ = new GameLoopController(10, 20);
         }
     }
 }

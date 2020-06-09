@@ -3,11 +3,11 @@ namespace BootlegRoguelike
 {
     public class Enemies
     {
-        private Position Position;
-        private Position Up; 
-        private Position Down;
-        private Position Left; 
-        private Position Right; 
+        protected Position Position;
+        protected Position Up; 
+        protected Position Down;
+        protected Position Left; 
+        protected Position Right; 
         List <Position> checkingArea;
         public Enemies ()
         {
@@ -20,7 +20,43 @@ namespace BootlegRoguelike
             checkingArea = new List<Position> {Up,Down,Left,Right};
         }
 
-        private void CheckPlayer()
+        protected void Movement(Player player)
+        {
+            int ShortMov ;
+            int[] ValueMovs = new int[4] ;
+            int i = 0; 
+            int aux;
+            Position min = new Position(0,0) ;  
+            foreach(Position position in checkingArea)
+            {
+                //Checks if are blocked passages 
+                if(GetType(position) != Block)
+                {
+                    //Saves the positions
+                    ShortMov = (player.Position.Row - position.Row)+
+                    (player.Position.Col - position.Col);
+                    //Puts the ShortMov in to a array  
+                    ValueMovs [i] = ShortMov ;
+                    //increment
+                    i++;
+                }
+                
+            }
+            //Auxiliary variable
+            aux = ValueMovs [0];
+            for(i=0; i< ValueMovs[i]; i++)
+            {
+                if(ValueMovs[i] < aux)
+                {
+                    min = checkingArea[i];
+                }
+            }
+            
+            Position = min;
+            CheckPlayer()
+        }
+
+        protected void CheckPlayer()
         {
             ////Goes throw all von Neumann positions 
             //foreach(Position position in checkingArea)
@@ -29,6 +65,11 @@ namespace BootlegRoguelike
             //    if(GetType(position) == Player)
             //        //calls  the method attack
             //        Attack()
+        }
+
+        protected void Attack(Player player)
+        {
+            player.HP -= attack;
         }
 
 

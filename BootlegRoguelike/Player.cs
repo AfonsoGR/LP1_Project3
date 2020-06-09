@@ -13,6 +13,7 @@ namespace BootlegRoguelike
             Type = Enums.Player;
 
         }
+        
 
         public void Movement(char choice)
         {
