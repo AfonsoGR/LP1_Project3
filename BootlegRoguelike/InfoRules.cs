@@ -4,6 +4,15 @@ namespace BootlegRoguelike
 {
     public class InfoRules
     {
+        public void WelcomeText()
+        {
+            Console.WriteLine("Hello and Welcome to...\n\tBOOTLEG ROGUELIKE" +
+                "\n\nPlease select one of the following options:\n" +
+                "\t1 - New Game\n\t2 - High scores\n\t3 - Instructions\n\t" + 
+                "4 - Credits\n\t5 - Quit\n\n Select an option using the " + 
+                "numbers...");
+        }
+
         public void Intro()
         {
             Console.WriteLine("Welcome to our game, Bootleg Roguelike!\n" 

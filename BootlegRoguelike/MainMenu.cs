@@ -4,18 +4,16 @@ namespace BootlegRoguelike
 {
     public class MainMenu
     {
-        private int cols;
-        private int rows;
+        private int cols {get; set;}
+        private int rows {get; set;}
 
-        InfoRules infoRules;
+        private InfoRules infoRules;
 
         private void StartupMenu(int menuChoice)
         {
-            Console.WriteLine("Hello and Welcome to...\n\tBOOTLEG ROGUELIKE" +
-                "\n\nPlease select one of the following options:\n" +
-                "\t1 - New Game\n\t2 - High scores\n\t3 - Instructions\n\t" + 
-                "4 - Credits\n\t5 - Quit\n\n Select an option using the " + 
-                "numbers...");
+            infoRules = new InfoRules();
+
+            infoRules.WelcomeText();
 
             while (!int.TryParse(Console.ReadLine(), out menuChoice)
                     || menuChoice < 1 || menuChoice > 5)
