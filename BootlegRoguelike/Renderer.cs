@@ -32,11 +32,7 @@ namespace BootlegRoguelike
             {
                 for (int r = 0; r < level.SizeX; r++)
                 {
-                    if (player.Position.Row == r && player.Position.Col == c)
-                    {
-                        Console.Write('@');
-                    }
-                    else if (level[r, c] == 'w')
+                    if (level[r, c] == 'w')
                     {
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.Write(' ');

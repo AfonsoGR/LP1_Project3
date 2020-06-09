@@ -26,12 +26,19 @@ namespace BootlegRoguelike
         {
             while (true)
             {
-                if (Console.Read() == 'l')
-                {
-                    scene.Player.HP -= 1;
-                }
+                //if (Console.Read() == 'l')
+                //{
+                //    scene.Player.HP -= 1;
+                //}
+                scene.Room[scene.Player.Position.Row,
+                    scene.Player.Position.Col] = '.';
+
                 graphics.Render("Hello");
                 MovePlayer();
+
+                scene.Room[scene.Player.Position.Row, 
+                    scene.Player.Position.Col] = '@';
+
                 CheckIfOnExit();
             }
         }
