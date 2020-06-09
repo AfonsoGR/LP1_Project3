@@ -26,6 +26,10 @@ namespace BootlegRoguelike
         {
             while (true)
             {
+                //if (Console.Read() == 'l')
+                //{
+                //    scene.Player.HP -= 1;
+                //}
                 graphics.Render();
                 MovePlayer();
                 CheckIfOnExit();

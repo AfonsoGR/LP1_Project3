@@ -3,7 +3,7 @@ namespace BootlegRoguelike
 {
     public class Player
     {
-        private int  HP ;
+        public int HP { get; set; }
         public Position Position { get; private set; }
         public Enums Type {get; }
         public Player (int rows, int columns)
