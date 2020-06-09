@@ -22,6 +22,7 @@ namespace BootlegRoguelike
 
             Console.ResetColor();
             Console.CursorVisible = false;
+            Console.Clear();
         }
 
         public void Render(string msg = null)
