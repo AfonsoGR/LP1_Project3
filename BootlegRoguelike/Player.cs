@@ -3,13 +3,13 @@ namespace BootlegRoguelike
 {
     public class Player
     {
-        private int  HP ;
-        Position Position;
-        Enums Type {get; }
+        public int HP { get; set; }
+        public Position Position { get; private set; }
+        public Enums Type {get; }
         public Player (int rows, int columns)
         {
             HP = (rows*columns)/4;
-            Position = new Position (1, columns);
+            Position = new Position (1, columns -5);
             Type = Enums.Player;
 
         }
@@ -19,13 +19,13 @@ namespace BootlegRoguelike
             switch(choice)
             {
                 case 'W':
-                    Position = new Position (Position.Row,Position.Col+1);
+                    Position = new Position (Position.Row,Position.Col-1);
                     break;
                 case 'A':
                     Position = new Position (Position.Row-1,Position.Col);
                     break;
                 case 'S':
-                    Position = new Position (Position.Row,Position.Col-1);
+                    Position = new Position (Position.Row,Position.Col+1);
                     break;
                 case 'D':
                     Position = new Position (Position.Row+1, Position.Col);
