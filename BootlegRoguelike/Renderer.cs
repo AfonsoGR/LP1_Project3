@@ -19,9 +19,12 @@ namespace BootlegRoguelike
             this.player = player;
 
             initialHP = ((level.SizeX - 1) * level.SizeY) / 4;
+
+            Console.ResetColor();
+            Console.CursorVisible = false;
         }
 
-        public void Render()
+        public void Render(string msg = null)
         {
             Console.SetCursorPosition(0, 0);
 
@@ -33,6 +36,12 @@ namespace BootlegRoguelike
                     {
                         Console.Write('@');
                     }
+                    else if (level[r, c] == 'w')
+                    {
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.Write(' ');
+                        Console.ResetColor();
+                    }
                     else
                     {
                         Console.Write(level[r, c]);
@@ -41,14 +50,20 @@ namespace BootlegRoguelike
                 Console.WriteLine();
             }
             Console.WriteLine();
-            DrawUI();
+            DrawUI(msg);
         }
-        private void DrawUI()
+
+        private void DrawUI(string msg)
         {
+            if (msg != null)
+            {
+                Console.WriteLine($"\n{msg}\n");
+            }
+
             float percentageHP = player.HP / initialHP;
             int barHP = (int)(percentageHP * initialHP);
 
-            string msg = @"HP: |" + player.HP + "|";
+            string hpNumber = @"HP: |" + player.HP + "|";
 
             for (int i = 0; i < initialHP; i++)
             {
@@ -57,7 +72,7 @@ namespace BootlegRoguelike
 
                 Console.ForegroundColor = ConsoleColor.Black;
 
-                Console.Write(i >= msg.Length ? ' ' : msg[i]);
+                Console.Write(i >= hpNumber.Length ? ' ' : hpNumber[i]);
             }
             Console.ResetColor();
         }

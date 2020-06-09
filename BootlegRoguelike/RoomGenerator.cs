@@ -54,12 +54,8 @@
                     // Sees if it's the top, bottom or sides of the room
                     if (r == 0 || r == rows - 1 || c == 0 || c == cols - 1)
                     {
-                        // Creates a vertical or horizontal line depending on
-                        // the current row
-                        char tmp = r == 0 || r == rows - 1 ? '|' : '-';
-
                         // Sets that position the char defined
-                        roomLayout[r, c] = tmp;
+                        roomLayout[r, c] = 'w';
                     }
                     else
                     {
@@ -88,9 +84,9 @@
             // Changes the visuals on the exit to a 'E'
             roomLayout[rows, rnd] = 'E';
             // Creates a wall on top of the exit
-            roomLayout[rows, rnd + 1] = '-';
+            roomLayout[rows, rnd + 1] = 'w';
             // Creates a wall on the bottom of the exit
-            roomLayout[rows, rnd - 1] = '-';
+            roomLayout[rows, rnd - 1] = 'w';
         }
     }
 }
