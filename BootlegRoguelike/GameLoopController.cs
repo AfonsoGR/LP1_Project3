@@ -30,14 +30,14 @@ namespace BootlegRoguelike
                 //{
                 //    scene.Player.HP -= 1;
                 //}
-                scene.Room[scene.Player.Position.Row,
-                    scene.Player.Position.Col] = '.';
 
                 graphics.Render("Hello");
+
+                scene.Room[scene.Player.Position] = Enums.Empty;
+
                 MovePlayer();
 
-                scene.Room[scene.Player.Position.Row, 
-                    scene.Player.Position.Col] = '@';
+                scene.Room[scene.Player.Position] = Enums.Player;
 
                 CheckIfOnExit();
             }
