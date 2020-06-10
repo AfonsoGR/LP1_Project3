@@ -24,10 +24,10 @@ namespace BootlegRoguelike
         {
             // The position of the enemy will be random on the map.
             Position = new Position (/*rndX, rndY*/);
-            Up = new Position (Position.Row, Position.Col+1);
-            Down = new Position (Position.Row, Position.Col-1);
+            Up = new Position (Position.Row, Position.Col-1);
+            Down = new Position (Position.Row, Position.Col+1);
             Left = new Position (Position.Row-1, Position.Col);
-            Right = new Position (Position.Row+1, Position.Col+1);
+            Right = new Position (Position.Row+1, Position.Col);
             checkingArea = new List<Position> {Up,Down,Left,Right};
         }
 

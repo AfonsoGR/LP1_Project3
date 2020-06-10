@@ -43,7 +43,7 @@ namespace BootlegRoguelike
         }
         private void CreateNewPlayer()
         {
-            Player = new Player(row, col);
+            Player = new Player(row, col, Room);
         }
 
         private void CreateNewEnemies(int lvl)
