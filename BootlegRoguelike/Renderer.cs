@@ -39,6 +39,10 @@ namespace BootlegRoguelike
                         Console.Write(' ');
                         Console.ResetColor();
                     }
+                    else if (level[pos] == Enums.Boss)
+                    {
+                        Console.Write((char)level[pos]);
+                    }
                     else
                     {
                         Console.Write((char)level[pos]);

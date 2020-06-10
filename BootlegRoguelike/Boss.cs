@@ -17,6 +17,7 @@ namespace BootlegRoguelike
             attack = 10;
             this.Room = Room;
             this.player = player;
+            type = Enums.Boss;
         }
     }
 }

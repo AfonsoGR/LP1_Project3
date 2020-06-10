@@ -16,6 +16,7 @@ namespace BootlegRoguelike
         protected  RoomGenerator Room;
         protected int attack; 
         protected Player player;
+        protected Enums type;
 
         /// <summary>
         /// Constructor of enemies.
@@ -59,7 +60,7 @@ namespace BootlegRoguelike
                     Math.Abs(player.Position.Col - position.Col);
                     //Puts the shortMov in to a array.  
                     valueMovs [i] = shortMov ;
-                    moves [i] = position;
+                    moves.Add(position);
                     //increments.
                     i++;
                     
