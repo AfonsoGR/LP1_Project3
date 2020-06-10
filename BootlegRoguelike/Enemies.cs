@@ -7,7 +7,7 @@ namespace BootlegRoguelike
     /// </summary>
     public class Enemies  
     {
-        protected Position Position;
+        public Position Position { get; protected set;}
         protected Position Up; 
         protected Position Down;
         protected Position Left; 
@@ -18,13 +18,11 @@ namespace BootlegRoguelike
         protected Player player;
         protected Enums type;
 
-        /// <summary>
-        /// Constructor of enemies.
-        /// </summary>
-        public Enemies ()
+
+        protected void SetupEnemy(Position pos)
         {
             // The position of the enemy will be random on the map.
-            Position = new Position (/*rndX, rndY*/);
+            Position = pos;
             Up = new Position (Position.Row, Position.Col-1);
             Down = new Position (Position.Row, Position.Col+1);
             Left = new Position (Position.Row-1, Position.Col);
@@ -42,7 +40,7 @@ namespace BootlegRoguelike
         /// the corresponding position, then make the move.
         /// </summary>
         /// <param name="player">Will be used to get player position.</param>
-        protected void Movement(Player player)
+        public void Movement()
         {
             int shortMov ;
             int[] valueMovs = new int[4] ;
@@ -104,7 +102,5 @@ namespace BootlegRoguelike
         {
             player.HP -= attack;
         }
-
-
     }
 }
