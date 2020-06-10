@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BootlegRoguelike
+﻿namespace BootlegRoguelike
 {
     class Program
     {
