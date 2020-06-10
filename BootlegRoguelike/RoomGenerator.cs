@@ -5,7 +5,7 @@
     /// </summary>
     public class RoomGenerator
     {
-        // A bi-dimensional array containing a ColorChoice
+        // A bi-dimensional array containing a Enum
         private Enums[,] roomLayout;
 
         /// <summary>
@@ -19,16 +19,10 @@
         public int SizeY => roomLayout.GetLength(1);
 
         /// <summary>
-        /// Where the exit of the level is located
-        /// </summary>
-        public Position Exit { get; private set; }
-
-        /// <summary>
         /// Returns the value of the position or gives it a new value
         /// </summary>
-        /// <param name="r"> The X on the array </param>
-        /// <param name="c"> The Y on the array </param>
-        /// <returns> The ColorChoice of the players </returns>
+        /// <param name="pos"> The position to be acessed </param>
+        /// <returns> The Enums at that position </returns>
         public Enums this[Position pos]
         {
             get => roomLayout[pos.Row, pos.Col];
@@ -59,6 +53,7 @@
                     }
                     else
                     {
+                        // Otherwise sets the position as empty
                         roomLayout[r, c] = Enums.Empty;
                     }
                 }
@@ -76,10 +71,6 @@
         {
             // Changes the position in front of the exit to a dot
             roomLayout[rows - 1, rnd] = Enums.Empty;
-
-            // Assigns the position of the exit
-            Exit = new Position(rows, rnd);
-
             // Changes the visuals on the exit to a 'E'
             roomLayout[rows, rnd] = Enums.Exit;
             // Creates a wall on top of the exit

@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+
 namespace BootlegRoguelike
 {
     public class Renderer
     {
         private readonly RoomGenerator level;
         private readonly Player player;
-        private readonly List<Enemies> enemies;
 
         private readonly float initialHP;
 
-        public Renderer(RoomGenerator level, Player player, List<Enemies> enemies)
+        public Renderer(RoomGenerator level, Player player)
         {
             this.level = level;
-            this.enemies = enemies;
             this.player = player;
 
-            initialHP = ((level.SizeX - 1) * level.SizeY) / 4;
+            initialHP = ((level.SizeX - 3) * (level.SizeY - 2)) / 4;
 
             Console.ResetColor();
             Console.CursorVisible = false;
@@ -54,7 +53,7 @@ namespace BootlegRoguelike
         {
             if (msg != null)
             {
-                Console.WriteLine($"\n{msg}\n");
+                Console.WriteLine($"\n{msg}                               \n");
             }
 
             float percentageHP = player.HP / initialHP;
