@@ -45,11 +45,11 @@ namespace BootlegRoguelike
         
         private void NewGame(int cols, int rows)
         {
-            Console.WriteLine("How big do you wish the board to be?");
-            Console.Write("Columns -> ");
-            while (!int.TryParse(Console.ReadLine(), out cols));
-            Console.Write("Rows -> ");
-            while (!int.TryParse(Console.ReadLine(), out rows));
+            // Console.WriteLine("How big do you wish the board to be?");
+            // Console.Write("Rows -> ");
+            // while (!int.TryParse(Console.ReadLine(), out rows));
+            // Console.Write("Columns -> ");
+            // while (!int.TryParse(Console.ReadLine(), out cols));
 
             //! Reference
             // if (args[b] == 'r')

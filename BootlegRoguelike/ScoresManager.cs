@@ -28,7 +28,7 @@ namespace BootlegRoguelike
             //!scores.Add(new Highscore(nameRegister, THEPLAYERSCORE));
 
             // Orders highscores
-            //! Check class
+            //! Check class recording (11 or 12)
 
             // Saves highscores into a file
             foreach (Highscore highscore in scores)
