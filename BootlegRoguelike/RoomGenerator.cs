@@ -44,15 +44,15 @@
         public void SetBoardToInitState(int rows, int cols, int rnd)
         {
             // Creates a new array with the given dimensions
-            roomLayout = new Enums[rows + 1, cols];
+            roomLayout = new Enums[rows + 3, cols + 2];
 
             // Checks all the positions of the room
-            for (int c = 0; c < cols; c++)
+            for (int c = 0; c < cols + 2; c++)
             {
-                for (int r = 0; r < rows; r++)
+                for (int r = 0; r < rows + 2; r++)
                 {
                     // Sees if it's the top, bottom or sides of the room
-                    if (r == 0 || r == rows - 1 || c == 0 || c == cols - 1)
+                    if (r == 0 || r == rows + 1 || c == 0 || c == cols + 1)
                     {
                         // Sets that position the char defined
                         roomLayout[r, c] = Enums.Block;
@@ -64,7 +64,7 @@
                 }
             }
             // Creates the exit of the room
-            GenerateRoomExit(rows, rnd);
+            GenerateRoomExit(rows + 2, rnd);
         }
 
         /// <summary>

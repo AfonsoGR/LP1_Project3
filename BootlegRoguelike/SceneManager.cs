@@ -13,7 +13,7 @@ namespace BootlegRoguelike
         
         public Player Player { get; private set; }
         public List<Enemies> AllEnemies { get; private set; }
-        public object[] PowerUps { get; private set; }
+        public List<Powerup> PowerUps { get; private set; }
 
         public SceneManager(int row, int col)
         {
@@ -33,8 +33,8 @@ namespace BootlegRoguelike
                 hp = Player.HP;
 
             CreateNewRoomStructure();
-            CreateNewEnemies(lvl);
             CreateNewPlayer();
+            CreateNewEnemies(lvl);
 
             if (hp != -1)
             {
@@ -48,18 +48,38 @@ namespace BootlegRoguelike
 
         private void CreateNewEnemies(int lvl)
         {
-            int x = (int)(11 * Math.Log(3.3 * lvl));
-            x = rnd.Next(x);
+            int maxEnemies = (int)(11 * Math.Log(3.3 * lvl));
+            maxEnemies = Math.Min(maxEnemies, ((row - 2) * (col - 2)) / 2);
 
-            for (int n = 0; n < x; n++)
+            int maxMinions = rnd.Next(maxEnemies);
+            int maxBosses = rnd.Next(Math.Abs(maxMinions - maxEnemies));
+
+            for (int n = 0; n < maxMinions; n++)
             {
-                AllEnemies.Add(new Enemies());
+                Position pos = new Position(rnd.Next(1, row - 1), 
+                    rnd.Next(1, col - 2));
+
+                AllEnemies.Add(new Minion(Room, Player,pos));
+
+                Room[pos] = Enums.Enemy;
+            }
+
+            for (int c = 0; c < maxBosses; c++)
+            {
+                Position pos = new Position(rnd.Next(1, row - 1), 
+                    rnd.Next(1, col - 2));
+
+                AllEnemies.Add(new Minion(Room, Player, pos));
+
+                Room[pos] = Enums.Boss;
             }
         }
 
-        private void CreateNewPowerUps()
+        private void CreateNewPowerUps(int lvl)
         {
+            int maxPowerUps = (int)(11 * Math.Log(5 * lvl));
 
+            
         }
 
         private void CreateNewRoomStructure()

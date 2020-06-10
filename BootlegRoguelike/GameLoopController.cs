@@ -39,6 +39,27 @@ namespace BootlegRoguelike
 
                 scene.Room[scene.Player.Position] = Enums.Player;
 
+                graphics.Render("Hello");
+
+                scene.Room[scene.Player.Position] = Enums.Empty;
+
+                MovePlayer();
+
+                scene.Room[scene.Player.Position] = Enums.Player;
+
+
+                for (int i = 0; i < scene.AllEnemies.Count; i++)
+                {
+                    scene.AllEnemies[i].Movement();
+
+                    scene.Room[scene.AllEnemies[i].Position] = 
+                        scene.AllEnemies[i] is Boss? Enums.Boss : Enums.Enemy;
+
+                    graphics.Render("Hello");
+
+                    scene.Room[scene.AllEnemies[i].Position] = Enums.Empty;
+                }
+
                 CheckIfOnExit();
             }
         }
