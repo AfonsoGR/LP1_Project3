@@ -8,11 +8,6 @@ namespace BootlegRoguelike
         protected int Heal;
         protected Enums Type;
 
-        public Powerup()
-        {
-            Position = new Position (/*rnd,rnd*/);
-        }
-
         protected void CheckPlayer()
         {
             if(Room[Position] == Enums.Player)

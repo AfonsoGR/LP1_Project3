@@ -10,8 +10,10 @@ namespace BootlegRoguelike
         /// </summary>
         /// <param name="Room">The room where he's in it.</param>
         /// <param name="player">PLayer that he needs to attack.</param>
-        public Minion (RoomGenerator Room, Player player)
+        public Minion (RoomGenerator Room, Player player, Position pos)
         {
+            SetupEnemy(pos);
+
             attack = 10;
             this.Room = Room;
             this.player = player;
