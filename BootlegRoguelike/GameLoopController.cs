@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace BootlegRoguelike
 {
@@ -6,15 +7,15 @@ namespace BootlegRoguelike
     {
         private Renderer graphics;
         private SceneManager scene;
-        private int lvl;
+        public int CurrentLevel { get; private set; }
 
         public GameLoopController(int rows, int cols, int lvl = 1)
         {
-            this.lvl = lvl;
+            CurrentLevel = lvl;
 
             scene = new SceneManager(cols, rows);
 
-            scene.GenerateNewScene(lvl);
+            scene.GenerateNewScene(CurrentLevel);
 
             graphics = new Renderer(scene.Room, scene.Player);
 
@@ -28,6 +29,9 @@ namespace BootlegRoguelike
             while (true)
             {
                 MovePlayer();
+
+                CheckIfOnExit();
+
                 MovePlayer();
 
                 CheckIfOnExit();
@@ -45,7 +49,10 @@ namespace BootlegRoguelike
             while (choice != 'W' && choice != 'A'
                 && choice != 'S' && choice != 'D')
             {
-                choice = char.ToUpper(Console.ReadKey(true).KeyChar);
+                string tmp = Console.ReadLine().ToUpper();
+                choice = tmp.Length >= 1 ? tmp[0] : ' ';
+
+                //choice = char.ToUpper(Console.ReadKey(true).KeyChar); <---------------- Uncomment for the old movement style 
             }
 
             scene.Player.Movement(choice);
@@ -66,17 +73,23 @@ namespace BootlegRoguelike
                 scene.Room[scene.AllEnemies[i].Position] =
                     scene.AllEnemies[i] is Boss ? Enums.Boss : Enums.Enemy;
 
-                graphics.Render("Hello");
+                graphics.Render(scene.Room[scene.AllEnemies[i].Position] + 
+                    " moved");
+
+                Thread.Sleep(200);
             }
         }
 
         private void CheckIfOnExit()
         {
-            if (scene.Room[scene.Player.Position] == Enums.Exit)
-            {
-                lvl++;
+            Position exitPos = new Position(scene.Player.Position.Row + 1,
+                scene.Player.Position.Col);
 
-                scene.GenerateNewScene(lvl, false);
+            if (scene.Room[exitPos] == Enums.Exit)
+            {
+                CurrentLevel++;
+
+                scene.GenerateNewScene(CurrentLevel, false);
 
                 graphics = new Renderer(scene.Room, scene.Player);
 
