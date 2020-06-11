@@ -2,11 +2,19 @@ using System;
 
 namespace BootlegRoguelike
 {
+    /// <summary>
+    /// Displays on-screen text
+    /// </summary>
     public static class InfoRules
     {
+        /// <summary>
+        /// Clears console and displays on-screen text
+        /// </summary>
         public static void WelcomeText()
         {
+            // Clears console
             Console.Clear();
+            // Displays on-screen text
             Console.WriteLine("Hello and Welcome to...\n\tBOOTLEG ROGUELIKE" +
                 "\n\nPlease select one of the following options:\n" +
                 "\t1 - New Game\n\t2 - High scores\n\t3 - Instructions\n\t" + 
@@ -14,9 +22,14 @@ namespace BootlegRoguelike
                 "numbers...");
         }
 
+        /// <summary>
+        /// Clears console and displays on-screen text
+        /// </summary>
         public static void Intro()
         {
+            // Clears console
             Console.Clear();
+            // Displays on-screen text
             Console.WriteLine("Welcome to our game, Bootleg Roguelike!\n" 
             + "In this game you have to reach the exit in the level. Each "
             + "level is randomly generated and has multiple enemies, obstacles" 
@@ -34,9 +47,14 @@ namespace BootlegRoguelike
             + "influenced by the size of the board.\n");
         }
 
+        /// <summary>
+        /// Clears console and displays on-screen text
+        /// </summary>
         public static void Credits()
         {
+            // Clears console
             Console.Clear();
+            // Displays on-screen text
             Console.WriteLine("This game was made by the following students:"
                 + "\n\tAfonso Rosa      - a21802169"
                 + "\n\tAndré Vitorino   - a21902663"

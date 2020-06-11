@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace BootlegRoguelike
 {
+    /// <summary>
+    /// Manages registering, comparing, ordering and displaying scores
+    /// </summary>
     public class ScoresManager
     {
         const string scoresFile = "highscores.txt";
