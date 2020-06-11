@@ -7,15 +7,15 @@ namespace BootlegRoguelike
     {
         private Renderer graphics;
         private SceneManager scene;
-        private int lvl;
+        public int CurrentLevel { get; private set; }
 
         public GameLoopController(int rows, int cols, int lvl = 1)
         {
-            this.lvl = lvl;
+            CurrentLevel = lvl;
 
             scene = new SceneManager(cols, rows);
 
-            scene.GenerateNewScene(lvl);
+            scene.GenerateNewScene(CurrentLevel);
 
             graphics = new Renderer(scene.Room, scene.Player);
 
@@ -52,7 +52,7 @@ namespace BootlegRoguelike
                 string tmp = Console.ReadLine().ToUpper();
                 choice = tmp.Length >= 1 ? tmp[0] : ' ';
 
-                //choice = char.ToUpper(Console.ReadKey(true).KeyChar);
+                //choice = char.ToUpper(Console.ReadKey(true).KeyChar); <---------------- Uncomment for the old movement style 
             }
 
             scene.Player.Movement(choice);
@@ -75,6 +75,8 @@ namespace BootlegRoguelike
 
                 graphics.Render(scene.Room[scene.AllEnemies[i].Position] + 
                     " moved");
+
+                Thread.Sleep(200);
             }
         }
 
@@ -85,9 +87,9 @@ namespace BootlegRoguelike
 
             if (scene.Room[exitPos] == Enums.Exit)
             {
-                lvl++;
+                CurrentLevel++;
 
-                scene.GenerateNewScene(lvl, false);
+                scene.GenerateNewScene(CurrentLevel, false);
 
                 graphics = new Renderer(scene.Room, scene.Player);
 
