@@ -23,11 +23,6 @@ namespace BootlegRoguelike
         {
             // The position of the enemy will be random on the map.
             Position = pos;
-            // checkingArea = new List<Position> {
-            // new Position (Position.Row, Position.Col-1),
-            // new Position(Position.Row, Position.Col+1),
-            // new Position (Position.Row-1, Position.Col),
-            // new Position (Position.Row+1, Position.Col)};
         }
 
         /// <summary>
@@ -42,48 +37,66 @@ namespace BootlegRoguelike
         /// <param name="player">Will be used to get player position.</param>
         public void Movement()
         {
-            checkingArea = new List<Position> {
-            new Position (Position.Row, Position.Col-1),
-            new Position(Position.Row, Position.Col+1),
-            new Position (Position.Row-1, Position.Col),
-            new Position (Position.Row+1, Position.Col)};
             List<int> valueMovs = new List<int>();
-            int i = 0; 
+            int i = 0;
+            int j = 0; 
             int aux;
+            bool attack = false;
             Position min = new Position(Position.Row,Position.Col) ;
-            List <Position> moves = new List<Position>(); 
+            List <Position> moves = new List<Position>();
+            List<bool> canGo = new List<bool>();
+            Update();
             foreach(Position position in checkingArea)
             {
-                //Checks if are blocked passages 
-                if(Room[position] != Enums.Block &&
-                Room[position] != Enums.Boss &&
-                Room[position] != Enums.Enemy&&
-                Room[position] != Enums.Player)
+                if(Room[position] == Enums.Player)
                 {
-                    //Saves the positions.
-                    valueMovs.Add(Math.Abs(player.Position.Row - position.Row)+
-                    Math.Abs(player.Position.Col - position.Col));
-                    //Puts the shortMov in to a array.  
-                    moves.Add(position);
-                    //increments.
-                    i++;
+                    Attack();
+                    attack = true;
                 }
-                
+                else
+                {
+                    //Checks if are blocked passages
+                    if(Room[position] != Enums.Block &&
+                    Room[position] != Enums.Boss &&
+                    Room[position] != Enums.Enemy&&
+                    Room[position] != Enums.Player)
+                    {
+                        //Saves the positions.
+                        valueMovs.Add(
+                        Math.Abs(player.Position.Row - position.Row)+
+                        Math.Abs(player.Position.Col - position.Col));
+                        //Puts the shortMov in to a array.  
+                        moves.Add(position);
+                        //increments.
+                        i++;
+                    }
+                    else
+                    {
+                        j++;
+                    }
+                }
             }
-            
-            //Auxiliary variable.
-            aux = valueMovs [0];
-            for(i=0; i< valueMovs.Count   ; i++)
+            if( attack != true)
             {
-                if(valueMovs[i] <= aux)
+                if(j != 4)
                 {
-                    min = moves[i];
-                    aux = valueMovs[i];
+                    //Auxiliary variable.
+                    aux = valueMovs [0];
+                    for(i=0; i< valueMovs.Count   ; i++)
+                    {
+                        if(valueMovs[i] <= aux)
+                        {
+                            min = moves[i];
+                            aux = valueMovs[i];
+                        }
+                    }
+                    
                 }
+                Position = new Position(min.Row,min.Col);
+                Update();
+                CheckPlayer();
             }
             
-            Position = new Position(min.Row,min.Col);
-            CheckPlayer();
         }
 
         /// <summary>
@@ -96,7 +109,7 @@ namespace BootlegRoguelike
             foreach(Position position in checkingArea)
             //Sees enum type equals to block.
                 if(Room[position] == Enums.Player)
-            //calls  the method attack.
+                    //calls  the method attack.
                     Attack();
         }
 
@@ -106,6 +119,15 @@ namespace BootlegRoguelike
         protected void Attack()
         {
             player.HP -= attack;
+        }
+
+        protected void Update()
+        {
+            checkingArea = new List<Position> {
+            new Position (Position.Row, Position.Col-1),
+            new Position(Position.Row, Position.Col+1),
+            new Position (Position.Row-1, Position.Col),
+            new Position (Position.Row+1, Position.Col)};
         }
     }
 }

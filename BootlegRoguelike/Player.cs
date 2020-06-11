@@ -1,5 +1,5 @@
 using System;
-
+using System.Collections.Generic;
 namespace BootlegRoguelike
 {
     /// <summary>
@@ -11,6 +11,7 @@ namespace BootlegRoguelike
         public Position Position { get; private set; }
         public Enums Type {get; }
         private RoomGenerator Room;
+        public int MaxHP{ get; set;}
         
         /// <summary>
         /// This creates the player.
@@ -19,12 +20,13 @@ namespace BootlegRoguelike
         /// </summary>
         /// <param name="rows">Number of rows.</param>
         /// <param name="columns">Number of columns.</param>
-        public Player (int rows, int columns, RoomGenerator Room)
+        public Player (int rows, int columns, RoomGenerator Room, int rnd)
         {
             HP = (rows*columns)/4;
-            Position = new Position (1, columns -5);
+            Position = new Position (1, rnd);
             Type = Enums.Player;
             this.Room = Room;
+            MaxHP = HP;
 
         }
         
@@ -38,48 +40,87 @@ namespace BootlegRoguelike
             {
                 //Goes up.
                 case ConsoleKey.W: case ConsoleKey.UpArrow:
-                    if(Room[new Position (Position.Row,Position.Col-1)] != 
-                    Enums.Block)
+                    if(Room[new Position (Position.Row,Position.Col-1)]!= 
+                    Enums.Block &&
+                    Room[new Position (Position.Row,Position.Col-1)]!= 
+                    Enums.Boss &&
+                    Room[new Position (Position.Row,Position.Col-1)]!=
+                    Enums.Enemy)
                     {
                         Position = new Position (Position.Row,Position.Col-1);
                         HP -= 1;
-                        //Console.WriteLine("\nMoved North!");
+                        
                     }
                     break;
                 //Goes left.
                 case ConsoleKey.A: case ConsoleKey.LeftArrow:
-                    if(Room[new Position (Position.Row-1,Position.Col)] != 
-                    Enums.Block)
+                    if(Room[new Position (Position.Row-1,Position.Col)]!= 
+                    Enums.Block && 
+                    Room[new Position (Position.Row-1,Position.Col)]!= 
+                    Enums.Boss && 
+                    Room[new Position (Position.Row-1,Position.Col)]!= 
+                    Enums.Enemy)
                     {
                         Position = new Position (Position.Row-1,Position.Col);
                         HP -= 1;
-                        //Console.WriteLine("\nMoved West!");
+                        
                     }
                     break;
                 //Goes down.
                 case ConsoleKey.S :case ConsoleKey.DownArrow:
-                    if (Room[new Position (Position.Row,Position.Col+1)] !=
-                    Enums.Block)
+                    if(Room[new Position (Position.Row,Position.Col+1)]!=
+                    Enums.Block &&
+                    Room[new Position (Position.Row,Position.Col+1)]!=
+                    Enums.Boss &&
+                    Room[new Position (Position.Row,Position.Col+1)]!=
+                    Enums.Enemy)
                     {
                         Position = new Position (Position.Row,Position.Col+1);
                         HP -= 1;
-                        //Console.WriteLine("\nMoved South!");
+                        
                     }
                     break;
                 //Goes right.
                 case ConsoleKey.D:case ConsoleKey.RightArrow:
-                    if (Room[new Position (Position.Row+1, Position.Col)] != 
-                    Enums.Block)
+                    if(Room[new Position (Position.Row+1, Position.Col)] != 
+                    Enums.Block &&
+                    Room[new Position (Position.Row+1, Position.Col)] != 
+                    Enums.Boss &&
+                    Room[new Position (Position.Row+1, Position.Col)] != 
+                    Enums.Enemy)
                     {
                         Position = new Position (Position.Row+1, Position.Col);
                         HP -= 1;
-                        //Console.WriteLine("\nMoved East!");
+                        
                     }
                     break;
                 //If he doesn't chose any legal choices.
                 default:
                     break;
             }
+
+        }
+        public bool Gameover()
+        {
+            List<Position> pos = new List<Position>{
+            new Position (Position.Row, Position.Col-1),
+            new Position(Position.Row, Position.Col+1),
+            new Position (Position.Row-1, Position.Col),
+            new Position (Position.Row+1, Position.Col)
+            };
+            int deadEnds = 0;
+            foreach (Position position in pos)
+            {
+                if(Room[position] == Enums.Block ||
+                Room[position] == Enums.Enemy||
+                Room[position] == Enums.Boss)
+                    deadEnds += 1;
+            }
+            if(deadEnds == 4)
+            {
+                return true;
+            }
+            return false;
 
         }
     }

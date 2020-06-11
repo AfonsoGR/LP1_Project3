@@ -16,7 +16,10 @@ namespace BootlegRoguelike
 
         protected void Regen()
         {
-            player.HP +=  Heal;
+            if((player.HP + Heal)> player.MaxHP)
+                player.HP =  player.MaxHP;
+            else
+                player.HP += Heal;
         }
     }
 }
