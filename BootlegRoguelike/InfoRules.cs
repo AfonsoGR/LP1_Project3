@@ -5,12 +5,12 @@ namespace BootlegRoguelike
     /// <summary>
     /// Displays on-screen text
     /// </summary>
-    public static class InfoRules
+    public class InfoRules
     {
         /// <summary>
         /// Clears console and displays on-screen text
         /// </summary>
-        public static void WelcomeText()
+        public void WelcomeText()
         {
             // Clears console
             Console.Clear();
@@ -25,7 +25,7 @@ namespace BootlegRoguelike
         /// <summary>
         /// Clears console and displays on-screen text
         /// </summary>
-        public static void Intro()
+        public void Intro()
         {
             // Clears console
             Console.Clear();
@@ -50,7 +50,7 @@ namespace BootlegRoguelike
         /// <summary>
         /// Clears console and displays on-screen text
         /// </summary>
-        public static void Credits()
+        public void Credits()
         {
             // Clears console
             Console.Clear();

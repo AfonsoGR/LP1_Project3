@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Collections.Generic;
 
 namespace BootlegRoguelike
 {
@@ -30,13 +32,21 @@ namespace BootlegRoguelike
         private GameLoopController gameLoopController;
 
         /// <summary>
+        /// Creates a variable of InfoRules
+        /// </summary>
+        private InfoRules infoRules;
+
+        /// <summary>
         /// Manages the startup menu and waits for user input
         /// Calls for respective method based on user input
         /// </summary>
         public void StartupMenu()
         {
+            // Creates a new InfoRules
+            infoRules = new InfoRules();
+
             // Calls WelcomeText method from InfoRules.cs
-            InfoRules.WelcomeText();
+            infoRules.WelcomeText();
             
             // Stores player choice
             int menuChoice;
@@ -79,7 +89,6 @@ namespace BootlegRoguelike
                     // Exits the current switch section
                     break;
                 // Executes if an invalid menuChoice is given
-                //! this is impossible to happen can i remove it?
                 default:
                     // Exits the current switch section
                     break;
@@ -105,7 +114,7 @@ namespace BootlegRoguelike
             scoresManager = new ScoresManager();
 
             //! TESTING-------------------------------------------------------
-            //scoresManager.RegisterScores();
+            scoresManager.RegisterScores();
             //! TESTING-------------------------------------------------------
 
             // Calls DisplayTopScores method from ScoresManager.cs
@@ -124,9 +133,12 @@ namespace BootlegRoguelike
         /// before returning to the startup menu
         /// </summary>
         public void Instructions()
-        {   
+        {
+            // Creates a new InfoRules
+            infoRules = new InfoRules();
+
             // Calls Intro method from InfoRules.cs
-            InfoRules.Intro();
+            infoRules.Intro();
 
             // Displays on-screen text
             Console.WriteLine("Press any key to return to the main menu...");
@@ -142,8 +154,11 @@ namespace BootlegRoguelike
         /// </summary>
         public void Credits()
         {
+            // Creates a new InfoRules
+            infoRules = new InfoRules();
+
             // Calls Credtis method from InfoRules.cs
-            InfoRules.Credits();
+            infoRules.Credits();
 
             // Displays on-screen text
             Console.WriteLine("Press any key to return to the main menu...");

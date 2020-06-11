@@ -9,28 +9,40 @@ namespace BootlegRoguelike
     /// </summary>
     public class ScoresManager
     {
+        // public int Rows {get; set;}
+        // public int Cols {get; set;}
+        // const string scoresFile = $"highscoresR{Rows}C{Cols}.txt";
         const string scoresFile = "highscores.txt";
-        const char tab = '\t';
-        StreamWriter writer;
-        StreamReader reader;
-        List<Highscore> scores;
         string displayScores;
         string nameRegister;
         float finalScore = 100f;
+        StreamReader reader;
 
-        // constructor
-        //StreamWriter writer = new StreamWriter(scoresFile);
-        // constructor
-        //List<Highscore> scores = new List<Highscore>();
+        StreamWriter writer = new StreamWriter(scoresFile);
+        List<Highscore> scores = new List<Highscore>();
+
+        // List<Highscore> scores;
+        // StreamWriter writer;
+
+        // public ScoresManager(StreamWriter writer, List<Highscore> scores)
+        // {
+        //     writer = new StreamWriter(scoresFile);
+        //     scores = new List<Highscore>();
+        // }
 
         public void CompareScores()
         {
 
         }
 
+        /// <summary>
+        /// Registers user's scores
+        /// </summary>
         public void RegisterScores()
         {
+            // Displays on-screen text
             Console.WriteLine("Register your name for the leaderboards:\t");
+            // Stores user input
             nameRegister = Console.ReadLine();
 
             // Adds highscores
@@ -39,26 +51,32 @@ namespace BootlegRoguelike
             // Saves highscores into a file
             foreach (Highscore highscore in scores)
             {
-                writer.WriteLine(highscore.PlayerName
-                    + tab + highscore.PlayerScore);
+                // Adds a new line with name and score
+                writer.WriteLine(highscore.Name + " " + highscore.Score);
             }
 
             // Closes file
             writer.Close();
         }
 
-        public void DisplayTopScores()
+        /// <summary>
+        /// Displays user's top 10 scores in respective file
+        /// </summary>
+        /// <param name="scoresCollection"></param>
+        public void DisplayTopScores(IEnumerable<Highscore> scoresCollection)
         {
             // Opens file for reading
             reader = new StreamReader(scoresFile);
 
             // Orders highscores
             //! Check class recording (11 or 12)
+            //* Fizemos isto nas aulas, a struct Highscore tem de implementar
+            //* IComparable<float>, etc...
 
             // Reads each lines and displays each one on the screen
             while ((displayScores = reader.ReadLine()) != null)
             {
-                string[] nameAndScore = displayScores.Split(tab);
+                string[] nameAndScore = displayScores.Split();
                 string name = nameAndScore[0];
                 float score = Convert.ToSingle(nameAndScore[1]);
                 Console.WriteLine($"Score of '{name}' is {finalScore}");

@@ -2,13 +2,13 @@ namespace BootlegRoguelike
 {
     public struct Highscore
     {
-        public string PlayerName {get;}        
-        public float PlayerScore {get;}
+        public string Name {get;}        
+        public float Score {get;}
 
-        public Highscore (string playerName, float playerScore)
+        public Highscore (string name, float score)
         {
-            PlayerName = playerName;
-            PlayerScore = playerScore;
+            Name = name;
+            Score = score;
         }        
     }
 }
