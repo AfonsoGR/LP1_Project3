@@ -31,12 +31,12 @@ namespace BootlegRoguelike
         /// Makes the move based on the player's  <see cref="choice"/> .
         /// </summary>
         /// <param name="choice">Player's choice.</param>
-        public void Movement(char choice)
+        public void Movement(ConsoleKey choice)
         {
             switch(choice)
             {
                 //Goes up.
-                case 'W':
+                case ConsoleKey.W: case ConsoleKey.UpArrow:
                     if(Room[new Position (Position.Row,Position.Col-1)] != 
                     Enums.Block)
                     {
@@ -46,7 +46,7 @@ namespace BootlegRoguelike
                     }
                     break;
                 //Goes left.
-                case 'A':
+                case ConsoleKey.A: case ConsoleKey.LeftArrow:
                     if(Room[new Position (Position.Row-1,Position.Col)] != 
                     Enums.Block)
                     {
@@ -56,8 +56,8 @@ namespace BootlegRoguelike
                     }
                     break;
                 //Goes down.
-                case 'S':
-                    if(Room[new Position (Position.Row,Position.Col+1)] !=
+                case ConsoleKey.S :case ConsoleKey.DownArrow:
+                    if (Room[new Position (Position.Row,Position.Col+1)] !=
                     Enums.Block)
                     {
                         Position = new Position (Position.Row,Position.Col+1);
@@ -66,8 +66,8 @@ namespace BootlegRoguelike
                     }
                     break;
                 //Goes right.
-                case 'D':
-                    if(Room[new Position (Position.Row+1, Position.Col)] != 
+                case ConsoleKey.D:case ConsoleKey.RightArrow:
+                    if (Room[new Position (Position.Row+1, Position.Col)] != 
                     Enums.Block)
                     {
                         Position = new Position (Position.Row+1, Position.Col);

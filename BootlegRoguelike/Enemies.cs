@@ -16,7 +16,7 @@ namespace BootlegRoguelike
         protected  RoomGenerator Room;
         protected int attack; 
         protected Player player;
-        protected Enums type;
+        public Enums Type { get; protected set; }
 
 
         protected void SetupEnemy(Position pos)

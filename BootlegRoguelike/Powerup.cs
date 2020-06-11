@@ -3,12 +3,12 @@ namespace BootlegRoguelike
     public class Powerup
     {
         protected Player player;
-        protected Position Position;
+        public Position Position { get; protected set; }
         protected RoomGenerator Room;
         protected int Heal;
-        protected Enums Type;
+        public Enums Type { get; protected set; }
 
-        protected void CheckPlayer()
+        public void CheckPlayer()
         {
             if(Room[Position] == Enums.Player)
                 Regen();

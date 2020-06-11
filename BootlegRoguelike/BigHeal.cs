@@ -2,11 +2,11 @@ namespace BootlegRoguelike
 {
     public class BigHeal : Powerup
     {
-        public BigHeal (Player player, RoomGenerator Room, int rndX, int rndY)
+        public BigHeal (Player player, RoomGenerator Room, Position pos)
         {
-            Position = new Position(rndX, rndY);
+            Position = pos;
             Heal = 4;
-            Type = Enums.PowerMin;
+            Type = Enums.PowerMax;
             this.player = player;
             this.Room = Room;
         }
