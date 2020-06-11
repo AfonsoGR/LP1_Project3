@@ -14,7 +14,7 @@ namespace BootlegRoguelike
         {
             SetupEnemy(pos);
 
-            attack = 10;
+            attack = 5;
             this.Room = Room;
             this.player = player;
             type = Enums.Enemy;
