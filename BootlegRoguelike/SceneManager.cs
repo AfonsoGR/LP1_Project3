@@ -85,7 +85,7 @@ namespace BootlegRoguelike
         private void CreateNewPlayer()
         {
             // Assgins the Player variable the created player
-            Player = new Player(row, col, Room);
+            Player = new Player(row, col, Room, rnd.Next(1,col-1));
 
             // Puts the player on the board
             Room[Player.Position] = Enums.Player;
