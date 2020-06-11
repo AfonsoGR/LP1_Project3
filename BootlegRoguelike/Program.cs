@@ -18,7 +18,9 @@ namespace BootlegRoguelike
             int rows;
             int cols;
 
-            if (args == null || args.Length == 0)
+            if (args == null || args.Length == 0 ||
+                args[0] != "-r" && args[2] != "-c" &&
+                args[0] != "-c" && args[2] != "-r")
             {
                 Console.WriteLine("Use the following commands:\n\t"
                     + "dotnet run -p BootlegRoguelike/ -- -r X -c Y\n\n"
@@ -46,10 +48,10 @@ namespace BootlegRoguelike
         {
             mainMenu = new MainMenu
             {
-                Rows = rows, 
+                Rows = rows,
                 Cols = cols
             };
-            
+
             mainMenu.StartupMenu();
         }
     }
