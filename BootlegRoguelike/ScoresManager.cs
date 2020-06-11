@@ -8,12 +8,17 @@ namespace BootlegRoguelike
     {
         const string scoresFile = "highscores.txt";
         const char tab = '\t';
-        StreamWriter writer = new StreamWriter(scoresFile);
+        StreamWriter writer;
         StreamReader reader;
-        List<Highscore> scores = new List<Highscore>();
+        List<Highscore> scores;
         string displayScores;
         string nameRegister;
         float finalScore = 100f;
+
+        // constructor
+        //StreamWriter writer = new StreamWriter(scoresFile);
+        // constructor
+        //List<Highscore> scores = new List<Highscore>();
 
         public void CompareScores()
         {
@@ -27,9 +32,6 @@ namespace BootlegRoguelike
 
             // Adds highscores
             scores.Add(new Highscore(nameRegister, finalScore));
-
-            // Orders highscores
-            //! Check class recording (11 or 12)
 
             // Saves highscores into a file
             foreach (Highscore highscore in scores)
@@ -46,6 +48,9 @@ namespace BootlegRoguelike
         {
             // Opens file for reading
             reader = new StreamReader(scoresFile);
+
+            // Orders highscores
+            //! Check class recording (11 or 12)
 
             // Reads each lines and displays each one on the screen
             while ((displayScores = reader.ReadLine()) != null)

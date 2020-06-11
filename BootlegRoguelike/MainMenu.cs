@@ -4,9 +4,21 @@ namespace BootlegRoguelike
 {
     public class MainMenu
     {
+        /// <summary>
+        /// Gets and sets the value of Cols
+        /// </summary>
+        /// <value> Value of Cols </value>
         public int Cols {get; set;}
+        
+        /// <summary>
+        /// Gets and sets the value of Rows
+        /// </summary>
+        /// <value> Value of Rows </value>
         public int Rows {get; set;}
 
+        /// <summary>
+        /// 
+        /// </summary>
         private ScoresManager scoresManager;
         private GameLoopController gameLoopController;
 
