@@ -53,8 +53,6 @@ namespace BootlegRoguelike
             {
                 scene.PowerUps[i].CheckPlayer();
 
-                scene.Room[scene.PowerUps[i].Position] = 
-                    scene.PowerUps[i].Type;
 
                 if (scene.Player.HP != currentHP)
                 {
@@ -62,6 +60,11 @@ namespace BootlegRoguelike
                         $"{scene.Player.HP -currentHP} HP");
 
                     scene.PowerUps.RemoveAt(i);
+                }
+                else
+                {
+                    scene.Room[scene.PowerUps[i].Position] =
+                        scene.PowerUps[i].Type;
                 }
             }
         }
@@ -116,7 +119,7 @@ namespace BootlegRoguelike
                     $" moved to ({scene.AllEnemies[i].Position.Row}," +
                     $"{scene.AllEnemies[i].Position.Col} )");
 
-                Thread.Sleep(200);
+                //Thread.Sleep(200);
             }
         }
 

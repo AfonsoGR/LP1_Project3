@@ -138,7 +138,7 @@ namespace BootlegRoguelike
                 Position pos = new Position(rnd.Next(1, row - 3),
                     rnd.Next(1, col - 2));
 
-                AllEnemies.Add(new Minion(Room, Player, pos));
+                AllEnemies.Add(new Boss(Room, Player, pos));
 
                 Room[pos] = Enums.Boss;
             }
