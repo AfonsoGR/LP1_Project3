@@ -6,8 +6,6 @@ namespace BootlegRoguelike
         {
             Position = new Position(rndX,rndY);
             Heal = 4;
-            this.player = player;
-            this.Room = Room;
             Type = Enums.PowerMin;
             this.player = player;
             this.Room = Room;
