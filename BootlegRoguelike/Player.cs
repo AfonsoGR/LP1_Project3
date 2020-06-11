@@ -37,8 +37,12 @@ namespace BootlegRoguelike
             {
                 //Goes up.
                 case 'W':
-                    if(Room[new Position (Position.Row,Position.Col-1)] != 
-                    Enums.Block)
+                    if(Room[new Position (Position.Row,Position.Col-1)]!= 
+                    Enums.Block &&
+                    Room[new Position (Position.Row,Position.Col-1)]!= 
+                    Enums.Boss &&
+                    Room[new Position (Position.Row,Position.Col-1)]!=
+                    Enums.Enemy)
                     {
                         Position = new Position (Position.Row,Position.Col-1);
                         HP -= 1;
@@ -47,8 +51,12 @@ namespace BootlegRoguelike
                     break;
                 //Goes left.
                 case 'A':
-                    if(Room[new Position (Position.Row-1,Position.Col)] != 
-                    Enums.Block)
+                    if(Room[new Position (Position.Row-1,Position.Col)]!= 
+                    Enums.Block && 
+                    Room[new Position (Position.Row-1,Position.Col)]!= 
+                    Enums.Boss && 
+                    Room[new Position (Position.Row-1,Position.Col)]!= 
+                    Enums.Enemy)
                     {
                         Position = new Position (Position.Row-1,Position.Col);
                         HP -= 1;
@@ -57,8 +65,12 @@ namespace BootlegRoguelike
                     break;
                 //Goes down.
                 case 'S':
-                    if(Room[new Position (Position.Row,Position.Col+1)] !=
-                    Enums.Block)
+                    if(Room[new Position (Position.Row,Position.Col+1)]!=
+                    Enums.Block &&
+                    Room[new Position (Position.Row,Position.Col+1)]!=
+                    Enums.Boss &&
+                    Room[new Position (Position.Row,Position.Col+1)]!=
+                    Enums.Enemy)
                     {
                         Position = new Position (Position.Row,Position.Col+1);
                         HP -= 1;
@@ -68,7 +80,11 @@ namespace BootlegRoguelike
                 //Goes right.
                 case 'D':
                     if(Room[new Position (Position.Row+1, Position.Col)] != 
-                    Enums.Block)
+                    Enums.Block &&
+                    Room[new Position (Position.Row+1, Position.Col)] != 
+                    Enums.Boss &&
+                    Room[new Position (Position.Row+1, Position.Col)] != 
+                    Enums.Enemy)
                     {
                         Position = new Position (Position.Row+1, Position.Col);
                         HP -= 1;

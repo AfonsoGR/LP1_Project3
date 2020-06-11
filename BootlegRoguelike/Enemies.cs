@@ -23,11 +23,6 @@ namespace BootlegRoguelike
         {
             // The position of the enemy will be random on the map.
             Position = pos;
-            // checkingArea = new List<Position> {
-            // new Position (Position.Row, Position.Col-1),
-            // new Position(Position.Row, Position.Col+1),
-            // new Position (Position.Row-1, Position.Col),
-            // new Position (Position.Row+1, Position.Col)};
         }
 
         /// <summary>
@@ -48,10 +43,12 @@ namespace BootlegRoguelike
             new Position (Position.Row-1, Position.Col),
             new Position (Position.Row+1, Position.Col)};
             List<int> valueMovs = new List<int>();
-            int i = 0; 
+            int i = 0;
+            int j = 0; 
             int aux;
             Position min = new Position(Position.Row,Position.Col) ;
-            List <Position> moves = new List<Position>(); 
+            List <Position> moves = new List<Position>();
+            List<bool> canGo = new List<bool>();
             foreach(Position position in checkingArea)
             {
                 //Checks if are blocked passages 
@@ -68,19 +65,36 @@ namespace BootlegRoguelike
                     //increments.
                     i++;
                 }
+                else
+                {
+                    j++;
+                }
                 
             }
-            
-            //Auxiliary variable.
-            aux = valueMovs [0];
-            for(i=0; i< valueMovs.Count   ; i++)
+            if(j != 4)
             {
-                if(valueMovs[i] <= aux)
+                //Auxiliary variable.
+                aux = valueMovs [0];
+                for(i=0; i< valueMovs.Count   ; i++)
                 {
-                    min = moves[i];
-                    aux = valueMovs[i];
+                    if(valueMovs[i] <= aux)
+                    {
+                        min = moves[i];
+                        aux = valueMovs[i];
+                    }
                 }
             }
+            // if(valueMovs[0] == null)
+            // //Auxiliary variable.
+            // aux = valueMovs [0];
+            // for(i=0; i< valueMovs.Count   ; i++)
+            // {
+            //     if(valueMovs[i] <= aux)
+            //     {
+            //         min = moves[i];
+            //         aux = valueMovs[i];
+            //     }
+            // }
             
             Position = new Position(min.Row,min.Col);
             CheckPlayer();
