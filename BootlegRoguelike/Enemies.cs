@@ -57,7 +57,7 @@ namespace BootlegRoguelike
                     Math.Abs(player.Position.Col - position.Col);
                     //Puts the shortMov in to a array.  
                     valueMovs [i] = shortMov ;
-                    moves [i] = position;
+                    moves.Add(position);
                     //increments.
                     i++;
                 }
@@ -66,7 +66,7 @@ namespace BootlegRoguelike
             
             //Auxiliary variable.
             aux = valueMovs [0];
-            for(i=0; i< valueMovs[i]; i++)
+            for(i=0; i< moves.Count; i++)
             {
                 if(valueMovs[i] < aux)
                 {
