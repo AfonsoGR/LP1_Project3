@@ -50,7 +50,11 @@ namespace BootlegRoguelike
         {
             scoresManager = new ScoresManager();
 
-            scoresManager.DisplayScores();
+            //! TESTING-------------------------------------------------------
+            //scoresManager.RegisterScores();
+            //! TESTING-------------------------------------------------------
+
+            //scoresManager.DisplayTopScores();
             
             Console.WriteLine("Press any key to return to the main menu...");
             Console.ReadKey();
@@ -83,11 +87,10 @@ namespace BootlegRoguelike
             Console.WriteLine("Are you certain of this?\t(y/n)");
 
             string quitChoice = Console.ReadLine();
-            quitChoice.ToLower();
             
-            if (quitChoice == "y")
+            if (quitChoice == "y" || quitChoice == "Y")
                 System.Environment.Exit(1);
-            else if (quitChoice == "n")
+            else if (quitChoice == "n" || quitChoice == "N")
                 StartupMenu();
             else
             {

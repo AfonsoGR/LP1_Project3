@@ -11,8 +11,9 @@ namespace BootlegRoguelike
         StreamWriter writer = new StreamWriter(scoresFile);
         StreamReader reader;
         List<Highscore> scores = new List<Highscore>();
-        string displayString;
+        string displayScores;
         string nameRegister;
+        float finalScore = 100f;
 
         public void CompareScores()
         {
@@ -25,7 +26,7 @@ namespace BootlegRoguelike
             nameRegister = Console.ReadLine();
 
             // Adds highscores
-            //!scores.Add(new Highscore(nameRegister, THEPLAYERSCORE));
+            scores.Add(new Highscore(nameRegister, finalScore));
 
             // Orders highscores
             //! Check class recording (11 or 12)
@@ -33,30 +34,30 @@ namespace BootlegRoguelike
             // Saves highscores into a file
             foreach (Highscore highscore in scores)
             {
-                writer.WriteLine(highscore.PlayerName 
+                writer.WriteLine(highscore.PlayerName
                     + tab + highscore.PlayerScore);
             }
 
             // Closes file
-            writer.Close();            
+            writer.Close();
         }
 
-        public void DisplayScores()
+        public void DisplayTopScores()
         {
             // Opens file for reading
             reader = new StreamReader(scoresFile);
 
             // Reads each lines and displays each one on the screen
-            while ((displayString = reader.ReadLine()) != null)
+            while ((displayScores = reader.ReadLine()) != null)
             {
-                string[] nameAndScore = displayString.Split(tab);
+                string[] nameAndScore = displayScores.Split(tab);
                 string name = nameAndScore[0];
                 float score = Convert.ToSingle(nameAndScore[1]);
-                Console.WriteLine($"Score of '{name}' is {score}");
+                Console.WriteLine($"Score of '{name}' is {finalScore}");
             }
-            
+
             // Closes the file
-            reader.Close();            
+            reader.Close();
         }
     }
 }

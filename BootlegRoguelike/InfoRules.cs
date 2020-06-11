@@ -19,13 +19,19 @@ namespace BootlegRoguelike
             Console.Clear();
             Console.WriteLine("Welcome to our game, Bootleg Roguelike!\n" 
             + "In this game you have to reach the exit in the level. Each "
-            + "level is randomly generated and has multiple enemies and" 
-            + "obstacles.\n The player can move Up (W), Down (S), left (A)" 
+            + "level is randomly generated and has multiple enemies, obstacles" 
+            + " and powerups.\nThe player can move Up (W), Down (S), left (A) " 
             + "or Right (D) and loses when their HP reaches 0.\n\n\t" 
             + "The player loses 1 HP everytime they move.\n\t" 
-            + "The player loses 5 HP or 10 HP (depends on enemy type) when an"
-            + " enemy is above, below, to the right or to the left of the" 
-            + "player's current position.");
+            + "The player loses 5 HP or 10 HP when an enemy (depends on enemy"
+            + " type) is above, below, to the right or to the left of the " 
+            + "player's current position.\n\nThere are 3 different powerups:"
+            + "\n\tSmall -> Heals 4 HP.\n\tMedium -> Heals 8 HP.\n\tBig -> "
+            + "16 HP.\n\nThe game will get harder the longer it goes, there "
+            + "will be less powerups and more enemies, but the longer you go "
+            + "the bigger your score will be!\nKeep in mind that your total "
+            + "HP, the number of enemies, obstacles and powerups will be " 
+            + "influenced by the size of the board.\n");
         }
 
         public static void Credits()
