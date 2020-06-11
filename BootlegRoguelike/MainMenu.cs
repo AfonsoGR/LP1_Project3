@@ -4,27 +4,25 @@ namespace BootlegRoguelike
 {
     public class MainMenu
     {
-        private int cols {get; set;}
-        private int rows {get; set;}
+        public int Cols {get; set;}
+        public int Rows {get; set;}
 
-        private InfoRules infoRules;
         private ScoresManager scoresManager;
+        private GameLoopController gameLoopController;
 
-        private void StartupMenu()
+        public void StartupMenu()
         {
-            infoRules = new InfoRules();
-
-            infoRules.WelcomeText();
+            InfoRules.WelcomeText();
 
             int menuChoice;
 
             while (!int.TryParse(Console.ReadLine(), out menuChoice)
-                    || menuChoice < 1 || menuChoice > 5)
-
+                    || menuChoice < 1 || menuChoice > 5);
+            
             switch (menuChoice)
             {
                 case 1:
-                    NewGame(cols, rows);
+                    NewGame();
                     break;
                 case 2:
                     Highscores();
@@ -36,56 +34,68 @@ namespace BootlegRoguelike
                     Credits();
                     break;
                 case 5:
-                    Quit();
+                    QuitGame();
                     break;
                 default:
                     break;
             }
         }
         
-        private void NewGame(int cols, int rows)
+        public void NewGame()
         {
-            //! Reference
-            // if (args[b] == 'r')
-            // {
-            //     rows = (int)args[b+1];
-            // }
+            gameLoopController = new GameLoopController(Rows, Cols);
         }
 
-        private void Highscores()
+        public void Highscores()
         {
             scoresManager = new ScoresManager();
 
-            scoresManager.DisplayScores();
+            //! TESTING-------------------------------------------------------
+            //scoresManager.RegisterScores();
+            //! TESTING-------------------------------------------------------
+
+            //scoresManager.DisplayTopScores();
+            
+            Console.WriteLine("Press any key to return to the main menu...");
+            Console.ReadKey();
+
+            StartupMenu();
         }
 
-        private void Instructions()
-        {
-            infoRules.Intro();
+        public void Instructions()
+        {   
+            InfoRules.Intro();
+
+            Console.WriteLine("Press any key to return to the main menu...");
+            Console.ReadKey();
+
+            StartupMenu();
         }
 
-        private void Credits()
+        public void Credits()
         {
-            infoRules.Credits();            
+            InfoRules.Credits();
+
+            Console.WriteLine("Press any key to return to the main menu...");
+            Console.ReadKey();
+
+            StartupMenu();            
         }
 
-        private void Quit()
+        public void QuitGame()
         {
-            string quitChoice;
-
             Console.WriteLine("Are you certain of this?\t(y/n)");
 
-            quitChoice = Console.ReadLine();
-            quitChoice.ToLower();
+            string quitChoice = Console.ReadLine();
             
-            if (quitChoice == "y")
+            if (quitChoice == "y" || quitChoice == "Y")
                 System.Environment.Exit(1);
-            else if (quitChoice == "n")
+            else if (quitChoice == "n" || quitChoice == "N")
                 StartupMenu();
             else
             {
                 Console.WriteLine("Please input a valid choice...");
-                Quit();
+                QuitGame();
             }            
         }
     }

@@ -16,77 +16,69 @@ namespace BootlegRoguelike
 
             scene.GenerateNewScene(lvl);
 
-            graphics = new Renderer(scene.Room, scene.Player, scene.AllEnemies);
-
+            graphics = new Renderer(scene.Room, scene.Player);
 
             ScheduledUpdate();
         }
 
         private void ScheduledUpdate()
         {
+            graphics.Render("You already lost");
+
             while (true)
             {
-                //if (Console.Read() == 'l')
-                //{
-                //    scene.Player.HP -= 1;
-                //}
-
-                graphics.Render("Hello");
-
-                scene.Room[scene.Player.Position] = Enums.Empty;
-
                 MovePlayer();
-
-                scene.Room[scene.Player.Position] = Enums.Player;
-
-                graphics.Render("Hello");
-
-                scene.Room[scene.Player.Position] = Enums.Empty;
-
                 MovePlayer();
-
-                scene.Room[scene.Player.Position] = Enums.Player;
-
-
-                for (int i = 0; i < scene.AllEnemies.Count; i++)
-                {
-                    scene.AllEnemies[i].Movement();
-
-                    scene.Room[scene.AllEnemies[i].Position] = 
-                        scene.AllEnemies[i] is Boss? Enums.Boss : Enums.Enemy;
-
-                    graphics.Render("Hello");
-
-                    scene.Room[scene.AllEnemies[i].Position] = Enums.Empty;
-                }
 
                 CheckIfOnExit();
+
+                MoveEnemies();
             }
         }
 
         private void MovePlayer()
         {
+            scene.Room[scene.Player.Position] = Enums.Empty;
+
             char choice = ' ';
 
-            while (choice != 'W' && choice != 'A' 
+            while (choice != 'W' && choice != 'A'
                 && choice != 'S' && choice != 'D')
             {
                 choice = char.ToUpper(Console.ReadKey(true).KeyChar);
             }
 
             scene.Player.Movement(choice);
+
+            scene.Room[scene.Player.Position] = Enums.Player;
+
+            graphics.Render("Player Moved");
+        }
+
+        private void MoveEnemies()
+        {
+            for (int i = 0; i < scene.AllEnemies.Count; i++)
+            {
+                scene.Room[scene.AllEnemies[i].Position] = Enums.Empty;
+
+                scene.AllEnemies[i].Movement();
+
+                scene.Room[scene.AllEnemies[i].Position] =
+                    scene.AllEnemies[i] is Boss ? Enums.Boss : Enums.Enemy;
+
+                graphics.Render("Hello");
+            }
         }
 
         private void CheckIfOnExit()
         {
-            if (scene.Player.Position.Row == scene.Room.Exit.Row &&
-                scene.Player.Position.Col == scene.Room.Exit.Col)
+            if (scene.Room[scene.Player.Position] == Enums.Exit)
             {
                 lvl++;
 
                 scene.GenerateNewScene(lvl, false);
 
-                graphics = new Renderer(scene.Room, scene.Player, scene.AllEnemies);
+                graphics = new Renderer(scene.Room, scene.Player);
 
                 ScheduledUpdate();
             }

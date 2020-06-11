@@ -61,7 +61,6 @@ namespace BootlegRoguelike
                     moves.Add(position);
                     //increments.
                     i++;
-                    
                 }
                 
             }
