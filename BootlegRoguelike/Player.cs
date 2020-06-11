@@ -42,6 +42,7 @@ namespace BootlegRoguelike
                     {
                         Position = new Position (Position.Row,Position.Col-1);
                         HP -= 1;
+                        //Console.WriteLine("\nMoved North!");
                     }
                     break;
                 //Goes left.
@@ -51,6 +52,7 @@ namespace BootlegRoguelike
                     {
                         Position = new Position (Position.Row-1,Position.Col);
                         HP -= 1;
+                        //Console.WriteLine("\nMoved West!");
                     }
                     break;
                 //Goes down.
@@ -60,6 +62,7 @@ namespace BootlegRoguelike
                     {
                         Position = new Position (Position.Row,Position.Col+1);
                         HP -= 1;
+                        //Console.WriteLine("\nMoved South!");
                     }
                     break;
                 //Goes right.
@@ -69,6 +72,7 @@ namespace BootlegRoguelike
                     {
                         Position = new Position (Position.Row+1, Position.Col);
                         HP -= 1;
+                        //Console.WriteLine("\nMoved East!");
                     }
                     break;
                 //If he doesn't chose any legal choices.

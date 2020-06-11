@@ -16,17 +16,18 @@ namespace BootlegRoguelike
         protected  RoomGenerator Room;
         protected int attack; 
         protected Player player;
+        protected Enums type;
 
 
         protected void SetupEnemy(Position pos)
         {
             // The position of the enemy will be random on the map.
             Position = pos;
-            Up = new Position (Position.Row, Position.Col-1);
-            Down = new Position (Position.Row, Position.Col+1);
-            Left = new Position (Position.Row-1, Position.Col);
-            Right = new Position (Position.Row+1, Position.Col);
-            checkingArea = new List<Position> {Up,Down,Left,Right};
+            // checkingArea = new List<Position> {
+            // new Position (Position.Row, Position.Col-1),
+            // new Position(Position.Row, Position.Col+1),
+            // new Position (Position.Row-1, Position.Col),
+            // new Position (Position.Row+1, Position.Col)};
         }
 
         /// <summary>
@@ -41,23 +42,29 @@ namespace BootlegRoguelike
         /// <param name="player">Will be used to get player position.</param>
         public void Movement()
         {
-            int shortMov ;
-            int[] valueMovs = new int[4] ;
+            checkingArea = new List<Position> {
+            new Position (Position.Row, Position.Col-1),
+            new Position(Position.Row, Position.Col+1),
+            new Position (Position.Row-1, Position.Col),
+            new Position (Position.Row+1, Position.Col)};
+            List<int> valueMovs = new List<int>();
             int i = 0; 
             int aux;
-            Position min = new Position(0,0) ;
+            Position min = new Position(Position.Row,Position.Col) ;
             List <Position> moves = new List<Position>(); 
             foreach(Position position in checkingArea)
             {
                 //Checks if are blocked passages 
-                if(Room[position] != Enums.Block)
+                if(Room[position] != Enums.Block &&
+                Room[position] != Enums.Boss &&
+                Room[position] != Enums.Enemy&&
+                Room[position] != Enums.Player)
                 {
                     //Saves the positions.
-                    shortMov = Math.Abs(player.Position.Row - position.Row)+
-                    Math.Abs(player.Position.Col - position.Col);
+                    valueMovs.Add(Math.Abs(player.Position.Row - position.Row)+
+                    Math.Abs(player.Position.Col - position.Col));
                     //Puts the shortMov in to a array.  
-                    valueMovs [i] = shortMov ;
-                    moves [i] = position;
+                    moves.Add(position);
                     //increments.
                     i++;
                 }
@@ -66,16 +73,16 @@ namespace BootlegRoguelike
             
             //Auxiliary variable.
             aux = valueMovs [0];
-            for(i=0; i< valueMovs[i]; i++)
+            for(i=0; i< valueMovs.Count   ; i++)
             {
-                if(valueMovs[i] < aux)
+                if(valueMovs[i] <= aux)
                 {
                     min = moves[i];
                     aux = valueMovs[i];
                 }
             }
             
-            Position = min;
+            Position = new Position(min.Row,min.Col);
             CheckPlayer();
         }
 
