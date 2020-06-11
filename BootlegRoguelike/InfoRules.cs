@@ -2,11 +2,19 @@ using System;
 
 namespace BootlegRoguelike
 {
-    public static class InfoRules
+    /// <summary>
+    /// Displays on-screen text
+    /// </summary>
+    public class InfoRules
     {
-        public static void WelcomeText()
+        /// <summary>
+        /// Clears console and displays on-screen text
+        /// </summary>
+        public void WelcomeText()
         {
+            // Clears console
             Console.Clear();
+            // Displays on-screen text
             Console.WriteLine("Hello and Welcome to...\n\tBOOTLEG ROGUELIKE" +
                 "\n\nPlease select one of the following options:\n" +
                 "\t1 - New Game\n\t2 - High scores\n\t3 - Instructions\n\t" + 
@@ -14,14 +22,20 @@ namespace BootlegRoguelike
                 "numbers...");
         }
 
-        public static void Intro()
+        /// <summary>
+        /// Clears console and displays on-screen text
+        /// </summary>
+        public void Intro()
         {
+            // Clears console
             Console.Clear();
+            // Displays on-screen text
             Console.WriteLine("Welcome to our game, Bootleg Roguelike!\n" 
             + "In this game you have to reach the exit in the level. Each "
             + "level is randomly generated and has multiple enemies, obstacles" 
-            + " and powerups.\nThe player can move Up (W), Down (S), left (A) " 
-            + "or Right (D) and loses when their HP reaches 0.\n\n\t" 
+            + " and powerups.\nThe player can move Up (W or Up arrow), " 
+            + "Down (S or Down arrow), left (A or Left arrow) or Right " 
+            + "(D or right arrow) and loses when their HP reaches 0.\n\n\t" 
             + "The player loses 1 HP everytime they move.\n\t" 
             + "The player loses 5 HP or 10 HP when an enemy (depends on enemy"
             + " type) is above, below, to the right or to the left of the " 
@@ -34,9 +48,14 @@ namespace BootlegRoguelike
             + "influenced by the size of the board.\n");
         }
 
-        public static void Credits()
+        /// <summary>
+        /// Clears console and displays on-screen text
+        /// </summary>
+        public void Credits()
         {
+            // Clears console
             Console.Clear();
+            // Displays on-screen text
             Console.WriteLine("This game was made by the following students:"
                 + "\n\tAfonso Rosa      - a21802169"
                 + "\n\tAndré Vitorino   - a21902663"

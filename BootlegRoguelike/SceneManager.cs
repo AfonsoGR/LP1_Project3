@@ -55,6 +55,8 @@ namespace BootlegRoguelike
         {
             // Creates a new List of Enemies
             AllEnemies = new List<Enemies>();
+            // Creates a new List of PowerUps
+            PowerUps = new List<Powerup>();
 
             // Auxaliary int set to -1
             int hp = -1;
@@ -70,6 +72,8 @@ namespace BootlegRoguelike
             CreateNewPlayer();
             // Generates both Minions and Bosses
             CreateNewEnemies(lvl);
+
+            CreateNewPowerUps(lvl);
 
             // Checks if the HP is not at the -1 value
             if (hp != -1)
@@ -131,7 +135,7 @@ namespace BootlegRoguelike
 
             for (int c = 0; c < maxBosses; c++)
             {
-                Position pos = new Position(rnd.Next(1, row - 1),
+                Position pos = new Position(rnd.Next(1, row - 3),
                     rnd.Next(1, col - 2));
 
                 AllEnemies.Add(new Minion(Room, Player, pos));
@@ -143,7 +147,52 @@ namespace BootlegRoguelike
         // Unsued ATM
         private void CreateNewPowerUps(int lvl)
         {
-            int maxPowerUps = (int)(11 * Math.Log(5 * lvl));
+            //int maxPowerUps = (int)(-10 * Math.Log(0.01f * lvl));
+
+            int maxSmallPower = (int)(-2 * Math.Log(0.01f * lvl));
+            maxSmallPower = rnd.Next(0, maxSmallPower);
+
+            int maxMedPower = (int)(-2.5f * Math.Log(0.02f * lvl));
+            maxMedPower = rnd.Next(0, maxMedPower);
+
+            int maxBigPower = (int)(-3 * Math.Log(0.03f * lvl));
+            maxBigPower = rnd.Next(0, maxBigPower);
+
+            for (int n = 0; n < maxSmallPower; n++)
+            {
+                Position pos = new Position(rnd.Next(1, row - 3),
+                    rnd.Next(1, col - 2));
+
+                PowerUps.Add(new MiniHeal(Player, Room, pos));
+
+                Room[pos] = Enums.PowerMin;
+            }
+            for (int n = 0; n < maxMedPower; n++)
+            {
+                Position pos = new Position(rnd.Next(1, row - 3),
+                    rnd.Next(1, col - 2));
+
+                PowerUps.Add(new MedHeal(Player, Room, pos));
+
+                Room[pos] = Enums.PowerMed;
+            }
+            for (int n = 0; n < maxBigPower; n++)
+            {
+                Position pos = new Position(rnd.Next(1, row - 3),
+                    rnd.Next(1, col - 2));
+
+                PowerUps.Add(new BigHeal(Player, Room, pos));
+
+                Room[pos] = Enums.PowerMax;
+            }
+
+            if (maxBigPower == 0 && maxMedPower == 0 && maxBigPower == 0)
+            {
+                Position pos = new Position(rnd.Next(1, row - 3),
+                       rnd.Next(1, col - 2));
+
+                PowerUps.Add(new MiniHeal(Player, Room, pos));
+            }
         }
 
         /// <summary>

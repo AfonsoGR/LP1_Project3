@@ -6,7 +6,7 @@ namespace BootlegRoguelike
     public class GameLoopController
     {
         private Renderer graphics;
-        private SceneManager scene;
+        private readonly SceneManager scene;
         public int CurrentLevel { get; private set; }
 
         public GameLoopController(int rows, int cols, int lvl = 1)
@@ -32,34 +32,73 @@ namespace BootlegRoguelike
 
                 CheckIfOnExit();
 
+                UpdatePowerUps();
+
                 MovePlayer();
 
                 CheckIfOnExit();
 
+                UpdatePowerUps();
+
                 MoveEnemies();
+
+                UpdatePowerUps();
             }
         }
+        private void UpdatePowerUps()
+        {
+            int currentHP = scene.Player.HP;
 
+            for (int i = 0; i < scene.PowerUps.Count; i++)
+            {
+                scene.PowerUps[i].CheckPlayer();
+
+                scene.Room[scene.PowerUps[i].Position] = 
+                    scene.PowerUps[i].Type;
+
+                if (scene.Player.HP != currentHP)
+                {
+                    graphics.Render($"Player was healed " +
+                        $"{scene.Player.HP -currentHP} HP");
+
+                    scene.PowerUps.RemoveAt(i);
+                }
+            }
+        }
         private void MovePlayer()
         {
+            Position previousPos = scene.Player.Position;
+
             scene.Room[scene.Player.Position] = Enums.Empty;
 
-            char choice = ' ';
+            ConsoleKey choice = ConsoleKey.NoName;
 
-            while (choice != 'W' && choice != 'A'
-                && choice != 'S' && choice != 'D')
+            while (choice != ConsoleKey.W && choice != ConsoleKey.A
+                && choice != ConsoleKey.S && choice != ConsoleKey.D 
+                && choice != ConsoleKey.UpArrow 
+                && choice != ConsoleKey.DownArrow 
+                && choice != ConsoleKey.LeftArrow 
+                && choice != ConsoleKey.RightArrow)
             {
-                string tmp = Console.ReadLine().ToUpper();
-                choice = tmp.Length >= 1 ? tmp[0] : ' ';
-
-                //choice = char.ToUpper(Console.ReadKey(true).KeyChar); <---------------- Uncomment for the old movement style 
+                choice = Console.ReadKey(true).Key;
             }
 
             scene.Player.Movement(choice);
 
             scene.Room[scene.Player.Position] = Enums.Player;
 
-            graphics.Render("Player Moved");
+            if (scene.Player.Position.Row == previousPos.Row &&
+                scene.Player.Position.Col == previousPos.Col)
+            {
+                graphics.Render("You can't move there");
+                MovePlayer();
+            }
+            else
+            {
+                graphics.Render($"Player moved to " +
+                    $"({scene.Player.Position.Row}" +
+                    $",{scene.Player.Position.Col})");
+            }
         }
 
         private void MoveEnemies()
@@ -70,13 +109,14 @@ namespace BootlegRoguelike
 
                 scene.AllEnemies[i].Movement();
 
-                scene.Room[scene.AllEnemies[i].Position] =
-                    scene.AllEnemies[i] is Boss ? Enums.Boss : Enums.Enemy;
+                scene.Room[scene.AllEnemies[i].Position] = 
+                    scene.AllEnemies[i].Type;
 
-                graphics.Render(scene.Room[scene.AllEnemies[i].Position] + 
-                    " moved");
+                graphics.Render($"{scene.Room[scene.AllEnemies[i].Position]}" +
+                    $" moved to ({scene.AllEnemies[i].Position.Row}," +
+                    $"{scene.AllEnemies[i].Position.Col} )");
 
-                Thread.Sleep(200);
+                //Thread.Sleep(200);
             }
         }
 

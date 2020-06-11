@@ -2,9 +2,9 @@ namespace BootlegRoguelike
 {
     public class MiniHeal : Powerup
     {
-        public MiniHeal (Player player, RoomGenerator Room, int rndX, int rndY)
+        public MiniHeal (Player player, RoomGenerator Room, Position pos)
         {
-            Position = new Position(rndX,rndY);
+            Position = pos;
             Heal = 4;
             Type = Enums.PowerMin;
             this.player = player;
