@@ -36,8 +36,32 @@ namespace BootlegRoguelike
             // Creates integer variable cols
             int cols;
 
+            SavesManager saves = new SavesManager();
+
+            // Checks if the input arguments are valid 
+            if (args[0] == "-l")
+            {
+                // Stores all the variables from the same
+                (int row, int col, int lvl, int hp) savedVariables =
+                    saves.LoadSave(args[1]);
+
+                // Checks of any of the variables is 0
+                if (savedVariables.row == 0 || savedVariables.col == 0 
+                    || savedVariables.lvl == 0 || savedVariables.hp == 0)
+                {
+                    // Displays an error message to the user
+                    Console.WriteLine("No save was found or is currupted\n");
+                    ErrorMessage();
+                }
+                else
+                {
+                    // Starts the main menu
+                    InitializeMainMenu(savedVariables.row, savedVariables.col,
+                        savedVariables.lvl, savedVariables.hp);
+                }
+            }
             // Checks if the input arguments are invalid
-            if (args == null || args.Length == 0 ||
+            else if (args == null || args.Length == 0 ||
                 args[0] != "-r" && args[2] != "-c" &&
                 args[0] != "-c" && args[2] != "-r")
             {
@@ -95,10 +119,11 @@ namespace BootlegRoguelike
         /// </summary>
         /// <param name="rows"> Value of rows </param>
         /// <param name="cols"> Value of cols </param>
-        private void InitializeMainMenu(int rows, int cols)
+        private void InitializeMainMenu(int rows, int cols, 
+            int lvl = 1, int hp = 0)
         {
             // Creates a new MainMenu instance
-            mainMenu = new MainMenu(rows, cols);
+            mainMenu = new MainMenu(rows, cols, lvl, hp);
             // Calls StartupMenu method from MainMenu class
             mainMenu.StartupMenu();
         }
@@ -109,11 +134,13 @@ namespace BootlegRoguelike
         private void ErrorMessage()
         {
             // Displays on-screen text
-            Console.WriteLine("Use the following commands:\n\t"
+            Console.WriteLine("Use the following commands:\n\n\t"
                 + "dotnet run -p BootlegRoguelike/ -- -r X -c Y\n\n"
                 + "OR\n\n\tdotnet run -- -r X -c Y\n\n"
                 + "Replace X and Y by any numeric values of your choice, "
-                + "you can also swap the order of '-r' and '-c' at will.");
+                + "you can also swap the order of '-r' and '-c' at will.\n"
+                + "If you wish to load the file instead use:\n\t"
+                + " \n\n\tdotnet run -- -l (File name)\n\n");
         }
     }
 }

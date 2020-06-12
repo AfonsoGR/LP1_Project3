@@ -14,6 +14,9 @@ namespace BootlegRoguelike
         // Stores the current scene
         private readonly SceneManager scene;
 
+        // Stores a save manager
+        private readonly SavesManager saves;
+
         // If the game should keep running
         private bool stopGameToken;
 
@@ -28,8 +31,10 @@ namespace BootlegRoguelike
         /// <param name="rows"> Width of the room </param>
         /// <param name="cols"> Height of the board</param>
         /// <param name="lvl"> The starting level </param>
-        public GameLoopController(int rows, int cols, int lvl = 1)
+        public GameLoopController(int rows, int cols, int lvl = 1, int hp = 0)
         {
+            // Creates a new SaveManager
+            saves = new SavesManager();
             // Starts the stopGameToken to false
             stopGameToken = false;
 
@@ -40,7 +45,7 @@ namespace BootlegRoguelike
             scene = new SceneManager(cols, rows);
 
             // Generates all the objects of the game
-            scene.GenerateNewScene(CurrentLevel);
+            scene.GenerateNewScene(CurrentLevel, hp);
 
             // Creates a new Renderer to display information
             graphics = new Renderer(scene.Room, scene.Player, CurrentLevel);
@@ -210,7 +215,7 @@ namespace BootlegRoguelike
                 }
 
                 // Stops the game in order for the player to see what happened
-                Thread.Sleep(1000);
+                //Thread.Sleep(500);
             }
         }
 
@@ -229,6 +234,17 @@ namespace BootlegRoguelike
                 // Increments the level by one
                 CurrentLevel++;
 
+                // Asks the user if he wishes to save
+                Console.WriteLine("Do you wish to save your progress? y/n");
+
+                // Asks for input
+                if (Console.ReadKey(true).Key == ConsoleKey.Y)
+                {
+                    // If yes calls the SaveGame sending the info needed
+                    saves.SaveGame(scene.Room.SizeY - 2, scene.Room.SizeX - 3,
+                        CurrentLevel,scene.Player.HP);
+                }
+
                 // Clears the console
                 Console.Clear();
                 // Displays a message
@@ -240,7 +256,7 @@ namespace BootlegRoguelike
                 Thread.Sleep(2000);
 
                 // Generates new obstacles, enemies and powerups
-                scene.GenerateNewScene(CurrentLevel, false);
+                scene.GenerateNewScene(CurrentLevel, scene.Player.HP);
 
                 // Creates a new Renderer with the info from the scene
                 graphics = new Renderer
