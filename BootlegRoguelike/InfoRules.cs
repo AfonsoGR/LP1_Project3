@@ -47,7 +47,8 @@ namespace BootlegRoguelike
             + "HP, the number of enemies, obstacles and powerups will be " 
             + "influenced by the size of the board.\n" + "Your score will be" 
             + " saved into your Documents folder under a new folder called " 
-            + "BootlegSaves.\n");
+            + "BootlegSaves.\n\nPress escape during the game to return to "
+            + "the Main Menu\n");
         }
 
         /// <summary>
