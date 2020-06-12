@@ -106,7 +106,7 @@ namespace BootlegRoguelike
         public void NewGame()
         {
             // Creates a new Game Loop Controller with given arguments
-            gameLoopController = new GameLoopController(Rows, Cols);
+            gameLoopController = new GameLoopController(Rows, Cols, scoresManager);
         }
 
         /// <summary>
@@ -115,11 +115,9 @@ namespace BootlegRoguelike
         /// </summary>
         public void Highscores()
         {
-            // Creates a new Scores Manager
 
-            //! TESTING-------------------------------------------------------
-            scoresManager.RegisterScores();
-            //! TESTING-------------------------------------------------------
+            // Creates a new Scores Manager
+            //scoresManager.RegisterScores();
 
             // Calls DisplayTopScores method from ScoresManager.cs
             //scoresManager.DisplayTopScores();

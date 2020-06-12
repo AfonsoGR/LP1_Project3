@@ -9,7 +9,9 @@ namespace BootlegRoguelike
         private readonly SceneManager scene;
         public int CurrentLevel { get; private set; }
 
-        public GameLoopController(int rows, int cols, int lvl = 1)
+        private ScoresManager scores;
+
+        public GameLoopController(int rows, int cols,ScoresManager scores,int lvl = 1 )
         {
             CurrentLevel = lvl;
 
@@ -20,6 +22,8 @@ namespace BootlegRoguelike
             graphics = new Renderer(scene.Room, scene.Player);
 
             ScheduledUpdate();
+
+            this.scores = scores;
         }
 
         private void ScheduledUpdate()
