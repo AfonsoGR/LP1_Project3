@@ -53,7 +53,7 @@ namespace BootlegRoguelike
             string name = Console.ReadLine();
 
             // Checks if the name given contains spaces
-            while (name.Contains(' '))
+            while (name.Contains(' ') || name == null)
             {
                 // Asks for input again
                 Console.WriteLine("The name can't contain spaces!");
@@ -99,7 +99,7 @@ namespace BootlegRoguelike
                     // Assigns all lines in the file to a string in an array
                     string[] array = File.ReadAllLines(file);
 
-                    // Runs thorugh every string in the array
+                    // Runs through every string in the array
                     foreach (string line in array)
                     {
                         // Separates names from scores
@@ -111,25 +111,25 @@ namespace BootlegRoguelike
                             break;
                         }
 
-                        // Assgins value to rows
+                        // Assigns value to rows
                         if (!int.TryParse(values[0], out rows))
                         {
                             // Displays where the save file is corrupted
                             Console.WriteLine("Bad Data at getting rows");
                         }
-                        // Assgins value to cols
+                        // Assigns value to cols
                         if (!int.TryParse(values[1], out cols))
                         {
                             // Displays where the save file is corrupted
                             Console.WriteLine("Bad Data at getting cols");
                         }
-                        // Assgins value to lvl
+                        // Assigns value to lvl
                         if (!int.TryParse(values[2], out lvl))
                         {
                             // Displays where the save file is corrupted
                             Console.WriteLine("Bad Data at getting level");
                         }
-                        // Assgins value to hp
+                        // Assigns value to hp
                         if (!int.TryParse(values[3], out hp))
                         {
                             // Displays where the save file is corrupted

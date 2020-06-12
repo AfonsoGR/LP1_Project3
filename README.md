@@ -23,7 +23,8 @@ estruturação e funcionamento das mesmas, teve apoio do colega, João Fonseca,
 que ajudou no funcionamento da classe `ScoresManager`.
 
 Tratou ainda da documentação das classes `Highscore`, `MainMenu`, `Program`,
-`ScoresManager` e `InfoRules`.
+`ScoresManager` e `InfoRules`. E realizou grande parte do relatório como também
+ajudou com o UML de classes.
 
 #### André Vitorino
 
@@ -33,18 +34,19 @@ responsável pela lógica, estruturação e funcionamento das mesmas, sendo que 
 class `SavesManager` é uma cópia adaptada da classe `ScoresManager`.
 
 Tratou ainda da documentação das classes `GameLoopController`, `SceneManager`,
-`RoomGenerator`, `SaveManager` e `Renderer`.
+`RoomGenerator`, `SaveManager` e `Renderer`. E ajudou com parte do relatório.
 
 #### João Fonseca
 
 O aluno, João Fonseca, foi o responsável pelas classes `BigHeal`, `Boss`,
-`Enemies`, `Piece`, `MedHeal`, `MiniHeal`, `Minion`, `Player`, `Position` e
+`Enemies`, `MedHeal`, `MiniHeal`, `Minion`,`Piece`, `Player`, `Position` e
 `Powerup`,tendo sido o responsável pela lógica, estruturação e funcionamento
 das mesmas, teve apoio do colega, André Vitorino, que ajudou no funcionamento
 das classes `Enemies` e `Player`.
 
 Tratou ainda da documentação das classes `BigHeal`, `Boss`, `Enemies`, `Piece`,
-`MedHeal`, `MiniHeal`, `Minion`, `Player`, `Position` e `Powerup`.
+`MedHeal`, `MiniHeal`, `Minion`, `Player`, `Position` e `Powerup`. E a maioria
+do UML de classes.
 
 ## Arquitetura da solução
 
@@ -52,11 +54,13 @@ Tratou ainda da documentação das classes `BigHeal`, `Boss`, `Enemies`, `Piece`
 
 O projeto tem como ponto principal a classe `GameLoopController`, sendo a
 classe que contem o jogo em si, criando e guardando os elementos necessários
-para que o jogo funcione. A classe `GameLoopController` é gere o _loop_
+para que o jogo funcione. A classe `GameLoopController` é que gere o _loop_
 principal do jogo enquanto o jogador estiver vivo e não se encontrar com o seu
 movimento bloqueado. Usando o `Renderer` para atualizar o _board_, onde mostra
-o movimento atualizado do jogador e dos inimigos. Verifica também se o jogador
-apanhou algum _powerup_ ou se se encontra na sáida do nível.
+o movimento atualizado do jogador e dos inimigos como também a interface do 
+utilizador. Verifica também se o jogador apanhou algum _powerup_ ou se se 
+encontra na sáida do nível. Também se responsabiliza pela passagem de nível,
+utilizando a class `SavesManager` para guardar o jogo quando isto aconteçe.
 
 `GameLoopController` gere o movimento do jogador e dos inimigos e todas as
 verificações essenciais para o _loop_ principal do jogo. Utiliza também a
@@ -84,8 +88,9 @@ Foram reaproveitados elementos do
 [projeto](https://github.com/AfonsoGR/LP1_Project2) realizado previamente para
 esta cadeira pelos alunos Afonso Rosa e André Vitorino.
 
-Foram aproveitados elementos deste [post](/stackoverflow.com/questions/4351258)
-do [Stack Overflow](https://stackoverflow.com/).
+Foram aproveitados elementos deste [post]
+(https://stackoverflow.com/questions/4351258) do 
+[Stack Overflow](https://stackoverflow.com/).
 
 Houve troca de ideias com colegas em como lidar com os problemas impostos pelas
 _highscores_, estes colegas foram o

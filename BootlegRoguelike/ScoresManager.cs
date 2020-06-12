@@ -61,7 +61,7 @@ namespace BootlegRoguelike
             // Assigns value to filepath
             // and combines the folderpath with the respective file
             filepath = Path.Combine(folderpath, finalFileName);
-            // Assgins value to scores
+            // Assigns value to scores
             scores = new List<Highscore>();
             // Checks if the folder exists in the respective directory
             if (Directory.Exists(folderpath))
@@ -82,7 +82,7 @@ namespace BootlegRoguelike
             // Previous conditions weren't met
             else
             {
-                // Create scores filder
+                // Create scores folder
                 CreateScoreFolder();
                 // Create scores file
                 CreateScoreFile();
@@ -149,14 +149,14 @@ namespace BootlegRoguelike
             // Assigns all lines in the file to a string in an array
             string[] array = File.ReadAllLines(filepath);
 
-            // Runs thorugh every string in the array
+            // Runs through every string in the array
             foreach (string line in array)
             {
                 // Separates names from scores
                 string[] values = line.Split(tab);
-                // Assgins value to name
+                // Assigns value to name
                 nameRegister = values[0];
-                // Assgins value to score and converts it to an integer
+                // Assigns value to score and converts it to an integer
                 finalScore = int.Parse(values[1]);
                 // Adds name and score to collection
                 scores.Add(new Highscore(nameRegister, finalScore));
@@ -181,7 +181,7 @@ namespace BootlegRoguelike
         /// </summary>
         private void SaveScores()
         {
-            // Assgins value to scorestext
+            // Assigns value to scorestext
             string scorestext = "";
 
             // Runs through every highscore in the scores collection
@@ -203,7 +203,7 @@ namespace BootlegRoguelike
         /// <returns> Returns if score can be stored or not </returns>
         private bool CanBeInserted(int score)
         {
-            // Assgins "false" value to checker
+            // Assigns "false" value to checker
             bool checker = false;
 
             // Checks if the number of scores in the file

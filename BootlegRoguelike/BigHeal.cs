@@ -1,7 +1,7 @@
 namespace BootlegRoguelike
 {
     /// <summary>
-    /// This class extends from Powerup class
+    /// This class extends from Power up class
     /// </summary>
     public class BigHeal : Powerup
     {

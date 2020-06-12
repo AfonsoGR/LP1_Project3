@@ -19,7 +19,7 @@ namespace BootlegRoguelike
         public Piece Type { get; protected set; }
 
         /// <summary>
-        /// List of von Neumann positions
+        /// List of Von Neumann positions
         /// </summary>
         private List<Position> checkingArea;
 
@@ -67,20 +67,20 @@ namespace BootlegRoguelike
             //Adds the value of acceptable moves
             List<int> valueMovs = new List<int>();
 
-            //Adds the acceptable von Neumann positions
+            //Adds the acceptable Von Neumann positions
             List<Position> moves = new List<Position>();
 
-            //Updates the von Neumann
+            //Updates the Von Neumann
             Update();
 
-            //Checks for each von Neumann position
+            //Checks for each Von Neumann position
             foreach (Position position in checkingArea)
             {
                 //if there is any player on the position calls method attack()
                 if (Room[position] == Piece.Player)
                 {
                     Attack();
-                    //sets attact to true
+                    //sets attack to true
                     attack = true;
                 }
                 else
@@ -91,12 +91,12 @@ namespace BootlegRoguelike
                     Room[position] != Piece.Enemy &&
                     Room[position] != Piece.Player)
                     {
-                        //Saves the distance from von Neumann position to
+                        //Saves the distance from Von Neumann position to
                         //player
                         valueMovs.Add(
                         Math.Abs(player.Position.Row - position.Row) +
                         Math.Abs(player.Position.Col - position.Col));
-                        //Savesthe positions
+                        //Saves the positions
                         moves.Add(position);
                     }
                     else
@@ -109,11 +109,11 @@ namespace BootlegRoguelike
             //if attack different of true it means that he didn't attack yet
             if (!attack)
             {
-                //if J = 4 means all passages are blocked and he can't move
+                // If J = 4 means all passages are blocked and he can't move
                 if (j != 4)
                 {
                     aux = valueMovs[0];
-                    //Checks what is the lowest value on all distances
+                    // Checks what is the lowest value on all distances
                     for (int i = 0; i < valueMovs.Count; i++)
                     {
                         if (valueMovs[i] <= aux)
@@ -123,22 +123,22 @@ namespace BootlegRoguelike
                         }
                     }
                 }
-                //Makes the move
+                // Makes the move
                 Position = new Position(min.Row, min.Col);
-                //Updates the von Neumann Positions
+                // Updates the Von Neumann Positions
                 Update();
-                //See's if player is around
+                // See's if player is around
                 CheckPlayer();
             }
         }
 
         /// <summary>
-        /// See's if there is any player in von Neumann positions, if it exist
+        /// See's if there is any player in Von Neumann positions, if it exist
         /// call's method Attack()
         /// </summary>
         protected void CheckPlayer()
         {
-            //Goes throw all von Neumann positions
+            //Goes throw all Von Neumann positions
             foreach (Position position in checkingArea)
             {
                 //Sees enum type equals to block.

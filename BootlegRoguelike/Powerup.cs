@@ -12,7 +12,7 @@ namespace BootlegRoguelike
         protected Player player;
 
         /// <summary>
-        /// Gets and sets the powerups postions
+        /// Gets and sets the powerups positions
         /// </summary>
         /// <value>Value Row and Column</value>
 

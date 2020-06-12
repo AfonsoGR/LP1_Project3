@@ -44,12 +44,12 @@ namespace BootlegRoguelike
         }
 
         /// <summary>
-        /// Overrides ToString method and assigns value to highscore string
+        /// Overrides ToString method and assigns value to high score string
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            // Returns overridden highscore string
+            // Returns overridden high score string
             return Name + ScoresManager.tab + Score;
         }
     }

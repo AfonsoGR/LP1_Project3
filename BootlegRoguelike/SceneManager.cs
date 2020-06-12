@@ -10,7 +10,7 @@ namespace BootlegRoguelike
     /// </summary>
     public class SceneManager
     {
-        // Sotres a Random instance
+        // Stores a Random instance
         private readonly Random rnd;
 
         // The number of columns
@@ -81,7 +81,7 @@ namespace BootlegRoguelike
         /// </summary>
         private void CreateNewPlayer(int hp)
         {
-            // Assgins the Player variable the created player
+            // Assigns the Player variable the created player
             Player = new Player(row, col, Room, rnd.Next(1, col));
 
             if (hp != 0)

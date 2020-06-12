@@ -129,7 +129,7 @@ namespace BootlegRoguelike
         }
 
         /// <summary>
-        /// Displays Top Scores fo the current board setup
+        /// Displays Top Scores for the current board setup
         /// and waits for user input before returning to the startup menu
         /// </summary>
         public void Highscores()
