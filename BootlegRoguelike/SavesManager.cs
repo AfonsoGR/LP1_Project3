@@ -114,25 +114,25 @@ namespace BootlegRoguelike
                         // Assgins value to rows
                         if (!int.TryParse(values[0], out rows))
                         {
-                            // Displays where the save file is currupted
+                            // Displays where the save file is corrupted
                             Console.WriteLine("Bad Data at getting rows");
                         }
                         // Assgins value to cols
                         if (!int.TryParse(values[1], out cols))
                         {
-                            // Displays where the save file is currupted
+                            // Displays where the save file is corrupted
                             Console.WriteLine("Bad Data at getting cols");
                         }
                         // Assgins value to lvl
                         if (!int.TryParse(values[2], out lvl))
                         {
-                            // Displays where the save file is currupted
+                            // Displays where the save file is corrupted
                             Console.WriteLine("Bad Data at getting level");
                         }
                         // Assgins value to hp
                         if (!int.TryParse(values[3], out hp))
                         {
-                            // Displays where the save file is currupted
+                            // Displays where the save file is corrupted
                             Console.WriteLine("Bad Data at getting hp");
                         }
                         Console.WriteLine();

@@ -50,7 +50,7 @@ namespace BootlegRoguelike
         /// </summary>
         protected void Regen()
         {
-            //if he picks up the powerup checks if the sum is bigger than Maxhp
+            //if he picks up the powerup checks if the sum is bigger than MaxHp
             if ((player.HP + Heal) > player.MaxHP)
             {
                 player.HP = player.MaxHP;

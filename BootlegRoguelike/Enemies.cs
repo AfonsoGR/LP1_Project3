@@ -106,7 +106,7 @@ namespace BootlegRoguelike
                     }
                 }
             }
-            //if attack diferent of true it means that he didn't attack yet
+            //if attack different of true it means that he didn't attack yet
             if (!attack)
             {
                 //if J = 4 means all passages are blocked and he can't move
@@ -133,7 +133,7 @@ namespace BootlegRoguelike
         }
 
         /// <summary>
-        /// See's if there is any player in von Naumann positions, if it exist
+        /// See's if there is any player in von Neumann positions, if it exist
         /// call's method Attack()
         /// </summary>
         protected void CheckPlayer()

@@ -21,7 +21,7 @@
         /// <summary>
         /// Returns the value of the position or gives it a new value
         /// </summary>
-        /// <param name="pos"> The position to be acessed </param>
+        /// <param name="pos"> The position to be accessed </param>
         /// <returns> The Piece at that position </returns>
         public Piece this[Position pos]
         {
@@ -33,7 +33,7 @@
         /// Generates the basic visual structure of the board
         /// </summary>
         /// <param name="rows"> Number of rows </param>
-        /// <param name="cols"> Number of collumns </param>
+        /// <param name="cols"> Number of columns </param>
         /// <param name="rnd"> Random number (0 and cols -1) </param>
         public void SetBoardToInitState(int rows, int cols, int rnd)
         {

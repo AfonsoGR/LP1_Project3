@@ -206,9 +206,9 @@ namespace BootlegRoguelike
 
                 if (scene.Player.HP != playerHP)
                 {
-                    // Shows the board and the damage delt to the player
+                    // Shows the board and the damage dealt to the player
                     graphics.Render($"{scene.AllEnemies[i].Type} " +
-                        $"Delt to the player " +
+                        $"Dealt to the player " +
                         $"{scene.Player.HP - playerHP} hit points");
 
                     // Resets the playerHP to the current hp

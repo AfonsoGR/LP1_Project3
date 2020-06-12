@@ -5,7 +5,7 @@ namespace BootlegRoguelike
 {
     /// <summary>
     /// Class used to generate and store the level data, contains the player
-    /// enemies and the level layout. Only this class contains an istance of
+    /// enemies and the level layout. Only this class contains an instance of
     /// the Random class
     /// </summary>
     public class SceneManager
@@ -13,7 +13,7 @@ namespace BootlegRoguelike
         // Sotres a Random instance
         private readonly Random rnd;
 
-        // The number of collumns
+        // The number of columns
         private readonly int col;
 
         // The number of rows
@@ -77,7 +77,7 @@ namespace BootlegRoguelike
         }
 
         /// <summary>
-        /// Creates a new Player seding in the size of the Room and the level
+        /// Creates a new Player sending in the size of the Room and the level
         /// </summary>
         private void CreateNewPlayer(int hp)
         {
@@ -151,15 +151,15 @@ namespace BootlegRoguelike
         /// <param name="lvl"> The current level number </param>
         private void CreateNewPowerUps(int lvl)
         {
-            // Logorithmic formula to find the max small power ups
+            // Logarithmic formula to find the max small power ups
             int maxSmallPower = (int)(-2 * Math.Log(0.01f * lvl));
             maxSmallPower = rnd.Next(1, maxSmallPower);
 
-            // Logorithmic formula to find the max medium power ups
+            // Logarithmic formula to find the max medium power ups
             int maxMedPower = (int)(-2.5f * Math.Log(0.02f * lvl));
             maxMedPower = rnd.Next(0, maxMedPower);
 
-            // Logorithmic formula to find the max big powerups ups
+            // Logarithmic formula to find the max big powerups ups
             int maxBigPower = (int)(-3 * Math.Log(0.03f * lvl));
             maxBigPower = rnd.Next(0, maxBigPower);
 
@@ -246,7 +246,7 @@ namespace BootlegRoguelike
             Position pos = new Position(rnd.Next(1, row + 1),
                 rnd.Next(1, col + 1));
 
-            // Cycles while that position is ocuppied
+            // Cycles while that position is occupied
             while (Room[pos] != Piece.Empty)
             {
                 // Sets pos to a new random one

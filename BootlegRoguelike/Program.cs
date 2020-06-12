@@ -50,7 +50,7 @@ namespace BootlegRoguelike
                     || savedVariables.lvl == 0 || savedVariables.hp == 0)
                 {
                     // Displays an error message to the user
-                    Console.WriteLine("No save was found or is currupted\n");
+                    Console.WriteLine("No save was found or is corrupted\n");
                     ErrorMessage();
                 }
                 else
