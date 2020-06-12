@@ -21,24 +21,25 @@ namespace BootlegRoguelike
         /// <value> Value of Rows </value>
         public int Rows {get; set;}
 
-        /// <summary>
-        /// Creates a variable of ScoresManager
-        /// </summary>
+        // Creates a variable of ScoresManager
         private ScoresManager scoresManager;
 
-        /// <summary>
-        /// Creates a variable of GameLoopController
-        /// </summary>
+        // Creates a variable of GameLoopController
         private GameLoopController gameLoopController;
 
-        /// <summary>
-        /// Creates a variable of InfoRules
-        /// </summary>
+        // Creates a variable of InfoRules
         private InfoRules infoRules;
 
-        public MainMenu ()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rows"> Value of rows </param>
+        /// <param name="cols"> Value of cols </param>
+        public MainMenu (int rows, int cols)
         {
-            scoresManager = new ScoresManager();
+            Rows = rows;
+            Cols = cols;
+            scoresManager = new ScoresManager(Rows, Cols);
         }
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace BootlegRoguelike
             // Creates a new InfoRules
             infoRules = new InfoRules();
 
-            // Calls WelcomeText method from InfoRules.cs
+            // Displays on-screen text
             infoRules.WelcomeText();
             
             // Stores player choice
@@ -65,31 +66,31 @@ namespace BootlegRoguelike
             {
                 // Executes if menuChoice is 1
                 case 1:
-                    // Calls NewGame method from this class
+                    // Starts a new game
                     NewGame();
                     // Exits the current switch section
                     break;
-                // Executes if menuChoice is 1
+                // Executes if menuChoice is 2
                 case 2:
-                    // Calls Highscores method from this class
+                    // Displays top scores of the current board
                     Highscores();
                     // Exits the current switch section
                     break;
-                // Executes if menuChoice is 1
+                // Executes if menuChoice is 3
                 case 3:
-                    // Calls Instructions method from this class
+                    // Displays on-screen text
                     Instructions();
                     // Exits the current switch section
                     break;
-                // Executes if menuChoice is 1
+                // Executes if menuChoice is 4
                 case 4:
-                    // Calls Credits method from this class
+                    // Displays on screen-text
                     Credits();
                     // Exits the current switch section
                     break;
-                // Executes if menuChoice is 1
+                // Executes if menuChoice is 5
                 case 5:
-                    // Calls QuitGame method from this class
+                    // Quits game
                     QuitGame();
                     // Exits the current switch section
                     break;
@@ -107,30 +108,25 @@ namespace BootlegRoguelike
         {
             // Creates a new Game Loop Controller with given arguments
             gameLoopController = new GameLoopController(Rows, Cols);
+            // Registers user's score
             scoresManager.RegisterScores(gameLoopController.CurrentLevel);
+            // Returns to StartupMenu
             StartupMenu();
         }
 
         /// <summary>
-        /// Displays Top Scores and wait for user input 
-        /// before returning to the startup menu
+        /// Displays Top Scores fo the current board setup 
+        /// and waits for user input before returning to the startup menu
         /// </summary>
         public void Highscores()
         {
-            
-
-            scoresManager.PrintHighcore();
-            // Creates a new Scores Manager
-            //scoresManager.RegisterScores();
-
-            // Calls DisplayTopScores method from ScoresManager.cs
-            //scoresManager.DisplayTopScores();
-            
+            // Displays highscores 
+            scoresManager.PrintHighcore();           
             // Displays on-screen text
             Console.WriteLine("Press any key to return to the main menu...");
             // Waits for user input
             Console.ReadKey();
-            // Calls StartupMenu method from this class
+            // Returns to StartupMenu
             StartupMenu();
         }
 
@@ -142,15 +138,13 @@ namespace BootlegRoguelike
         {
             // Creates a new InfoRules
             infoRules = new InfoRules();
-
-            // Calls Intro method from InfoRules.cs
+            // Displays on-screen text
             infoRules.Intro();
-
             // Displays on-screen text
             Console.WriteLine("Press any key to return to the main menu...");
             //Waits for user input
             Console.ReadKey();
-            // Calls StartupMenu method from this class
+            // // Returns to StartupMenu
             StartupMenu();
         }
 
@@ -162,15 +156,13 @@ namespace BootlegRoguelike
         {
             // Creates a new InfoRules
             infoRules = new InfoRules();
-
-            // Calls Credtis method from InfoRules.cs
+            // Displays on-screen text
             infoRules.Credits();
-
             // Displays on-screen text
             Console.WriteLine("Press any key to return to the main menu...");
             // Waits for user input
             Console.ReadKey();
-            // Calls StartupMenu method from this class
+            // // Returns to StartupMenu
             StartupMenu();            
         }
 
@@ -184,25 +176,25 @@ namespace BootlegRoguelike
             Console.WriteLine("Are you certain of this?\t(y/n)");
             // Stores user input in quitChoice variable
             string quitChoice = Console.ReadLine();
+            // Converts string to lower case
+            quitChoice = quitChoice.ToLower();
             // Checks if the quitchoice variable has specified values
-            if (quitChoice == "y" || quitChoice == "Y")
+            if (quitChoice == "y")
             {
-                scoresManager.Close();
                 // Exists the game
                 System.Environment.Exit(1);
             }
             // Checks if the quitChoice variable has specified values
-            else if (quitChoice == "n" || quitChoice == "N")
-                // Calls StartupMenu method from this class
+            else if (quitChoice == "n")
+                // Returns to StartupMenu
                 StartupMenu();
             // Previous conditions were not met
             else
             {
                 // Displays on-screen text
                 Console.WriteLine("Please input a valid choice...");
-                // Calls QuitGame method from this class
+                // Returns to QuitGame
                 QuitGame();
-                scoresManager.Close();
             }            
         }
     }

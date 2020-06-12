@@ -11,9 +11,15 @@ namespace BootlegRoguelike
             Name = name;
             Score = score;
         }
+
         public int CompareTo(Highscore other)
         {
             return other.Score - Score;
+        }
+
+        public override string ToString()
+        {
+            return Name + ScoresManager.tab + Score;
         }        
     }
 }
