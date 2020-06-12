@@ -34,17 +34,32 @@ namespace BootlegRoguelike
             {
                 MovePlayer();
 
+                if (scene.Player.Gameover())
+                {
+                    break;
+                }
+
                 CheckIfOnExit();
 
                 UpdatePowerUps();
 
                 MovePlayer();
 
+                if (scene.Player.Gameover())
+                {
+                    break;
+                }
+
                 CheckIfOnExit();
 
                 UpdatePowerUps();
 
                 MoveEnemies();
+
+                if (scene.Player.Gameover())
+                {
+                    break;
+                }
 
                 UpdatePowerUps();
             }
@@ -53,19 +68,22 @@ namespace BootlegRoguelike
         {
             int currentHP = scene.Player.HP;
 
-            for (int i = 0; i < scene.PowerUps.Count; i++)
+            for (int i = 0; i < scene.AllPowerUps.Count; i++)
             {
-                scene.PowerUps[i].CheckPlayer();
+                scene.AllPowerUps[i].CheckPlayer();
 
-                scene.Room[scene.PowerUps[i].Position] = 
-                    scene.PowerUps[i].Type;
+                if (scene.Room[scene.AllPowerUps[i].Position] == Enums.Empty)
+                {
+                    scene.Room[scene.AllPowerUps[i].Position] =
+                        scene.AllPowerUps[i].Type;
+                }
 
                 if (scene.Player.HP != currentHP)
                 {
                     graphics.Render($"Player was healed " +
                         $"{scene.Player.HP -currentHP} HP");
 
-                    scene.PowerUps.RemoveAt(i);
+                    scene.AllPowerUps.RemoveAt(i);
                 }
             }
         }
