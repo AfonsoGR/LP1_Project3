@@ -6,6 +6,8 @@ namespace BootlegRoguelike
     {
         private MainMenu mainMenu;
 
+        private ScoresManager scores;
+
         static void Main(string[] args)
         {
             Program program;
@@ -61,7 +63,10 @@ namespace BootlegRoguelike
                 Rows = rows,
                 Cols = cols
             };
-
+            //!ATENÇÃO ------------------------------------------------------
+            scores = new ScoresManager();
+            scores.DisplayTopScores();
+            //! ------------------------------------------------------------
             mainMenu.StartupMenu();
         }
 

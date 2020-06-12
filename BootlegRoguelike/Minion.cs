@@ -6,14 +6,14 @@ namespace BootlegRoguelike
     public class Minion : Enemies
     {
         /// <summary>
-        /// Constructor of the Boss enemy.
+        /// Constructor of the Minion enemy
         /// </summary>
-        /// <param name="Room">The room where he's in it.</param>
-        /// <param name="player">PLayer that he needs to attack.</param>
+        /// <param name="Room">The room where he's in it</param>
+        /// <param name="player">PLayer that he needs to attack</param>
         public Minion (RoomGenerator Room, Player player, Position pos)
         {
             SetupEnemy(pos);
-
+            //Damage of this enemy
             attack = 5;
             this.Room = Room;
             this.player = player;

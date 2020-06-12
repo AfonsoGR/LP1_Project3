@@ -3,86 +3,119 @@ using System.Collections.Generic;
 namespace BootlegRoguelike
 {
     /// <summary>
-    /// This class will be the class base for the classes Boos and Minion.
+    /// This class will be the class base for the classes Boss and Minion
     /// </summary>
     public class Enemies  
     {
+        /// <summary>
+        /// Makes and gets the position of enemy
+        /// </summary>
+        /// <value>Rows and columns</value>
         public Position Position { get; protected set;}
-        protected Position Up; 
-        protected Position Down;
-        protected Position Left; 
-        protected Position Right; 
+
+        /// <summary>
+        /// List of von Neumann positions
+        /// </summary>
         List <Position> checkingArea;
+
+        /// <summary>
+        /// Creates a variable of RoomGenerator
+        /// </summary>
         protected  RoomGenerator Room;
+
+        /// <summary>
+        /// Creates a variable int
+        /// </summary>
         protected int attack; 
+
+        /// <summary>
+        /// Creates a variable of Player
+        /// </summary>
         protected Player player;
+
+        /// <summary>
+        /// Get and sets the type of enemy
+        /// </summary>
+        /// <value></value>
         public Enums Type { get; protected set; }
 
 
         protected void SetupEnemy(Position pos)
         {
-            // The position of the enemy will be random on the map.
+            // The position of the enemy will be random on the map
             Position = pos;
         }
 
         /// <summary>
-        ///This method sees if there are any () around the enemy, if none exist,
-        ///it will compare the player's position with that of the enemy and
-        ///insert it into an array and will save the valid positions in another
-        ///array.
-        /// 
-        /// The second part will see what is the smallest value and will save
-        /// the corresponding position, then make the move.
+        /// It sees if there is a player around the enemy if it has
+        /// attacks and does not move
+        /// If there is no player nearby, he sees the nearest path, moves and
+        /// sees again if the player is not around, if there is , attacks
         /// </summary>
-        /// <param name="player">Will be used to get player position.</param>
         public void Movement()
         {
-            List<int> valueMovs = new List<int>();
-            int i = 0;
+            //If passage is blocked increments 1
             int j = 0; 
+            
+            //Auxiliary variable
             int aux;
+
+            //Used to see if enemy already attacked
             bool attack = false;
-            Position min = new Position(Position.Row,Position.Col) ;
+
+            //Will be the next position of the enemy
+            Position min = new Position(Position.Row,Position.Col);
+
+            //Adds the value of acceptable moves
+            List<int> valueMovs = new List<int>();
+
+            //Adds the acceptable von Neumann positions
             List <Position> moves = new List<Position>();
-            List<bool> canGo = new List<bool>();
+
+            //Updates the von Neumann
             Update();
+
+            //Checks for each von Neumann position
             foreach(Position position in checkingArea)
             {
+                //if there is any player on the position calls method attack()
                 if(Room[position] == Enums.Player)
                 {
                     Attack();
+                    //sets attact to true
                     attack = true;
                 }
                 else
                 {
-                    //Checks if are blocked passages
+                    //Checks if are blocked passages, Bosses, enemies
                     if(Room[position] != Enums.Block &&
                     Room[position] != Enums.Boss &&
-                    Room[position] != Enums.Enemy&&
-                    Room[position] != Enums.Player)
+                    Room[position] != Enums.Enemy)
                     {
-                        //Saves the positions.
+                        //Saves the distance from von Neumann position to 
+                        //player
                         valueMovs.Add(
                         Math.Abs(player.Position.Row - position.Row)+
                         Math.Abs(player.Position.Col - position.Col));
-                        //Puts the shortMov in to a array.  
+                        //Savesthe positions  
                         moves.Add(position);
-                        //increments.
-                        i++;
                     }
                     else
                     {
+                        //Increments J
                         j++;
                     }
                 }
             }
-            if( attack != true)
+            //if attack diferent of true it means that he didn't attack yet 
+            if(!attack)
             {
+                //if J = 4 means all passages are blocked and he can't move
                 if(j != 4)
                 {
-                    //Auxiliary variable.
                     aux = valueMovs [0];
-                    for(i=0; i< valueMovs.Count   ; i++)
+                    //Checks what is the lowest value on all distances
+                    for(int i=0; i< valueMovs.Count   ; i++)
                     {
                         if(valueMovs[i] <= aux)
                         {
@@ -92,35 +125,41 @@ namespace BootlegRoguelike
                     }
                     
                 }
+                //Makes the move
                 Position = new Position(min.Row,min.Col);
+                //Updates the von Neumann Positions
                 Update();
+                //See's if player is around
                 CheckPlayer();
             }
             
         }
 
         /// <summary>
-        /// See's if there are eny player in von Naumann positions, if it exist
-        /// call's method Attack().
+        /// See's if there is any player in von Naumann positions, if it exist
+        /// call's method Attack()
         /// </summary>
         protected void CheckPlayer()
         {
-            //Goes throw all von Neumann positions. 
+            //Goes throw all von Neumann positions
             foreach(Position position in checkingArea)
             //Sees enum type equals to block.
                 if(Room[position] == Enums.Player)
-                    //calls  the method attack.
+                    //calls  the method attack
                     Attack();
         }
 
         /// <summary>
-        /// This method takes the player's life equal to the enemy's damage.
+        /// This method takes the player's life equal to the enemy's damage
         /// </summary>
         protected void Attack()
         {
             player.HP -= attack;
         }
 
+        /// <summary>
+        /// Updates the Von Neumann Positions
+        /// </summary>
         protected void Update()
         {
             checkingArea = new List<Position> {
