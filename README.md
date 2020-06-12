@@ -17,9 +17,36 @@ O repositório utilizado pode ser encontrado
 
 #### Afonso Rosa
 
+O aluno, Afonso Rosa, foi o responsável pelas classes `Highscore`, `MainMenu`,
+`Program`, `ScoresManager` e `InfoRules`, tendo sido o responsável pela lógica,
+estruturação e funcionamento das mesmas, teve apoio do colega, João Fonseca,
+que ajudou no funcionamento da classe `ScoresManager`.
+
+Tratou ainda da documentação das classes `Highscore`, `MainMenu`, `Program`,
+`ScoresManager` e `InfoRules`.
+
+Foi um dos principais responsáveis pelo (ficheiro `README.md`), tendo
+confirmado a clareza e veracidade do conteúdo do mesmo com o colega.
+
 #### André Vitorino
 
+O aluno, André Vitorino, foi o responsável pelas classes `GameLoopController`,
+`SceneManager`, `RoomGenerator`, `SaveManager` e `Renderer`, tendo sido o
+responsável pela lógica, estruturação e funcionamento das mesmas.
+
+Tratou ainda da documentação das classes `GameLoopController`, `SceneManager`,
+`RoomGenerator`, `SaveManager` e `Renderer`.
+
 #### João Fonseca
+
+O aluno, João Fonseca, foi o responsável pelas classes `BigHeal`, `Boss`,
+`Enemies`, `Piece`, `MedHeal`, `MiniHeal`, `Minion`, `Player`, `Position` e
+`Powerup`,tendo sido o responsável pela lógica, estruturação e funcionamento
+das mesmas, teve apoio do colega, André Vitorino, que ajudou no funcionamento
+das classes `Enemies` e `Player`.
+
+Tratou ainda da documentação das classes `BigHeal`, `Boss`, `Enemies`, `Piece`,
+`MedHeal`, `MiniHeal`, `Minion`, `Player`, `Position` e `Powerup`.
 
 ## Arquitetura da solução
 
@@ -34,3 +61,22 @@ O repositório utilizado pode ser encontrado
 Foi consultada a
 [API&nbsp;do&nbsp;C#](
     ps://docs.microsoft.com/en-us/dotnet/api/system?view=netcore-3.1) online.
+
+Foram reaproveitados elementos do
+[projeto](https://github.com/AfonsoGR/LP1_Project2) anterior destes alunos
+realizado para esta cadeira.
+
+Foram aproveitados elementos deste [post](/stackoverflow.com/questions/4351258)
+do [Stack Overflow](https://stackoverflow.com/).
+
+Houve troca de ideias com colegas em como lidar com os problemas impostos pelas
+_highscores_, estes colegas foram o
+[Tomás Franco, a21803301](https://github.com/ThomasFranque) e
+[Rodrigo Pinheiro, a21802488](https://github.com/RodrigoPrinheiro),
+embora as ideias do [Tomás Franco](https://github.com/RodrigoPrinheiro) é que
+foram as que acabaram a ser utilizadas.
+
+Foi também aproveitado este
+[código](https://gist.github.com/fakenmc/f70b38814ac6552e790dc0a86c3c67d0)
+disponibilizado no
+[enunciado do projeto](https://github.com/VideojogosLusofona/lp1_2019_p3).
