@@ -21,6 +21,12 @@ namespace BootlegRoguelike
         /// <value> Value of Rows </value>
         public int Rows {get; set;}
 
+        // The starting level
+        private readonly int level;
+
+        // The starting hp  
+        private readonly int hp;
+
         // Creates a variable of ScoresManager
         private ScoresManager scoresManager;
 
@@ -35,8 +41,12 @@ namespace BootlegRoguelike
         /// </summary>
         /// <param name="rows"> Value of rows </param>
         /// <param name="cols"> Value of cols </param>
-        public MainMenu (int rows, int cols)
+        public MainMenu (int rows, int cols , int lvl, int hp)
         {
+            // value of hp
+            this.hp = hp;
+            // Value of level
+            level = lvl;
             // Value of rows
             Rows = rows;
             // Value of rows
@@ -110,7 +120,7 @@ namespace BootlegRoguelike
         public void NewGame()
         {
             // Creates a new Game Loop Controller with given arguments
-            gameLoopController = new GameLoopController(Rows, Cols);
+            gameLoopController = new GameLoopController(Rows, Cols, level, hp);
             // Registers user's score
             scoresManager.RegisterScores(gameLoopController.CurrentLevel);
             // Returns to StartupMenu

@@ -59,45 +59,34 @@ namespace BootlegRoguelike
         /// </summary>
         /// <param name="lvl"> The current level number </param>
         /// <param name="generatePlayer"> If it should reset the HP </param>
-        public void GenerateNewScene(int lvl, bool generatePlayer = true)
+        public void GenerateNewScene(int lvl, int playerHP = 0)
         {
             // Creates a new List of Enemies
             AllEnemies = new List<Enemies>();
             // Creates a new List of AllPowerUps
             AllPowerUps = new List<Powerup>();
 
-            // Auxaliary int set to -1
-            int hp = -1;
-
-            // Checks if it should reset the player
-            if (!generatePlayer)
-                // Sets the hp to the current players amount
-                hp = Player.HP;
 
             // Generates a new room layout along with barriers
             CreateNewRoomStructure();
             // Generates a new Player
-            CreateNewPlayer();
+            CreateNewPlayer(playerHP);
             // Generates both Minions and Bosses
             CreateNewEnemies(lvl);
             // Generates all types of powerups
             CreateNewPowerUps(lvl);
-
-            // Checks if the HP is not at the -1 value
-            if (hp != -1)
-            {
-                // Sets the new Players hp the same as the old player
-                Player.HP = hp;
-            }
         }
 
         /// <summary>
         /// Creates a new Player seding in the size of the Room and the level
         /// </summary>
-        private void CreateNewPlayer()
+        private void CreateNewPlayer(int hp)
         {
             // Assgins the Player variable the created player
             Player = new Player(row, col, Room, rnd.Next(1, col));
+
+            if (hp != 0)
+                Player.HP = hp;
 
             // Puts the player on the board
             Room[Player.Position] = Piece.Player;
