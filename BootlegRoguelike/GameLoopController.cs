@@ -171,6 +171,9 @@ namespace BootlegRoguelike
         /// </summary>
         private void MoveEnemies()
         {
+            // Stores the current HP of the player
+            int playerHP = scene.Player.HP;
+
             // Checks all the enemies on the scene
             for (int i = 0; i < scene.AllEnemies.Count; i++)
             {
@@ -184,13 +187,31 @@ namespace BootlegRoguelike
                 scene.Room[scene.AllEnemies[i].Position] =
                     scene.AllEnemies[i].Type;
 
-                // Shows the board and where the enemy moved to
-                graphics.Render($"{scene.Room[scene.AllEnemies[i].Position]}" +
-                    $" moved to ({scene.AllEnemies[i].Position.Row}," +
-                    $"{scene.AllEnemies[i].Position.Col} )");
+                if (scene.Player.HP != playerHP)
+                {
+                    // Shows the board and the damage delt to the player
+                    graphics.Render($"{scene.AllEnemies[i].Type} " +
+                        $"Delt to the player " +
+                        $"{scene.Player.HP - playerHP} hit points");
 
-                // Stops the game in order for the player to see what happened
-                Thread.Sleep(300);
+                    // Resets the playerHP to the current hp
+                    playerHP = scene.Player.HP;
+                }
+                else
+                {
+                    // Shows the board and where the enemy moved to
+                    graphics.Render(
+                        $"{scene.Room[scene.AllEnemies[i].Position]} moved " +
+                        $"to ({scene.AllEnemies[i].Position.Row}," +
+                        $"{scene.AllEnemies[i].Position.Col} )");
+                }
+
+                // Checks if CapsLock is active, if it is skips the wait timer
+                if (!Console.CapsLock)
+                {
+                    // Stops the game in order for the player to see what happened
+                    Thread.Sleep(1000);
+                }
             }
         }
 
