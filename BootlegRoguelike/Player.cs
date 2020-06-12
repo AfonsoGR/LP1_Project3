@@ -116,7 +116,7 @@ namespace BootlegRoguelike
                 Room[position] == Enums.Boss)
                     deadEnds += 1;
             }
-            if(deadEnds == 4)
+            if(deadEnds == 4 || HP <= 0)
             {
                 return true;
             }

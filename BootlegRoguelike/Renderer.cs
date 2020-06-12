@@ -10,6 +10,8 @@ namespace BootlegRoguelike
 
         private readonly float initialHP;
 
+        private readonly Enums[] allVisuals;
+
         public Renderer(RoomGenerator level, Player player)
         {
             this.level = level;
@@ -20,6 +22,18 @@ namespace BootlegRoguelike
             Console.ResetColor();
             Console.CursorVisible = false;
             Console.Clear();
+
+            allVisuals = new Enums[]
+            {
+                Enums.Block,
+                Enums.Boss,
+                Enums.Enemy,
+                Enums.Exit,
+                Enums.Player,
+                Enums.PowerMax,
+                Enums.PowerMed,
+                Enums.PowerMin
+            };
         }
 
         public void Render(string msg = null)
@@ -71,6 +85,16 @@ namespace BootlegRoguelike
                 Console.Write(i >= hpNumber.Length ? ' ' : hpNumber[i]);
             }
             Console.ResetColor();
+            Console.WriteLine("\n");
+
+            for (int i = 0; i < allVisuals.Length; i++)
+            {
+                if (i == 0)
+                    Console.BackgroundColor = ConsoleColor.White;
+                Console.Write($"{(char)allVisuals[i]}");
+                Console.ResetColor();
+                Console.WriteLine($"= {allVisuals[i]}");
+            }
         }
     }
 }

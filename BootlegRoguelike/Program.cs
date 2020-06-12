@@ -30,8 +30,16 @@ namespace BootlegRoguelike
             }
             else if (args[0] == "-r" && args[2] == "-c")
             {
-                rows = Int32.Parse(args[1]);
-                cols = Int32.Parse(args[3]);
+                if (!Int32.TryParse(args[1], out rows))
+                {
+                    Console.WriteLine("You can't do that");
+                    return;
+                }
+                if (!Int32.TryParse(args[3], out cols))
+                {
+                    Console.WriteLine("You can't do that");
+                    return;
+                }
 
                 InitializeMainMenu(rows, cols);
             }
