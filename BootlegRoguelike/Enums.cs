@@ -1,6 +1,6 @@
 namespace BootlegRoguelike
 {
-    public enum Enums
+    public enum Piece
     {
         Player = '@',
         Boss = 'O',
@@ -11,6 +11,5 @@ namespace BootlegRoguelike
         PowerMed = ':',
         PowerMax = '!',
         Exit = 'E'
-
     }
 }

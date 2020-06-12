@@ -6,7 +6,7 @@
     public class RoomGenerator
     {
         // A bi-dimensional array containing a Enum
-        private Enums[,] roomLayout;
+        private Piece[,] roomLayout;
 
         /// <summary>
         /// The width of the board
@@ -22,8 +22,8 @@
         /// Returns the value of the position or gives it a new value
         /// </summary>
         /// <param name="pos"> The position to be acessed </param>
-        /// <returns> The Enums at that position </returns>
-        public Enums this[Position pos]
+        /// <returns> The Piece at that position </returns>
+        public Piece this[Position pos]
         {
             get => roomLayout[pos.Row, pos.Col];
             set => roomLayout[pos.Row, pos.Col] = value;
@@ -38,7 +38,7 @@
         public void SetBoardToInitState(int rows, int cols, int rnd)
         {
             // Creates a new array with the given dimensions
-            roomLayout = new Enums[rows + 3, cols + 2];
+            roomLayout = new Piece[rows + 3, cols + 2];
 
             // Checks all the positions of the room
             for (int c = 0; c < cols + 2; c++)
@@ -49,12 +49,12 @@
                     if (r == 0 || r == rows + 1 || c == 0 || c == cols + 1)
                     {
                         // Sets that position the char defined
-                        roomLayout[r, c] = Enums.Block;
+                        roomLayout[r, c] = Piece.Block;
                     }
                     else
                     {
                         // Otherwise sets the position as empty
-                        roomLayout[r, c] = Enums.Empty;
+                        roomLayout[r, c] = Piece.Empty;
                     }
                 }
             }
@@ -70,13 +70,13 @@
         private void GenerateRoomExit(int rows, int rnd)
         {
             // Changes the position in front of the exit to a dot
-            roomLayout[rows - 1, rnd] = Enums.Empty;
+            roomLayout[rows - 1, rnd] = Piece.Empty;
             // Changes the visuals on the exit to a 'E'
-            roomLayout[rows, rnd] = Enums.Exit;
+            roomLayout[rows, rnd] = Piece.Exit;
             // Creates a wall on top of the exit
-            roomLayout[rows, rnd + 1] = Enums.Block;
+            roomLayout[rows, rnd + 1] = Piece.Block;
             // Creates a wall on the bottom of the exit
-            roomLayout[rows, rnd - 1] = Enums.Block;
+            roomLayout[rows, rnd - 1] = Piece.Block;
         }
     }
 }

@@ -120,8 +120,20 @@ namespace BootlegRoguelike
         /// </summary>
         public void Highscores()
         {
+<<<<<<< HEAD
             // Displays highscores 
             scoresManager.PrintHighcore();           
+=======
+            
+
+            //////////////////////////scoresManager.PrintHighcore();
+            // Creates a new Scores Manager
+            //scoresManager.RegisterScores();
+
+            // Calls DisplayTopScores method from ScoresManager.cs
+            //scoresManager.DisplayTopScores();
+            
+>>>>>>> ae5b02c522f469038112e586b8cc6b44bb1e5997
             // Displays on-screen text
             Console.WriteLine("Press any key to return to the main menu...");
             // Waits for user input

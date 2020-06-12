@@ -2,20 +2,30 @@
 
 namespace BootlegRoguelike
 {
+<<<<<<< HEAD
     /// <summary>
     /// Main class of the program, checks for argument inputs and 
     /// calls StartupMenu
     /// </summary>
     class Program
+=======
+    internal class Program
+>>>>>>> ae5b02c522f469038112e586b8cc6b44bb1e5997
     {
         // Creates a variable of MainMenu
         private MainMenu mainMenu;
 
+<<<<<<< HEAD
         /// <summary>
         /// Program initialization and GameStart
         /// </summary>
         /// <param name="args"> Arguments passed through console </param>
         static void Main(string[] args)
+=======
+        private ScoresManager scores;
+        private static void Main(string[] args)
+
+>>>>>>> ae5b02c522f469038112e586b8cc6b44bb1e5997
         {
             // Creates a variable of Program
             Program program;

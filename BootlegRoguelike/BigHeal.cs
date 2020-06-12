@@ -11,12 +11,12 @@ namespace BootlegRoguelike
         /// <param name="player">Whom he regenerates</param>
         /// <param name="Room">On which map</param>
         /// <param name="pos">The location of it</param>
-        public BigHeal (Player player, RoomGenerator Room, Position pos)
+        public BigHeal(Player player, RoomGenerator Room, Position pos)
         {
             Position = pos;
             //Regeneration value
             Heal = 16;
-            Type = Enums.PowerMax;
+            Type = Piece.PowerMax;
             this.player = player;
             this.Room = Room;
         }
