@@ -130,6 +130,7 @@ namespace BootlegRoguelike
                 Position = pos;
                 HP -= 1;
             }
+        }
         /// <summary>
         /// Checks if player is cornered or is HP equals to zero
         /// Returns true if one of the occurrences above happens

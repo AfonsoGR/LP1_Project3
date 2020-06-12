@@ -30,7 +30,7 @@ namespace BootlegRoguelike
         /// <summary>
         /// Gets and sets the type of pieces
         /// </summary>
-        /// <value>Value Enums</value>
+        /// <value>Value Piece</value>
 
         /// <summary>
         /// Check if it is in the same position as heal and calls method Regen()
