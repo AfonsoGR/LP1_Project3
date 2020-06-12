@@ -117,12 +117,14 @@ namespace BootlegRoguelike
         /// </summary>
         public void Highscores()
         {
+            
 
+            scoresManager.PrintHighcore();
             // Creates a new Scores Manager
             //scoresManager.RegisterScores();
 
             // Calls DisplayTopScores method from ScoresManager.cs
-            scoresManager.DisplayTopScores();
+            //scoresManager.DisplayTopScores();
             
             // Displays on-screen text
             Console.WriteLine("Press any key to return to the main menu...");
@@ -200,7 +202,7 @@ namespace BootlegRoguelike
                 Console.WriteLine("Please input a valid choice...");
                 // Calls QuitGame method from this class
                 QuitGame();
-                //scoresManager.Close();
+                scoresManager.Close();
             }            
         }
     }
