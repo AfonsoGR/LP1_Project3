@@ -47,9 +47,8 @@ namespace BootlegRoguelike
             + "HP, the number of enemies, obstacles and powerups will be " 
             + "influenced by the size of the board.\n" + "Your score will be" 
             + " saved into your Documents folder under a new folder called " 
-            + "BootlegSaves.\n\nIf you press CapsLock the enemy wait timer "
-            + "disapears making them move instantly, press CapsLock again "
-            + "to disable this.");
+            + "BootlegSaves.\n\nPress escape during the game to return to "
+            + "the Main Menu\n");
         }
 
         /// <summary>
