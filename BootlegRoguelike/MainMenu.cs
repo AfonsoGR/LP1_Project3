@@ -139,15 +139,13 @@ namespace BootlegRoguelike
         /// </summary>
         public void Instructions()
         {
-            // Creates a new InfoRules
-            infoRules = new InfoRules();
             // Displays on-screen text
             infoRules.Intro();
             // Displays on-screen text
             Console.WriteLine("Press any key to return to the main menu...");
-            //Waits for user input
+            // Waits for user input
             Console.ReadKey();
-            // // Returns to StartupMenu
+            // Returns to StartupMenu
             StartupMenu();
         }
 
