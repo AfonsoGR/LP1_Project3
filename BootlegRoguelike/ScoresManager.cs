@@ -18,17 +18,14 @@ namespace BootlegRoguelike
         float finalScore = 100f;
         StreamReader reader;
 
-        StreamWriter writer = new StreamWriter(scoresFile);
-        List<Highscore> scores = new List<Highscore>();
+        StreamWriter writer;
+        List<Highscore> scores;
 
-        // List<Highscore> scores;
-        // StreamWriter writer;
-
-        // public ScoresManager(StreamWriter writer, List<Highscore> scores)
-        // {
-        //     writer = new StreamWriter(scoresFile);
-        //     scores = new List<Highscore>();
-        // }
+        public ScoresManager()
+        {
+            writer = new StreamWriter(scoresFile);
+            scores = new List<Highscore>();
+        }
 
         public void CompareScores()
         {
@@ -49,14 +46,10 @@ namespace BootlegRoguelike
             scores.Add(new Highscore(nameRegister, finalScore));
 
             // Saves highscores into a file
-            foreach (Highscore highscore in scores)
-            {
-                // Adds a new line with name and score
-                writer.WriteLine(highscore.Name + " " + highscore.Score);
-            }
+ 
 
             // Closes file
-            writer.Close();
+
         }
 
         /// <summary>
@@ -84,6 +77,15 @@ namespace BootlegRoguelike
 
             // Closes the file
             reader.Close();
+        }
+        public void Close()
+        {
+            foreach (Highscore highscore in scores)
+            {
+                // Adds a new line with name and score
+                writer.WriteLine(highscore.Name + " " + highscore.Score);
+            }
+            writer.Close();
         }
     }
 }

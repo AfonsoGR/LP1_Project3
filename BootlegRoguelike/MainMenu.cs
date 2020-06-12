@@ -36,6 +36,11 @@ namespace BootlegRoguelike
         /// </summary>
         private InfoRules infoRules;
 
+        public MainMenu ()
+        {
+            scoresManager = new ScoresManager();
+        }
+
         /// <summary>
         /// Manages the startup menu and waits for user input
         /// Calls for respective method based on user input
@@ -111,7 +116,6 @@ namespace BootlegRoguelike
         public void Highscores()
         {
             // Creates a new Scores Manager
-            scoresManager = new ScoresManager();
 
             //! TESTING-------------------------------------------------------
             scoresManager.RegisterScores();
@@ -180,8 +184,11 @@ namespace BootlegRoguelike
             string quitChoice = Console.ReadLine();
             // Checks if the quitchoice variable has specified values
             if (quitChoice == "y" || quitChoice == "Y")
+            {
+                scoresManager.Close();
                 // Exists the game
                 System.Environment.Exit(1);
+            }
             // Checks if the quitChoice variable has specified values
             else if (quitChoice == "n" || quitChoice == "N")
                 // Calls StartupMenu method from this class
@@ -193,6 +200,7 @@ namespace BootlegRoguelike
                 Console.WriteLine("Please input a valid choice...");
                 // Calls QuitGame method from this class
                 QuitGame();
+                //scoresManager.Close();
             }            
         }
     }
