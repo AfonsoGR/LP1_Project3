@@ -31,14 +31,17 @@ namespace BootlegRoguelike
         private InfoRules infoRules;
 
         /// <summary>
-        /// 
+        /// Constructor to define rows and cols
         /// </summary>
         /// <param name="rows"> Value of rows </param>
         /// <param name="cols"> Value of cols </param>
         public MainMenu (int rows, int cols)
         {
+            // Value of rows
             Rows = rows;
+            // Value of rows
             Cols = cols;
+            // Creates a new ScoresManager
             scoresManager = new ScoresManager(Rows, Cols);
         }
 
