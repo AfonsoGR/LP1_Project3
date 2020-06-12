@@ -53,8 +53,8 @@ namespace BootlegRoguelike
             finalFileName = scoresFile + rows + '_' + cols + fileExtension;
 
             // Assigns value to filepath
-            filepath = 
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            filepath = Environment.GetFolderPath(
+                Environment.SpecialFolder.MyDocuments);
             // Assigns value to folderpath 
             // and combines the filepath with the respective folder
             folderpath = Path.Combine(filepath, folderName);
@@ -175,7 +175,6 @@ namespace BootlegRoguelike
         {
             // Assgins value to scorestext
             string scorestext = "";
-
 
             // Runs through every highscore in the scores collection
             foreach (Highscore highscore in scores)
