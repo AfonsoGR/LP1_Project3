@@ -1,5 +1,8 @@
 namespace BootlegRoguelike
 {
+    /// <summary>
+    /// Types of pieces that can exist
+    /// </summary>
     public enum Piece
     {
         Player = '@',
