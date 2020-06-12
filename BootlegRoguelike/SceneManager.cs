@@ -22,13 +22,19 @@ namespace BootlegRoguelike
         // Instance of the level layout
         public RoomGenerator Room { get; }
 
-        // Instance of the player
+        /// <summary>
+        /// Instance of the player
+        /// </summary>
         public Player Player { get; private set; }
 
-        // List containing all the enemies
+        /// <summary>
+        /// List containing all the enemies
+        /// </summary>
         public List<Enemies> AllEnemies { get; private set; }
 
-        // List of all the powerups
+        /// <summary>
+        /// List of all the powerups
+        /// </summary>
         public List<Powerup> AllPowerUps { get; private set; }
 
         /// <summary>

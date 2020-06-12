@@ -3,17 +3,28 @@ using System.Collections.Generic;
 
 namespace BootlegRoguelike
 {
+    /// <summary>
+    /// Responsible for Rendering the board, UI and tooltips to the user
+    /// </summary>
     public class Renderer
     {
+        // Stores a reference to the current level layout
         private readonly RoomGenerator level;
+        // Stores a reference to the player
         private readonly Player player;
-
+        // The HP the player starts with (for the UI)
         private readonly float initialHP;
-
+        // Array containing most of the visuals from the Enums
         private readonly Enums[] allVisuals;
 
+        /// <summary>
+        /// Constructor of the class Renderer
+        /// </summary>
+        /// <param name="level"> The current room layout </param>
+        /// <param name="player"> The player </param>
         public Renderer(RoomGenerator level, Player player)
         {
+            // 
             this.level = level;
             this.player = player;
 
