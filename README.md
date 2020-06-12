@@ -25,14 +25,12 @@ que ajudou no funcionamento da classe `ScoresManager`.
 Tratou ainda da documentação das classes `Highscore`, `MainMenu`, `Program`,
 `ScoresManager` e `InfoRules`.
 
-Foi um dos principais responsáveis pelo (ficheiro `README.md`), tendo
-confirmado a clareza e veracidade do conteúdo do mesmo com o colega.
-
 #### André Vitorino
 
 O aluno, André Vitorino, foi o responsável pelas classes `GameLoopController`,
-`SceneManager`, `RoomGenerator`, `SaveManager` e `Renderer`, tendo sido o
-responsável pela lógica, estruturação e funcionamento das mesmas.
+`SceneManager`, `RoomGenerator`, `SavesManager` e `Renderer`, tendo sido o
+responsável pela lógica, estruturação e funcionamento das mesmas, sendo que a
+class `SavesManager` é uma cópia adaptada da classe `ScoresManager`.
 
 Tratou ainda da documentação das classes `GameLoopController`, `SceneManager`,
 `RoomGenerator`, `SaveManager` e `Renderer`.
@@ -52,6 +50,26 @@ Tratou ainda da documentação das classes `BigHeal`, `Boss`, `Enemies`, `Piece`
 
 ### Descrição da solução
 
+O projeto tem como ponto principal a classe `GameLoopController`, sendo a
+classe que contem o jogo em si, criando e guardando os elementos necessários
+para que o jogo funcione. A classe `GameLoopController` é gere o _loop_
+principal do jogo enquanto o jogador estiver vivo e não se encontrar com o seu
+movimento bloqueado. Usando o `Renderer` para atualizar o _board_, onde mostra
+o movimento atualizado do jogador e dos inimigos. Verifica também se o jogador
+apanhou algum _powerup_ ou se se encontra na sáida do nível.
+
+`GameLoopController` gere o movimento do jogador e dos inimigos e todas as
+verificações essenciais para o _loop_ principal do jogo. Utiliza também a
+classe `SceneManager` para gerir a criação dos elementos da sala a qual utiliza
+a class `RoomGenerator` para criar a sala.
+
+Ao iniciar-se o programa este chama a class `MainMenu` que irá passar o
+controlo para a class `GameLoopController` quando o jogo começar. A partir da
+classe `MainMenu` esta acede também à classe `InfoRules`, que usa para dispor
+informação em texto no ecrã e à classe `ScoresManager` que acede a ficheiros no
+computador e os altera, gravando e editando ficheiros com as pontuações e nomes
+dos utilizadores.
+
 ### Diagrama UML
 
 ![diagramaUML](diagramaUML.png)
@@ -63,8 +81,8 @@ Foi consultada a
     ps://docs.microsoft.com/en-us/dotnet/api/system?view=netcore-3.1) online.
 
 Foram reaproveitados elementos do
-[projeto](https://github.com/AfonsoGR/LP1_Project2) anterior destes alunos
-realizado para esta cadeira.
+[projeto](https://github.com/AfonsoGR/LP1_Project2) realizado previamente para
+esta cadeira pelos alunos Afonso Rosa e André Vitorino.
 
 Foram aproveitados elementos deste [post](/stackoverflow.com/questions/4351258)
 do [Stack Overflow](https://stackoverflow.com/).

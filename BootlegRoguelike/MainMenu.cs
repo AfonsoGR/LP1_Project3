@@ -1,6 +1,4 @@
 using System;
-using System.IO;
-using System.Collections.Generic;
 
 namespace BootlegRoguelike
 {
@@ -13,16 +11,22 @@ namespace BootlegRoguelike
         /// Gets and sets the value of Cols
         /// </summary>
         /// <value> Value of Cols </value>
-        public int Cols {get; set;}
-        
+        public int Cols { get; set; }
+
         /// <summary>
         /// Gets and sets the value of Rows
         /// </summary>
         /// <value> Value of Rows </value>
-        public int Rows {get; set;}
+        public int Rows { get; set; }
+
+        // The starting level
+        private readonly int level;
+
+        // The starting hp
+        private readonly int hp;
 
         // Creates a variable of ScoresManager
-        private ScoresManager scoresManager;
+        private readonly ScoresManager scoresManager;
 
         // Creates a variable of GameLoopController
         private GameLoopController gameLoopController;
@@ -35,8 +39,12 @@ namespace BootlegRoguelike
         /// </summary>
         /// <param name="rows"> Value of rows </param>
         /// <param name="cols"> Value of cols </param>
-        public MainMenu (int rows, int cols)
+        public MainMenu(int rows, int cols, int lvl, int hp)
         {
+            // value of hp
+            this.hp = hp;
+            // Value of level
+            level = lvl;
             // Value of rows
             Rows = rows;
             // Value of rows
@@ -56,14 +64,17 @@ namespace BootlegRoguelike
 
             // Displays on-screen text
             infoRules.WelcomeText();
-            
+
             // Stores player choice
             int menuChoice;
 
             // Asks for input until a valid one is given
             while (!int.TryParse(Console.ReadLine(), out menuChoice)
-                    || menuChoice < 1 || menuChoice > 5);
-            
+                    || menuChoice < 1 || menuChoice > 5)
+            {
+                ;
+            }
+
             // Selects section based on user input "menuChoice"
             switch (menuChoice)
             {
@@ -103,14 +114,14 @@ namespace BootlegRoguelike
                     break;
             }
         }
-        
+
         /// <summary>
         /// Starts a new game with given arguments
         /// </summary>
         public void NewGame()
         {
             // Creates a new Game Loop Controller with given arguments
-            gameLoopController = new GameLoopController(Rows, Cols);
+            gameLoopController = new GameLoopController(Rows, Cols, level, hp);
             // Registers user's score
             scoresManager.RegisterScores(gameLoopController.CurrentLevel);
             // Returns to StartupMenu
@@ -118,13 +129,13 @@ namespace BootlegRoguelike
         }
 
         /// <summary>
-        /// Displays Top Scores fo the current board setup 
+        /// Displays Top Scores fo the current board setup
         /// and waits for user input before returning to the startup menu
         /// </summary>
         public void Highscores()
         {
-            // Displays highscores 
-            scoresManager.PrintHighcore();           
+            // Displays highscores
+            scoresManager.PrintHighcore();
             // Displays on-screen text
             Console.WriteLine("Press any key to return to the main menu...");
             // Waits for user input
@@ -134,25 +145,23 @@ namespace BootlegRoguelike
         }
 
         /// <summary>
-        /// Displays Intro text and waits for user input 
+        /// Displays Intro text and waits for user input
         /// before returning to the startup menu
         /// </summary>
         public void Instructions()
         {
-            // Creates a new InfoRules
-            infoRules = new InfoRules();
             // Displays on-screen text
             infoRules.Intro();
             // Displays on-screen text
             Console.WriteLine("Press any key to return to the main menu...");
-            //Waits for user input
+            // Waits for user input
             Console.ReadKey();
-            // // Returns to StartupMenu
+            // Returns to StartupMenu
             StartupMenu();
         }
 
         /// <summary>
-        /// Displays Credits text and waits for user input 
+        /// Displays Credits text and waits for user input
         /// before returning to the startup menu
         /// </summary>
         public void Credits()
@@ -166,11 +175,11 @@ namespace BootlegRoguelike
             // Waits for user input
             Console.ReadKey();
             // // Returns to StartupMenu
-            StartupMenu();            
+            StartupMenu();
         }
 
         /// <summary>
-        /// Asks player if he wants to exit the game 
+        /// Asks player if he wants to exit the game
         /// and either leaves or returns to the startup menu
         /// </summary>
         public void QuitGame()
@@ -189,8 +198,10 @@ namespace BootlegRoguelike
             }
             // Checks if the quitChoice variable has specified values
             else if (quitChoice == "n")
+            {
                 // Returns to StartupMenu
                 StartupMenu();
+            }
             // Previous conditions were not met
             else
             {
@@ -198,7 +209,7 @@ namespace BootlegRoguelike
                 Console.WriteLine("Please input a valid choice...");
                 // Returns to QuitGame
                 QuitGame();
-            }            
+            }
         }
     }
 }

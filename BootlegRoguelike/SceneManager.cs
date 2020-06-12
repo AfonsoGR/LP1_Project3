@@ -5,7 +5,7 @@ namespace BootlegRoguelike
 {
     /// <summary>
     /// Class used to generate and store the level data, contains the player
-    /// enemies and the level layout. Only this class contains an istance of
+    /// enemies and the level layout. Only this class contains an instance of
     /// the Random class
     /// </summary>
     public class SceneManager
@@ -13,7 +13,7 @@ namespace BootlegRoguelike
         // Sotres a Random instance
         private readonly Random rnd;
 
-        // The number of collumns
+        // The number of columns
         private readonly int col;
 
         // The number of rows
@@ -59,45 +59,35 @@ namespace BootlegRoguelike
         /// </summary>
         /// <param name="lvl"> The current level number </param>
         /// <param name="generatePlayer"> If it should reset the HP </param>
-        public void GenerateNewScene(int lvl, bool generatePlayer = true)
+        public void GenerateNewScene(int lvl, int playerHP = 0)
         {
             // Creates a new List of Enemies
             AllEnemies = new List<Enemies>();
             // Creates a new List of AllPowerUps
             AllPowerUps = new List<Powerup>();
 
-            // Auxaliary int set to -1
-            int hp = -1;
-
-            // Checks if it should reset the player
-            if (!generatePlayer)
-                // Sets the hp to the current players amount
-                hp = Player.HP;
-
             // Generates a new room layout along with barriers
             CreateNewRoomStructure();
             // Generates a new Player
-            CreateNewPlayer();
+            CreateNewPlayer(playerHP);
             // Generates both Minions and Bosses
             CreateNewEnemies(lvl);
             // Generates all types of powerups
             CreateNewPowerUps(lvl);
-
-            // Checks if the HP is not at the -1 value
-            if (hp != -1)
-            {
-                // Sets the new Players hp the same as the old player
-                Player.HP = hp;
-            }
         }
 
         /// <summary>
-        /// Creates a new Player seding in the size of the Room and the level
+        /// Creates a new Player sending in the size of the Room and the level
         /// </summary>
-        private void CreateNewPlayer()
+        private void CreateNewPlayer(int hp)
         {
             // Assgins the Player variable the created player
             Player = new Player(row, col, Room, rnd.Next(1, col));
+
+            if (hp != 0)
+            {
+                Player.HP = hp;
+            }
 
             // Puts the player on the board
             Room[Player.Position] = Piece.Player;
@@ -121,7 +111,7 @@ namespace BootlegRoguelike
             maxBosses = rnd.Next(maxBosses);
 
             // Checks the maximum enemies total
-            int maxEnemiesTotal = Math.Min(maxMinions + maxBosses, 
+            int maxEnemiesTotal = Math.Min(maxMinions + maxBosses,
                 (row) * (col) / 2);
 
             // Cycles through all the enemies
@@ -161,22 +151,22 @@ namespace BootlegRoguelike
         /// <param name="lvl"> The current level number </param>
         private void CreateNewPowerUps(int lvl)
         {
-            // Logorithmic formula to find the max small power ups
+            // Logarithmic formula to find the max small power ups
             int maxSmallPower = (int)(-2 * Math.Log(0.01f * lvl));
             maxSmallPower = rnd.Next(1, maxSmallPower);
 
-            // Logorithmic formula to find the max medium power ups
+            // Logarithmic formula to find the max medium power ups
             int maxMedPower = (int)(-2.5f * Math.Log(0.02f * lvl));
             maxMedPower = rnd.Next(0, maxMedPower);
 
-            // Logorithmic formula to find the max big powerups ups
+            // Logarithmic formula to find the max big powerups ups
             int maxBigPower = (int)(-3 * Math.Log(0.03f * lvl));
             maxBigPower = rnd.Next(0, maxBigPower);
 
             // Checks the maximum powerups total
             int maxPowerupTotal = maxSmallPower + maxMedPower + maxBigPower;
 
-            maxPowerupTotal = Math.Min(maxPowerupTotal, 
+            maxPowerupTotal = Math.Min(maxPowerupTotal,
                 (row) * (col) / 2);
 
             // Cycles through all the powerups
@@ -256,7 +246,7 @@ namespace BootlegRoguelike
             Position pos = new Position(rnd.Next(1, row + 1),
                 rnd.Next(1, col + 1));
 
-            // Cycles while that position is ocuppied
+            // Cycles while that position is occupied
             while (Room[pos] != Piece.Empty)
             {
                 // Sets pos to a new random one

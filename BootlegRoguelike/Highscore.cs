@@ -11,20 +11,20 @@ namespace BootlegRoguelike
         ///  Gets the value of the user's Name
         /// </summary>
         /// <value> Value of the user's Name </value>
-        public string Name {get;}
+        public string Name { get; }
 
         /// <summary>
         /// Gets the value of the user's Score
         /// </summary>
-        /// <value> Value of the user's Score </value>        
-        public int Score {get;}
+        /// <value> Value of the user's Score </value>
+        public int Score { get; }
 
         /// <summary>
         /// Constructor to define a new name and score
         /// </summary>
         /// <param name="name"> Value of the user's Name </param>
         /// <param name="score"> Value of the user's Score </param>
-        public Highscore (string name, int score)
+        public Highscore(string name, int score)
         {
             // Value of name
             Name = name;
@@ -51,6 +51,6 @@ namespace BootlegRoguelike
         {
             // Returns overridden highscore string
             return Name + ScoresManager.tab + Score;
-        }        
+        }
     }
 }

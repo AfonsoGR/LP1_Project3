@@ -10,6 +10,7 @@ namespace BootlegRoguelike
         /// Creates a variable of Player
         /// </summary>
         protected Player player;
+
         /// <summary>
         /// Gets and sets the powerups postions
         /// </summary>
@@ -24,6 +25,7 @@ namespace BootlegRoguelike
         /// Creates a variable int
         /// </summary>
         protected int Heal;
+
         public Position Position { get; protected set; }
         public Piece Type { get; protected set; }
 
@@ -38,19 +40,25 @@ namespace BootlegRoguelike
         public void CheckPlayer()
         {
             if (Room[Position] == Piece.Player)
+            {
                 Regen();
+            }
         }
 
         /// <summary>
-        /// Regenerates the player's HP 
+        /// Regenerates the player's HP
         /// </summary>
         protected void Regen()
         {
-            //if he picks up the powerup checks if the sum is bigger than Maxhp
+            //if he picks up the powerup checks if the sum is bigger than MaxHp
             if ((player.HP + Heal) > player.MaxHP)
+            {
                 player.HP = player.MaxHP;
+            }
             else
+            {
                 player.HP += Heal;
+            }
         }
     }
 }

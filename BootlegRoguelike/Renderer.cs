@@ -130,7 +130,7 @@ namespace BootlegRoguelike
             // Loops for the amount of squares it should draw
             for (int i = 0; i < initialHP; i++)
             {
-                // Sets the bar color acording to the amount of hp left
+                // Sets the bar color according to the amount of hp left
                 Console.BackgroundColor = i >= barHP ?
                     ConsoleColor.White : ConsoleColor.DarkRed;
 
@@ -168,7 +168,9 @@ namespace BootlegRoguelike
 
                 // If it's the first on the array set's the background to white
                 if (i == 0)
+                {
                     Console.BackgroundColor = ConsoleColor.White;
+                }
                 // Draws the visual translated into a char
                 Console.Write($"{(char)allVisuals[i]}");
                 // Resets the color
