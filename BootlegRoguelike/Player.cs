@@ -9,13 +9,13 @@ namespace BootlegRoguelike
     public class Player
     {
         //Creates a variable of RoomGenerator
-        private RoomGenerator Room;
+        private readonly RoomGenerator Room;
 
         /// <summary>
         /// Current HP of the player
         /// </summary>
         public int HP { get; set; }
-        
+
         /// <summary>
         /// Current position of the player
         /// </summary>
@@ -36,7 +36,7 @@ namespace BootlegRoguelike
         /// <summary>
         /// This creates the player
         /// He's HP requires the number of <see cref="rows"/> and
-        /// <see cref="columns"/> 
+        /// <see cref="columns"/>
         /// </summary>
         /// <param name="rows">Number of rows</param>
         /// <param name="columns">Number of columns</param>
@@ -76,7 +76,7 @@ namespace BootlegRoguelike
                 //Checks if there are any bosses, minions or blocks around
                 case ConsoleKey.W:
                 case ConsoleKey.UpArrow:
-                // Moves the player very move takes 1 Hp
+                    // Moves the player very move takes 1 Hp
                     CheckIfPlayerCanMove(
                         new Position(Position.Row, Position.Col - 1));
 
@@ -85,7 +85,7 @@ namespace BootlegRoguelike
                 //Checks if there are any bosses, minions or blocks around
                 case ConsoleKey.A:
                 case ConsoleKey.LeftArrow:
-                // Moves the player very move takes 1 Hp
+                    // Moves the player very move takes 1 Hp
                     CheckIfPlayerCanMove(
                         new Position(Position.Row - 1, Position.Col));
                     break;
@@ -93,7 +93,7 @@ namespace BootlegRoguelike
                 //Checks if there are any bosses, minions or blocks around
                 case ConsoleKey.S:
                 case ConsoleKey.DownArrow:
-                // Moves the player very move takes 1 Hp
+                    // Moves the player very move takes 1 Hp
                     CheckIfPlayerCanMove(
                         new Position(Position.Row, Position.Col + 1));
                     break;
@@ -104,7 +104,7 @@ namespace BootlegRoguelike
                     // Moves the player very move takes 1 Hp
                     CheckIfPlayerCanMove(
                         new Position(Position.Row + 1, Position.Col));
-                        
+
                     break;
 
                 case ConsoleKey.Escape:
@@ -115,6 +115,7 @@ namespace BootlegRoguelike
             }
             return false;
         }
+
         /// <summary>
         /// Checks if the player can move to the wanted position
         /// </summary>
@@ -131,10 +132,11 @@ namespace BootlegRoguelike
                 HP -= 1;
             }
         }
+
         /// <summary>
         /// Checks if player is cornered or is HP equals to zero
         /// Returns true if one of the occurrences above happens
-        /// Returns false if none happens 
+        /// Returns false if none happens
         /// </summary>
         /// <returns></returns>
         public bool Gameover()
@@ -151,8 +153,10 @@ namespace BootlegRoguelike
                 if (Room[position] == Piece.Block ||
                 Room[position] == Piece.Enemy ||
                 Room[position] == Piece.Boss)
+                {
                     //Increments if detects a block or enemy
                     deadEnds += 1;
+                }
             }
             //Conditions that see if player lost
             if (deadEnds == 4 || HP <= 0)

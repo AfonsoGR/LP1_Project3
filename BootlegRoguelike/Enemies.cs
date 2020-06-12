@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+
 namespace BootlegRoguelike
 {
     /// <summary>
     /// This class will be the class base for the classes Boss and Minion
     /// </summary>
-    public class Enemies  
+    public class Enemies
     {
         /// <summary>
         /// Makes and gets the position of enemy
@@ -20,23 +21,22 @@ namespace BootlegRoguelike
         /// <summary>
         /// List of von Neumann positions
         /// </summary>
-        List <Position> checkingArea;
+        private List<Position> checkingArea;
 
         /// <summary>
         /// Creates a variable of RoomGenerator
         /// </summary>
-        protected  RoomGenerator Room;
+        protected RoomGenerator Room;
 
         /// <summary>
         /// Creates a variable int
         /// </summary>
-        protected int attack; 
+        protected int attack;
 
         /// <summary>
         /// Creates a variable of Player
         /// </summary>
         protected Player player;
-
 
         protected void SetupEnemy(Position pos)
         {
@@ -53,8 +53,8 @@ namespace BootlegRoguelike
         public void Movement()
         {
             //If passage is blocked increments 1
-            int j = 0; 
-            
+            int j = 0;
+
             //Auxiliary variable
             int aux;
 
@@ -62,22 +62,22 @@ namespace BootlegRoguelike
             bool attack = false;
 
             //Will be the next position of the enemy
-            Position min = new Position(Position.Row,Position.Col);
+            Position min = new Position(Position.Row, Position.Col);
 
             //Adds the value of acceptable moves
             List<int> valueMovs = new List<int>();
 
             //Adds the acceptable von Neumann positions
-            List <Position> moves = new List<Position>();
+            List<Position> moves = new List<Position>();
 
             //Updates the von Neumann
             Update();
 
             //Checks for each von Neumann position
-            foreach(Position position in checkingArea)
+            foreach (Position position in checkingArea)
             {
                 //if there is any player on the position calls method attack()
-                if(Room[position] == Piece.Player)
+                if (Room[position] == Piece.Player)
                 {
                     Attack();
                     //sets attact to true
@@ -91,12 +91,12 @@ namespace BootlegRoguelike
                     Room[position] != Piece.Enemy &&
                     Room[position] != Piece.Player)
                     {
-                        //Saves the distance from von Neumann position to 
+                        //Saves the distance from von Neumann position to
                         //player
                         valueMovs.Add(
-                        Math.Abs(player.Position.Row - position.Row)+
+                        Math.Abs(player.Position.Row - position.Row) +
                         Math.Abs(player.Position.Col - position.Col));
-                        //Savesthe positions  
+                        //Savesthe positions
                         moves.Add(position);
                     }
                     else
@@ -106,32 +106,30 @@ namespace BootlegRoguelike
                     }
                 }
             }
-            //if attack diferent of true it means that he didn't attack yet 
-            if(!attack)
+            //if attack diferent of true it means that he didn't attack yet
+            if (!attack)
             {
                 //if J = 4 means all passages are blocked and he can't move
-                if(j != 4)
+                if (j != 4)
                 {
-                    aux = valueMovs [0];
+                    aux = valueMovs[0];
                     //Checks what is the lowest value on all distances
-                    for(int i=0; i< valueMovs.Count   ; i++)
+                    for (int i = 0; i < valueMovs.Count; i++)
                     {
-                        if(valueMovs[i] <= aux)
+                        if (valueMovs[i] <= aux)
                         {
                             min = moves[i];
                             aux = valueMovs[i];
                         }
                     }
-                    
                 }
                 //Makes the move
-                Position = new Position(min.Row,min.Col);
+                Position = new Position(min.Row, min.Col);
                 //Updates the von Neumann Positions
                 Update();
                 //See's if player is around
                 CheckPlayer();
             }
-            
         }
 
         /// <summary>
@@ -142,10 +140,14 @@ namespace BootlegRoguelike
         {
             //Goes throw all von Neumann positions
             foreach (Position position in checkingArea)
+            {
                 //Sees enum type equals to block.
                 if (Room[position] == Piece.Player)
+                {
                     //calls  the method attack
                     Attack();
+                }
+            }
         }
 
         /// <summary>

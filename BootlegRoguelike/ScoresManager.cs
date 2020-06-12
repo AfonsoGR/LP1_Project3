@@ -40,7 +40,7 @@ namespace BootlegRoguelike
         private int finalScore;
 
         // Collection of scores
-        private List<Highscore> scores;
+        private readonly List<Highscore> scores;
 
         /// <summary>
         /// Constructor, initializes variables and creates save files if needed
@@ -55,25 +55,29 @@ namespace BootlegRoguelike
             // Assigns value to filepath
             filepath = Environment.GetFolderPath(
                 Environment.SpecialFolder.MyDocuments);
-            // Assigns value to folderpath 
+            // Assigns value to folderpath
             // and combines the filepath with the respective folder
             folderpath = Path.Combine(filepath, folderName);
-            // Assigns value to filepath 
+            // Assigns value to filepath
             // and combines the folderpath with the respective file
             filepath = Path.Combine(folderpath, finalFileName);
             // Assgins value to scores
             scores = new List<Highscore>();
             // Checks if the folder exists in the respective directory
-            if(Directory.Exists(folderpath))
+            if (Directory.Exists(folderpath))
             {
                 // Checks if the file exists in the respective file
-                if(File.Exists(filepath))
-                    // Fetch scores 
+                if (File.Exists(filepath))
+                {
+                    // Fetch scores
                     FetchScores();
+                }
                 // Previous conditions weren't met
                 else
+                {
                     // Create scores file
                     CreateScoreFile();
+                }
             }
             // Previous conditions weren't met
             else
@@ -109,7 +113,7 @@ namespace BootlegRoguelike
         public void RegisterScores(int score)
         {
             // Checks if the score can't be inserted
-            if(!CanBeInserted(score))
+            if (!CanBeInserted(score))
             {
                 // Terminates method execution
                 return;
@@ -122,17 +126,19 @@ namespace BootlegRoguelike
             // Assigns value to final score
             finalScore = score;
 
-            // Creates a new highscore 
+            // Creates a new highscore
             Highscore newHighscore = new Highscore(nameRegister, finalScore);
             // Adds to collection
             scores.Add(newHighscore);
             // Sorts scores in collection
             scores.Sort();
             // Checks if scores in the file surpasses its wished limit
-            if(scores.Count > maxScoresInFiles)
-                scores.RemoveAt(scores.Count -1);
+            if (scores.Count > maxScoresInFiles)
+            {
+                scores.RemoveAt(scores.Count - 1);
+            }
             // Saves scores
-            SaveScores();           
+            SaveScores();
         }
 
         /// <summary>
@@ -141,7 +147,7 @@ namespace BootlegRoguelike
         public void FetchScores()
         {
             // Assigns all lines in the file to a string in an array
-            string [] array = File.ReadAllLines(filepath);
+            string[] array = File.ReadAllLines(filepath);
 
             // Runs thorugh every string in the array
             foreach (string line in array)
@@ -151,9 +157,9 @@ namespace BootlegRoguelike
                 // Assgins value to name
                 nameRegister = values[0];
                 // Assgins value to score and converts it to an integer
-                finalScore = Int32.Parse(values[1]);
+                finalScore = int.Parse(values[1]);
                 // Adds name and score to collection
-                scores.Add(new Highscore(nameRegister,finalScore));
+                scores.Add(new Highscore(nameRegister, finalScore));
             }
         }
 
@@ -163,11 +169,13 @@ namespace BootlegRoguelike
         public void PrintHighcore()
         {
             // Runs through every highscore in the scores collection
-            foreach(Highscore highscore in scores)
+            foreach (Highscore highscore in scores)
+            {
                 // Displays each highscore on the screen
                 Console.WriteLine(highscore);
+            }
         }
-        
+
         /// <summary>
         /// Saves highscores into the file
         /// </summary>
@@ -198,14 +206,16 @@ namespace BootlegRoguelike
             // Assgins "false" value to checker
             bool checker = false;
 
-            // Checks if the number of scores in the file 
+            // Checks if the number of scores in the file
             // is less than it's desired limit
-            if(scores.Count < maxScoresInFiles)
-                // Assigns "true" value to checker 
-                checker = true; 
+            if (scores.Count < maxScoresInFiles)
+            {
+                // Assigns "true" value to checker
+                checker = true;
+            }
 
             // Checks if any of the scores is lower than the given score
-            for(int i = 0; i < maxScoresInFiles && !checker; i++)
+            for (int i = 0; i < maxScoresInFiles && !checker; i++)
             {
                 // Assigns value to checker
                 checker = scores[i].Score < score;
