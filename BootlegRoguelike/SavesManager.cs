@@ -1,5 +1,5 @@
-using System.IO;
 using System;
+using System.IO;
 
 namespace BootlegRoguelike
 {
@@ -29,7 +29,7 @@ namespace BootlegRoguelike
             filepath = Environment.GetFolderPath(
                 Environment.SpecialFolder.MyDocuments);
 
-            // Assigns value to folderpath 
+            // Assigns value to folderpath
             // and combines the filepath with the respective folder
             folderpath = Path.Combine(filepath, folderName);
 
@@ -67,7 +67,7 @@ namespace BootlegRoguelike
             File.Create(file).Close();
 
             // Creates a string with each of the variables
-            string text = r + tab.ToString() + c + tab.ToString() 
+            string text = r + tab.ToString() + c + tab.ToString()
                 + lvl + tab.ToString() + hp;
 
             // Writes the save text value into the file
@@ -105,8 +105,11 @@ namespace BootlegRoguelike
                         // Separates names from scores
                         string[] values = line.Split(tab);
 
-                        // If the array is smaller than the arguments count 
-                        if (values.Length < 4) break;
+                        // If the array is smaller than the arguments count
+                        if (values.Length < 4)
+                        {
+                            break;
+                        }
 
                         // Assgins value to rows
                         if (!int.TryParse(values[0], out rows))

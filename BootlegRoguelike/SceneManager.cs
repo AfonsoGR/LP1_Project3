@@ -66,7 +66,6 @@ namespace BootlegRoguelike
             // Creates a new List of AllPowerUps
             AllPowerUps = new List<Powerup>();
 
-
             // Generates a new room layout along with barriers
             CreateNewRoomStructure();
             // Generates a new Player
@@ -86,7 +85,9 @@ namespace BootlegRoguelike
             Player = new Player(row, col, Room, rnd.Next(1, col));
 
             if (hp != 0)
+            {
                 Player.HP = hp;
+            }
 
             // Puts the player on the board
             Room[Player.Position] = Piece.Player;
@@ -110,7 +111,7 @@ namespace BootlegRoguelike
             maxBosses = rnd.Next(maxBosses);
 
             // Checks the maximum enemies total
-            int maxEnemiesTotal = Math.Min(maxMinions + maxBosses, 
+            int maxEnemiesTotal = Math.Min(maxMinions + maxBosses,
                 (row) * (col) / 2);
 
             // Cycles through all the enemies
@@ -165,7 +166,7 @@ namespace BootlegRoguelike
             // Checks the maximum powerups total
             int maxPowerupTotal = maxSmallPower + maxMedPower + maxBigPower;
 
-            maxPowerupTotal = Math.Min(maxPowerupTotal, 
+            maxPowerupTotal = Math.Min(maxPowerupTotal,
                 (row) * (col) / 2);
 
             // Cycles through all the powerups

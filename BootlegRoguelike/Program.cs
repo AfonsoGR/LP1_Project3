@@ -3,7 +3,7 @@
 namespace BootlegRoguelike
 {
     /// <summary>
-    /// Main class of the program, checks for argument inputs and 
+    /// Main class of the program, checks for argument inputs and
     /// calls StartupMenu
     /// </summary>
     class Program
@@ -15,7 +15,7 @@ namespace BootlegRoguelike
         /// Program initialization and GameStart
         /// </summary>
         /// <param name="args"> Arguments passed through console </param>
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             // Creates a variable of Program
             Program program;
@@ -38,7 +38,7 @@ namespace BootlegRoguelike
 
             SavesManager saves = new SavesManager();
 
-            // Checks if the input arguments are valid 
+            // Checks if the input arguments are valid
             if (args[0] == "-l")
             {
                 // Stores all the variables from the same
@@ -46,7 +46,7 @@ namespace BootlegRoguelike
                     saves.LoadSave(args[1]);
 
                 // Checks of any of the variables is 0
-                if (savedVariables.row == 0 || savedVariables.col == 0 
+                if (savedVariables.row == 0 || savedVariables.col == 0
                     || savedVariables.lvl == 0 || savedVariables.hp == 0)
                 {
                     // Displays an error message to the user
@@ -72,7 +72,7 @@ namespace BootlegRoguelike
             else if (args[0] == "-r" && args[2] == "-c")
             {
                 // Checks if the input arguments can't be converted to integers
-                if (!Int32.TryParse(args[1], out rows))
+                if (!int.TryParse(args[1], out rows))
                 {
                     // Displays error message
                     ErrorMessage();
@@ -80,7 +80,7 @@ namespace BootlegRoguelike
                     return;
                 }
                 // Checks if the input arguments can't be converted to integers
-                if (!Int32.TryParse(args[3], out cols))
+                if (!int.TryParse(args[3], out cols))
                 {
                     // Displays error message
                     ErrorMessage();
@@ -94,7 +94,7 @@ namespace BootlegRoguelike
             else if (args[0] == "-c" && args[2] == "-r")
             {
                 // Checks if the input arguments can't be converted to integers
-                if (!Int32.TryParse(args[3], out rows))
+                if (!int.TryParse(args[3], out rows))
                 {
                     // Displays error message
                     ErrorMessage();
@@ -102,7 +102,7 @@ namespace BootlegRoguelike
                     return;
                 }
                 // Checks if the input arguments can't be converted to integers
-                if (!Int32.TryParse(args[1], out cols))
+                if (!int.TryParse(args[1], out cols))
                 {
                     // Displays error message
                     ErrorMessage();
@@ -119,7 +119,7 @@ namespace BootlegRoguelike
         /// </summary>
         /// <param name="rows"> Value of rows </param>
         /// <param name="cols"> Value of cols </param>
-        private void InitializeMainMenu(int rows, int cols, 
+        private void InitializeMainMenu(int rows, int cols,
             int lvl = 1, int hp = 0)
         {
             // Creates a new MainMenu instance

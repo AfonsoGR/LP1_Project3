@@ -168,7 +168,9 @@ namespace BootlegRoguelike
 
                 // If it's the first on the array set's the background to white
                 if (i == 0)
+                {
                     Console.BackgroundColor = ConsoleColor.White;
+                }
                 // Draws the visual translated into a char
                 Console.Write($"{(char)allVisuals[i]}");
                 // Resets the color

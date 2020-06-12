@@ -74,20 +74,29 @@ namespace BootlegRoguelike
                     UpdatePowerUps();
 
                     // Checks if the player is stuck or died
-                    if (scene.Player.Gameover() || stopGameToken) break;
+                    if (scene.Player.Gameover() || stopGameToken)
+                    {
+                        break;
+                    }
 
                     // Checks if the player is at the exit
                     CheckIfOnExit();
                 }
 
                 // Checks if the player is stuck or died
-                if (scene.Player.Gameover() || stopGameToken) break;
+                if (scene.Player.Gameover() || stopGameToken)
+                {
+                    break;
+                }
 
                 // Asks all the AIs to perform their movement
                 MoveEnemies();
 
                 // Checks if the player is stuck or died
-                if (scene.Player.Gameover() || stopGameToken) break;
+                if (scene.Player.Gameover() || stopGameToken)
+                {
+                    break;
+                }
 
                 // In case an AI was on top of a powerup updates the visuals
                 UpdatePowerUps();
@@ -242,7 +251,7 @@ namespace BootlegRoguelike
                 {
                     // If yes calls the SaveGame sending the info needed
                     saves.SaveGame(scene.Room.SizeY - 2, scene.Room.SizeX - 3,
-                        CurrentLevel,scene.Player.HP);
+                        CurrentLevel, scene.Player.HP);
                 }
 
                 // Clears the console
