@@ -76,7 +76,7 @@ dos utilizadores.
 
 ### Diagrama UML
 
-![diagramaUML](diagramaUML.png)
+![diagramaUML](UMLdiagrama.png)
 
 ### Referências
 
