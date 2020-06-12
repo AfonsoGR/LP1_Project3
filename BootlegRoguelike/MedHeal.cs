@@ -16,7 +16,7 @@ namespace BootlegRoguelike
             Position = pos;
             //Regeneration value
             Heal = 8;
-            Type = Enums.PowerMed;
+            Type = Piece.PowerMed;
             this.player = player;
             this.Room = Room;
         }

@@ -2,13 +2,13 @@
 
 namespace BootlegRoguelike
 {
-    class Program
+    internal class Program
     {
         private MainMenu mainMenu;
 
         private ScoresManager scores;
+        private static void Main(string[] args)
 
-        static void Main(string[] args)
         {
             Program program;
             program = new Program();

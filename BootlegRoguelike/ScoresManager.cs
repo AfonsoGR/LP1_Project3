@@ -1,6 +1,6 @@
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 
 namespace BootlegRoguelike
 {
@@ -12,26 +12,22 @@ namespace BootlegRoguelike
         // public int Rows {get; set;}
         // public int Cols {get; set;}
         // const string scoresFile = $"highscoresR{Rows}C{Cols}.txt";
-        const string scoresFile = "highscores.txt";
-        string displayScores;
-        string nameRegister;
-        
-        const string path = @"C:\Users\joao\Desktop\Faculdade\LP1\LP1_PROJECT3\highscores.txt";
-        const char tab = '\t';
-        private int finalScore;
-        StreamReader reader;
-        StreamWriter writer;
-        List<Highscore> scores;
+        private const string scoresFile = "highscores.txt";
+
+        private string displayScores;
+        private string nameRegister;
+
+        private const char tab = '\t';
+        private int finalScore = 100;
+        private StreamReader reader;
+        private StreamWriter writer;
+        private List<Highscore> scores;
 
         public ScoresManager()
         {
+            // writer = new StreamWriter(scoresFile);
             scores = new List<Highscore>();
-            if(File.Exists(path))
-            {
-                DisplayTopScores();
-            }
-            //writer = new StreamWriter(scoresFile);
-            
+            //reader = new StreamReader(scoresFile);
         }
 
         /// <summary>
@@ -39,7 +35,7 @@ namespace BootlegRoguelike
         /// </summary>
         public void RegisterScores(int score)
         {
-            
+            writer = new StreamWriter(scoresFile);
             // Displays on-screen text
             Console.WriteLine("Register your name for the leaderboards:\t");
             // Stores user input
@@ -51,7 +47,6 @@ namespace BootlegRoguelike
             scores.Add(new Highscore(nameRegister, finalScore));
             scores.Sort();
             //Close();
-            
         }
 
         /// <summary>
@@ -60,33 +55,20 @@ namespace BootlegRoguelike
         /// <param name="scoresCollection"></param>
         public void DisplayTopScores()
         {
-            string [] array = File.ReadAllLines(path);
-
-            foreach ( string line in array)
-            {
-                string[] values = line.Split(' ');
-                nameRegister = values[0];
-                finalScore = Int32.Parse(values[1]);
-                scores .Add (new Highscore(nameRegister,finalScore));
-            }
+            reader = new StreamReader(scoresFile);
             // Reads each lines and displays each one on the screen
-            // while ((displayScores = reader.ReadLine()) != null)
-            // {
-            //     string[] nameAndScore = displayScores.Split(tab);
-            //     string name = nameAndScore[0];
-            //     int score = Int32.Parse(nameAndScore[1]);
-            //     scores.Add(new Highscore (name,score));
-            // }
+            while ((displayScores = reader.ReadLine()) != null)
+            {
+                string[] nameAndScore = displayScores.Split(tab);
+                string name = nameAndScore[0];
+                float score = Convert.ToSingle(nameAndScore[1]);
+                Console.WriteLine($"Score of '{name}' is {finalScore}");
+            }
 
             // Closes the file
-            //reader.Close();
+            reader.Close();
         }
 
-        public void PrintHighcore()
-        {
-            foreach(Highscore highscore in scores)
-                Console.WriteLine(highscore.Name + " " + highscore.Score);;
-        }
         public void Close()
         {
             foreach (Highscore highscore in scores)

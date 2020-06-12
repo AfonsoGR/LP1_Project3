@@ -119,7 +119,7 @@ namespace BootlegRoguelike
         {
             
 
-            scoresManager.PrintHighcore();
+            //////////////////////////scoresManager.PrintHighcore();
             // Creates a new Scores Manager
             //scoresManager.RegisterScores();
 

@@ -10,8 +10,12 @@ namespace BootlegRoguelike
         /// <summary>
         /// Makes and gets the position of enemy
         /// </summary>
-        /// <value>Rows and columns</value>
-        public Position Position { get; protected set;}
+        public Position Position { get; protected set; }
+
+        /// <summary>
+        /// Get and sets the type of enemy
+        /// </summary>
+        public Piece Type { get; protected set; }
 
         /// <summary>
         /// List of von Neumann positions
@@ -32,12 +36,6 @@ namespace BootlegRoguelike
         /// Creates a variable of Player
         /// </summary>
         protected Player player;
-
-        /// <summary>
-        /// Get and sets the type of enemy
-        /// </summary>
-        /// <value></value>
-        public Enums Type { get; protected set; }
 
 
         protected void SetupEnemy(Position pos)
@@ -79,7 +77,7 @@ namespace BootlegRoguelike
             foreach(Position position in checkingArea)
             {
                 //if there is any player on the position calls method attack()
-                if(Room[position] == Enums.Player)
+                if(Room[position] == Piece.Player)
                 {
                     Attack();
                     //sets attact to true
@@ -88,9 +86,10 @@ namespace BootlegRoguelike
                 else
                 {
                     //Checks if are blocked passages, Bosses, enemies
-                    if(Room[position] != Enums.Block &&
-                    Room[position] != Enums.Boss &&
-                    Room[position] != Enums.Enemy)
+                    if (Room[position] != Piece.Block &&
+                    Room[position] != Piece.Boss &&
+                    Room[position] != Piece.Enemy &&
+                    Room[position] != Piece.Player)
                     {
                         //Saves the distance from von Neumann position to 
                         //player
@@ -142,9 +141,9 @@ namespace BootlegRoguelike
         protected void CheckPlayer()
         {
             //Goes throw all von Neumann positions
-            foreach(Position position in checkingArea)
-            //Sees enum type equals to block.
-                if(Room[position] == Enums.Player)
+            foreach (Position position in checkingArea)
+                //Sees enum type equals to block.
+                if (Room[position] == Piece.Player)
                     //calls  the method attack
                     Attack();
         }
