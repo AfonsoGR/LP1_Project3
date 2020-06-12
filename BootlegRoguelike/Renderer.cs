@@ -124,8 +124,8 @@ namespace BootlegRoguelike
             // squares in the HP bar
             int barHP = (int)(percentageHP * initialHP);
 
-            // String to display the current HP of the player besides the bar
-            string hpNumber = @"HP: |" + player.HP + "|";
+            // Displays the current HP of the player besides the bar
+            Console.WriteLine(@"HP: |" + player.HP + "|");
 
             // Loops for the amount of squares it should draw
             for (int i = 0; i < initialHP; i++)
@@ -134,11 +134,8 @@ namespace BootlegRoguelike
                 Console.BackgroundColor = i >= barHP ?
                     ConsoleColor.White : ConsoleColor.DarkRed;
 
-                // Sets the text color to black
-                Console.ForegroundColor = ConsoleColor.Black;
-
-                // Checks if it's time to draw the HP message or not
-                Console.Write(i >= hpNumber.Length ? ' ' : hpNumber[i]);
+                // Writes an empty space with a color
+                Console.Write(' ');
             }
             // Resets the color to the default
             Console.ResetColor();
@@ -188,7 +185,7 @@ namespace BootlegRoguelike
         private void DrawAfterBoardPosition()
         {
             // Sets the cursor after the size of the level + 5
-            for (int i = 0; i < level.SizeX + 5; i++)
+            for (int i = 0; i < level.SizeX + 50; i++)
             {
                 // Writes an empty space
                 Console.Write(' ');

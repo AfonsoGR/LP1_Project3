@@ -60,29 +60,23 @@ namespace BootlegRoguelike
             // Main Loop of the game
             while (true)
             {
-                // Moves the player and updates the visuals
-                MovePlayer();
+                for (int i = 0; i < 2; i++)
+                {
+                    // Moves the player and updates the visuals
+                    MovePlayer();
+
+                    // Checks if the player is on a powerup
+                    UpdatePowerUps();
+
+                    // Checks if the player is stuck or died
+                    if (scene.Player.Gameover() || stopGameToken) break;
+
+                    // Checks if the player is at the exit
+                    CheckIfOnExit();
+                }
 
                 // Checks if the player is stuck or died
                 if (scene.Player.Gameover() || stopGameToken) break;
-
-                // Checks if the player is at the exit
-                CheckIfOnExit();
-
-                // Checks if the player is on a powerup
-                UpdatePowerUps();
-
-                // Moves the player and updates the visuals
-                MovePlayer();
-
-                // Checks if the player is stuck or died
-                if (scene.Player.Gameover() || stopGameToken) break;
-
-                // Checks if the player is at the exit
-                CheckIfOnExit();
-
-                // Checks if the player is on a powerup
-                UpdatePowerUps();
 
                 // Asks all the AIs to perform their movement
                 MoveEnemies();

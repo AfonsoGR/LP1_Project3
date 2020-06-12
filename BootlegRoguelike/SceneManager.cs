@@ -97,7 +97,7 @@ namespace BootlegRoguelike
         private void CreateNewPlayer()
         {
             // Assgins the Player variable the created player
-            Player = new Player(row, col, Room, rnd.Next(1, col - 1));
+            Player = new Player(row, col, Room, rnd.Next(1, col));
 
             // Puts the player on the board
             Room[Player.Position] = Piece.Player;
@@ -114,22 +114,15 @@ namespace BootlegRoguelike
             // Linearly finds the maximum of bosses
             int maxBosses = (int)(0.5f * lvl);
 
-            // Stops the number of minions to be more than half the level
-            int clampedMaxMinions =
-                Math.Min(maxMinions, (row - 1) * (col - 1) / 4);
-
-            // Stops the number of Bosses to be more than half the level
-            int clampedMaxBosses =
-                Math.Min(maxBosses, (row - 1) * (col - 1) / 4);
+            // Maximum amount of Minions
+            maxMinions = rnd.Next(maxMinions);
 
             // Maximum amount of Minions
-            maxMinions = rnd.Next(clampedMaxMinions);
-
-            // Maximum amount of Minions
-            maxBosses = rnd.Next(clampedMaxBosses);
+            maxBosses = rnd.Next(maxBosses);
 
             // Checks the maximum enemies total
-            int maxEnemiesTotal = maxMinions + maxBosses;
+            int maxEnemiesTotal = Math.Min(maxMinions + maxBosses, 
+                (row) * (col) / 2);
 
             // Cycles through all the enemies
             for (int n = 0; n < maxEnemiesTotal; n++)
@@ -183,6 +176,9 @@ namespace BootlegRoguelike
             // Checks the maximum powerups total
             int maxPowerupTotal = maxSmallPower + maxMedPower + maxBigPower;
 
+            maxPowerupTotal = Math.Min(maxPowerupTotal, 
+                (row) * (col) / 2);
+
             // Cycles through all the powerups
             for (int n = 0; n < maxPowerupTotal; n++)
             {
@@ -232,7 +228,7 @@ namespace BootlegRoguelike
         private void CreateNewRoomStructure()
         {
             // Generates the outside bounds, exit
-            Room.SetBoardToInitState(row, col, rnd.Next(1, col - 1));
+            Room.SetBoardToInitState(row, col, rnd.Next(1, col));
 
             // Calculates the number of obstacles
             int nObstacles = rnd.Next(Math.Min(row, col) - 1);
@@ -242,7 +238,7 @@ namespace BootlegRoguelike
             {
                 // creates a new random position for that obstacle
                 Position startPos =
-                    new Position(rnd.Next(1, row - 2), rnd.Next(1, col - 2));
+                    new Position(rnd.Next(1, row), rnd.Next(1, col));
 
                 // Places that obstacle on the board
                 Room[startPos] = Piece.Block;
