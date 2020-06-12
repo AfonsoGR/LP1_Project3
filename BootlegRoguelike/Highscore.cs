@@ -7,7 +7,6 @@ namespace BootlegRoguelike
     /// </summary>
     public struct Highscore : IComparable<Highscore>
     {
-<<<<<<< HEAD
         /// <summary>
         ///  Gets the value of the user's Name
         /// </summary>
@@ -26,12 +25,6 @@ namespace BootlegRoguelike
         /// <param name="name"> Value of the user's Name </param>
         /// <param name="score"> Value of the user's Score </param>
         public Highscore (string name, int score)
-=======
-        public string Name { get; }
-        public int Score { get; }
-
-        public Highscore(string name, int score)
->>>>>>> ae5b02c522f469038112e586b8cc6b44bb1e5997
         {
             // Value of name
             Name = name;
@@ -39,20 +32,16 @@ namespace BootlegRoguelike
             Score = score;
         }
 
-<<<<<<< HEAD
         /// <summary>
         ///  Compares scores
         /// </summary>
         /// <param name="other"> Value of other scores </param>
         /// <returns></returns>
-=======
->>>>>>> ae5b02c522f469038112e586b8cc6b44bb1e5997
         public int CompareTo(Highscore other)
         {
             // Returns the value of the user's score
             return other.Score - Score;
         }
-<<<<<<< HEAD
 
         /// <summary>
         /// Overrides ToString method and assigns value to highscore string
@@ -63,7 +52,5 @@ namespace BootlegRoguelike
             // Returns overridden highscore string
             return Name + ScoresManager.tab + Score;
         }        
-=======
->>>>>>> ae5b02c522f469038112e586b8cc6b44bb1e5997
     }
 }

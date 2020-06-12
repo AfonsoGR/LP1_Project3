@@ -44,15 +44,12 @@ namespace BootlegRoguelike
             + "16 HP.\n\nThe game will get harder the longer it goes, there "
             + "will be less powerups and more enemies, but the longer you go "
             + "the bigger your score will be!\nKeep in mind that your total "
-<<<<<<< HEAD
             + "HP, the number of enemies, obstacles and powerups will be " 
             + "influenced by the size of the board.\n" + "Your score will be" 
             + " saved into your Documents folder under a new folder called " 
-            + "BootlegSaves.");
-=======
-            + "HP, the number of enemies, obstacles and powerups will be "
-            + "influenced by the size of the board.\n");
->>>>>>> ae5b02c522f469038112e586b8cc6b44bb1e5997
+            + "BootlegSaves.\n\nIf you press CapsLock the enemy wait timer "
+            + "disapears making them move instantly, press CapsLock again "
+            + "to disable this.");
         }
 
         /// <summary>

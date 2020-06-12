@@ -9,7 +9,6 @@ namespace BootlegRoguelike
     /// </summary>
     public class ScoresManager
     {
-<<<<<<< HEAD
         // Constant variable, portion of the filename
         private const string scoresFile = "highscores";
 
@@ -39,21 +38,6 @@ namespace BootlegRoguelike
 
         // The user's final score
         private int finalScore;
-=======
-        // public int Rows {get; set;}
-        // public int Cols {get; set;}
-        // const string scoresFile = $"highscoresR{Rows}C{Cols}.txt";
-        private const string scoresFile = "highscores.txt";
-
-        private string displayScores;
-        private string nameRegister;
-
-        private const char tab = '\t';
-        private int finalScore = 100;
-        private StreamReader reader;
-        private StreamWriter writer;
-        private List<Highscore> scores;
->>>>>>> ae5b02c522f469038112e586b8cc6b44bb1e5997
 
         // Collection of scores
         private List<Highscore> scores;
@@ -65,7 +49,6 @@ namespace BootlegRoguelike
         /// <param name="cols"> Value of cols </param>
         public ScoresManager(int rows, int cols)
         {
-<<<<<<< HEAD
             // Assigns value to finalFileName
             finalFileName = scoresFile + rows + '_' + cols + fileExtension;
 
@@ -118,11 +101,6 @@ namespace BootlegRoguelike
         {
             // Creates the folder
             Directory.CreateDirectory(folderpath);
-=======
-            // writer = new StreamWriter(scoresFile);
-            scores = new List<Highscore>();
-            //reader = new StreamReader(scoresFile);
->>>>>>> ae5b02c522f469038112e586b8cc6b44bb1e5997
         }
 
         /// <summary>
@@ -130,7 +108,6 @@ namespace BootlegRoguelike
         /// </summary>
         public void RegisterScores(int score)
         {
-<<<<<<< HEAD
             // Checks if the score can't be inserted
             if(!CanBeInserted(score))
             {
@@ -138,9 +115,6 @@ namespace BootlegRoguelike
                 return;
             }
 
-=======
-            writer = new StreamWriter(scoresFile);
->>>>>>> ae5b02c522f469038112e586b8cc6b44bb1e5997
             // Displays on-screen text
             Console.WriteLine("Register your name for the leaderboards:\t");
             // Stores user input
@@ -154,15 +128,11 @@ namespace BootlegRoguelike
             scores.Add(newHighscore);
             // Sorts scores in collection
             scores.Sort();
-<<<<<<< HEAD
             // Checks if scores in the file surpasses its wished limit
             if(scores.Count > maxScoresInFiles)
                 scores.RemoveAt(scores.Count -1);
             // Saves scores
             SaveScores();           
-=======
-            //Close();
->>>>>>> ae5b02c522f469038112e586b8cc6b44bb1e5997
         }
 
         /// <summary>
@@ -170,7 +140,6 @@ namespace BootlegRoguelike
         /// </summary>
         public void FetchScores()
         {
-<<<<<<< HEAD
             // Assigns all lines in the file to a string in an array
             string [] array = File.ReadAllLines(filepath);
 
@@ -203,23 +172,6 @@ namespace BootlegRoguelike
         /// Saves highscores into the file
         /// </summary>
         private void SaveScores()
-=======
-            reader = new StreamReader(scoresFile);
-            // Reads each lines and displays each one on the screen
-            while ((displayScores = reader.ReadLine()) != null)
-            {
-                string[] nameAndScore = displayScores.Split(tab);
-                string name = nameAndScore[0];
-                float score = Convert.ToSingle(nameAndScore[1]);
-                Console.WriteLine($"Score of '{name}' is {finalScore}");
-            }
-
-            // Closes the file
-            reader.Close();
-        }
-
-        public void Close()
->>>>>>> ae5b02c522f469038112e586b8cc6b44bb1e5997
         {
             // Assgins value to scorestext
             string scorestext = "";
