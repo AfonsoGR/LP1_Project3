@@ -25,9 +25,6 @@ que ajudou no funcionamento da classe `ScoresManager`.
 Tratou ainda da documentação das classes `Highscore`, `MainMenu`, `Program`,
 `ScoresManager` e `InfoRules`.
 
-Foi um dos principais responsáveis pelo (ficheiro `README.md`), tendo
-confirmado a clareza e veracidade do conteúdo do mesmo com o colega.
-
 #### André Vitorino
 
 O aluno, André Vitorino, foi o responsável pelas classes `GameLoopController`,
