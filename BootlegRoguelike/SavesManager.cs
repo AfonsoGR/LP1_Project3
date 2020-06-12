@@ -60,8 +60,7 @@ namespace BootlegRoguelike
                 name = Console.ReadLine();
             }
 
-            string file = Path.Combine(folderpath, name);
-            file += ".txt";
+            string file = Path.Combine(folderpath, name + ".sav");
 
             // Creates the file and closes the process
             File.Create(file).Close();
@@ -80,7 +79,7 @@ namespace BootlegRoguelike
         public (int, int, int, int) LoadSave(string name)
         {
             // Creates the full path to the file
-            string file = Path.Combine(folderpath, name + ".txt");
+            string file = Path.Combine(folderpath, name + ".sav");
 
             // Stores the parsed rows
             int rows = 0;
