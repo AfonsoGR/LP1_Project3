@@ -57,8 +57,8 @@ classe que contem o jogo em si, criando e guardando os elementos necessários
 para que o jogo funcione. A classe `GameLoopController` é que gere o _loop_
 principal do jogo enquanto o jogador estiver vivo e não se encontrar com o seu
 movimento bloqueado. Usando o `Renderer` para atualizar o _board_, onde mostra
-o movimento atualizado do jogador e dos inimigos como também a interface do 
-utilizador. Verifica também se o jogador apanhou algum _powerup_ ou se se 
+o movimento atualizado do jogador e dos inimigos como também a interface do
+utilizador. Verifica também se o jogador apanhou algum _powerup_ ou se se
 encontra na sáida do nível. Também se responsabiliza pela passagem de nível,
 utilizando a class `SavesManager` para guardar o jogo quando isto aconteçe.
 
@@ -88,8 +88,8 @@ Foram reaproveitados elementos do
 [projeto](https://github.com/AfonsoGR/LP1_Project2) realizado previamente para
 esta cadeira pelos alunos Afonso Rosa e André Vitorino.
 
-Foram aproveitados elementos deste [post]
-(https://stackoverflow.com/questions/4351258) do 
+Foram aproveitados elementos deste
+[post](https://stackoverflow.com/questions/4351258) do
 [Stack Overflow](https://stackoverflow.com/).
 
 Houve troca de ideias com colegas em como lidar com os problemas impostos pelas
