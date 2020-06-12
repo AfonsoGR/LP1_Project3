@@ -209,12 +209,8 @@ namespace BootlegRoguelike
                         $"{scene.AllEnemies[i].Position.Col} )");
                 }
 
-                // Checks if CapsLock is active, if it is skips the wait timer
-                if (!Console.CapsLock)
-                {
-                    // Stops the game in order for the player to see what happened
-                    Thread.Sleep(1000);
-                }
+                // Stops the game in order for the player to see what happened
+                Thread.Sleep(1000);
             }
         }
 
