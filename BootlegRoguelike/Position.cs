@@ -2,10 +2,10 @@ namespace BootlegRoguelike
 {
     public struct Position
     {
-        public int Row {get; }
-        public int Col {get; }
+        public int Row { get; }
+        public int Col { get; }
 
-        public Position (int row, int col)
+        public Position(int row, int col)
         {
             Row = row;
             Col = col;

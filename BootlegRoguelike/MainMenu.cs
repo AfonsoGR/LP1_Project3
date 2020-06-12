@@ -1,6 +1,4 @@
 using System;
-using System.IO;
-using System.Collections.Generic;
 
 namespace BootlegRoguelike
 {
@@ -13,18 +11,18 @@ namespace BootlegRoguelike
         /// Gets and sets the value of Cols
         /// </summary>
         /// <value> Value of Cols </value>
-        public int Cols {get; set;}
-        
+        public int Cols { get; set; }
+
         /// <summary>
         /// Gets and sets the value of Rows
         /// </summary>
         /// <value> Value of Rows </value>
-        public int Rows {get; set;}
+        public int Rows { get; set; }
 
         /// <summary>
         /// Creates a variable of ScoresManager
         /// </summary>
-        private ScoresManager scoresManager;
+        private readonly ScoresManager scoresManager;
 
         /// <summary>
         /// Creates a variable of GameLoopController
@@ -36,7 +34,7 @@ namespace BootlegRoguelike
         /// </summary>
         private InfoRules infoRules;
 
-        public MainMenu ()
+        public MainMenu()
         {
             scoresManager = new ScoresManager();
         }
@@ -52,14 +50,17 @@ namespace BootlegRoguelike
 
             // Calls WelcomeText method from InfoRules.cs
             infoRules.WelcomeText();
-            
+
             // Stores player choice
             int menuChoice;
 
             // Asks for input until a valid one is given
             while (!int.TryParse(Console.ReadLine(), out menuChoice)
-                    || menuChoice < 1 || menuChoice > 5);
-            
+                    || menuChoice < 1 || menuChoice > 5)
+            {
+                ;
+            }
+
             // Selects section based on user input "menuChoice"
             switch (menuChoice)
             {
@@ -99,7 +100,7 @@ namespace BootlegRoguelike
                     break;
             }
         }
-        
+
         /// <summary>
         /// Starts a new game with given arguments
         /// </summary>
@@ -112,18 +113,17 @@ namespace BootlegRoguelike
         }
 
         /// <summary>
-        /// Displays Top Scores and wait for user input 
+        /// Displays Top Scores and wait for user input
         /// before returning to the startup menu
         /// </summary>
         public void Highscores()
         {
-
             // Creates a new Scores Manager
             //scoresManager.RegisterScores();
 
             // Calls DisplayTopScores method from ScoresManager.cs
             scoresManager.DisplayTopScores();
-            
+
             // Displays on-screen text
             Console.WriteLine("Press any key to return to the main menu...");
             // Waits for user input
@@ -133,7 +133,7 @@ namespace BootlegRoguelike
         }
 
         /// <summary>
-        /// Displays Intro text and waits for user input 
+        /// Displays Intro text and waits for user input
         /// before returning to the startup menu
         /// </summary>
         public void Instructions()
@@ -153,7 +153,7 @@ namespace BootlegRoguelike
         }
 
         /// <summary>
-        /// Displays Credits text and waits for user input 
+        /// Displays Credits text and waits for user input
         /// before returning to the startup menu
         /// </summary>
         public void Credits()
@@ -169,11 +169,11 @@ namespace BootlegRoguelike
             // Waits for user input
             Console.ReadKey();
             // Calls StartupMenu method from this class
-            StartupMenu();            
+            StartupMenu();
         }
 
         /// <summary>
-        /// Asks player if he wants to exit the game 
+        /// Asks player if he wants to exit the game
         /// and either leaves or returns to the startup menu
         /// </summary>
         public void QuitGame()
@@ -191,8 +191,10 @@ namespace BootlegRoguelike
             }
             // Checks if the quitChoice variable has specified values
             else if (quitChoice == "n" || quitChoice == "N")
+            {
                 // Calls StartupMenu method from this class
                 StartupMenu();
+            }
             // Previous conditions were not met
             else
             {
@@ -201,7 +203,7 @@ namespace BootlegRoguelike
                 // Calls QuitGame method from this class
                 QuitGame();
                 //scoresManager.Close();
-            }            
+            }
         }
     }
 }

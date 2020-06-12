@@ -1,23 +1,23 @@
 using System;
 using System.Collections.Generic;
+
 namespace BootlegRoguelike
 {
     /// <summary>
     /// This class will be the class base for the classes Boos and Minion.
     /// </summary>
-    public class Enemies  
+    public class Enemies
     {
-        public Position Position { get; protected set;}
-        protected Position Up; 
+        public Position Position { get; protected set; }
+        protected Position Up;
         protected Position Down;
-        protected Position Left; 
-        protected Position Right; 
-        List <Position> checkingArea;
-        protected  RoomGenerator Room;
-        protected int attack; 
+        protected Position Left;
+        protected Position Right;
+        private List<Position> checkingArea;
+        protected RoomGenerator Room;
+        protected int attack;
         protected Player player;
-        public Enums Type { get; protected set; }
-
+        public Piece Type { get; protected set; }
 
         protected void SetupEnemy(Position pos)
         {
@@ -30,7 +30,7 @@ namespace BootlegRoguelike
         ///it will compare the player's position with that of the enemy and
         ///insert it into an array and will save the valid positions in another
         ///array.
-        /// 
+        ///
         /// The second part will see what is the smallest value and will save
         /// the corresponding position, then make the move.
         /// </summary>
@@ -39,16 +39,16 @@ namespace BootlegRoguelike
         {
             List<int> valueMovs = new List<int>();
             int i = 0;
-            int j = 0; 
+            int j = 0;
             int aux;
             bool attack = false;
-            Position min = new Position(Position.Row,Position.Col) ;
-            List <Position> moves = new List<Position>();
+            Position min = new Position(Position.Row, Position.Col);
+            List<Position> moves = new List<Position>();
             List<bool> canGo = new List<bool>();
             Update();
-            foreach(Position position in checkingArea)
+            foreach (Position position in checkingArea)
             {
-                if(Room[position] == Enums.Player)
+                if (Room[position] == Piece.Player)
                 {
                     Attack();
                     attack = true;
@@ -56,16 +56,16 @@ namespace BootlegRoguelike
                 else
                 {
                     //Checks if are blocked passages
-                    if(Room[position] != Enums.Block &&
-                    Room[position] != Enums.Boss &&
-                    Room[position] != Enums.Enemy&&
-                    Room[position] != Enums.Player)
+                    if (Room[position] != Piece.Block &&
+                    Room[position] != Piece.Boss &&
+                    Room[position] != Piece.Enemy &&
+                    Room[position] != Piece.Player)
                     {
                         //Saves the positions.
                         valueMovs.Add(
-                        Math.Abs(player.Position.Row - position.Row)+
+                        Math.Abs(player.Position.Row - position.Row) +
                         Math.Abs(player.Position.Col - position.Col));
-                        //Puts the shortMov in to a array.  
+                        //Puts the shortMov in to a array.
                         moves.Add(position);
                         //increments.
                         i++;
@@ -76,27 +76,25 @@ namespace BootlegRoguelike
                     }
                 }
             }
-            if( attack != true)
+            if (attack != true)
             {
-                if(j != 4)
+                if (j != 4)
                 {
                     //Auxiliary variable.
-                    aux = valueMovs [0];
-                    for(i=0; i< valueMovs.Count   ; i++)
+                    aux = valueMovs[0];
+                    for (i = 0; i < valueMovs.Count; i++)
                     {
-                        if(valueMovs[i] <= aux)
+                        if (valueMovs[i] <= aux)
                         {
                             min = moves[i];
                             aux = valueMovs[i];
                         }
                     }
-                    
                 }
-                Position = new Position(min.Row,min.Col);
+                Position = new Position(min.Row, min.Col);
                 Update();
                 CheckPlayer();
             }
-            
         }
 
         /// <summary>
@@ -105,12 +103,16 @@ namespace BootlegRoguelike
         /// </summary>
         protected void CheckPlayer()
         {
-            //Goes throw all von Neumann positions. 
-            foreach(Position position in checkingArea)
-            //Sees enum type equals to block.
-                if(Room[position] == Enums.Player)
+            //Goes throw all von Neumann positions.
+            foreach (Position position in checkingArea)
+            {
+                //Sees enum type equals to block.
+                if (Room[position] == Piece.Player)
+                {
                     //calls  the method attack.
                     Attack();
+                }
+            }
         }
 
         /// <summary>

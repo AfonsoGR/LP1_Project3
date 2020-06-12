@@ -71,8 +71,10 @@ namespace BootlegRoguelike
 
             // Checks if it should reset the player
             if (!generatePlayer)
+            {
                 // Sets the hp to the current players amount
                 hp = Player.HP;
+            }
 
             // Generates a new room layout along with barriers
             CreateNewRoomStructure();
@@ -100,7 +102,7 @@ namespace BootlegRoguelike
             Player = new Player(row, col, Room, rnd.Next(1, col - 1));
 
             // Puts the player on the board
-            Room[Player.Position] = Enums.Player;
+            Room[Player.Position] = Piece.Player;
         }
 
         /// <summary>
@@ -143,7 +145,7 @@ namespace BootlegRoguelike
                     AllEnemies.Add(new Minion(Room, Player, pos));
 
                     // Puts it on the board
-                    Room[pos] = Enums.Enemy;
+                    Room[pos] = Piece.Enemy;
 
                     // Decrements one from maxMinions
                     maxMinions--;
@@ -154,7 +156,7 @@ namespace BootlegRoguelike
                     AllEnemies.Add(new Boss(Room, Player, pos));
 
                     // Puts it on the board
-                    Room[pos] = Enums.Boss;
+                    Room[pos] = Piece.Boss;
 
                     // Decrements one from maxBosses
                     maxBosses--;
@@ -195,7 +197,7 @@ namespace BootlegRoguelike
                     AllPowerUps.Add(new MiniHeal(Player, Room, pos));
 
                     // Puts it on the board
-                    Room[pos] = Enums.PowerMin;
+                    Room[pos] = Piece.PowerMin;
 
                     // Decrements maxSmallPower
                     maxSmallPower--;
@@ -206,7 +208,7 @@ namespace BootlegRoguelike
                     AllPowerUps.Add(new MedHeal(Player, Room, pos));
 
                     // Puts it on the board
-                    Room[pos] = Enums.PowerMed;
+                    Room[pos] = Piece.PowerMed;
 
                     // Decrements maxMedPower
                     maxMedPower--;
@@ -217,7 +219,7 @@ namespace BootlegRoguelike
                     AllPowerUps.Add(new BigHeal(Player, Room, pos));
 
                     // Puts it on the board
-                    Room[pos] = Enums.PowerMax;
+                    Room[pos] = Piece.PowerMax;
 
                     // Decrements maxBigPower
                     maxBigPower--;
@@ -245,7 +247,7 @@ namespace BootlegRoguelike
                     new Position(rnd.Next(1, row - 2), rnd.Next(1, col - 2));
 
                 // Places that obstacle on the board
-                Room[startPos] = Enums.Block;
+                Room[startPos] = Piece.Block;
             }
         }
 
@@ -261,7 +263,7 @@ namespace BootlegRoguelike
                 rnd.Next(1, col + 1));
 
             // Cycles while that position is ocuppied
-            while (Room[pos] != Enums.Empty)
+            while (Room[pos] != Piece.Empty)
             {
                 // Sets pos to a new random one
                 pos = new Position(rnd.Next(1, row + 1), rnd.Next(1, col + 1));

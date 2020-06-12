@@ -14,6 +14,9 @@ namespace BootlegRoguelike
         // Stores the current scene
         private readonly SceneManager scene;
 
+        // If the game should keep running
+        private bool stopGameToken;
+
         /// <summary>
         /// Stores the current level
         /// </summary>
@@ -25,8 +28,11 @@ namespace BootlegRoguelike
         /// <param name="rows"> Width of the room </param>
         /// <param name="cols"> Height of the board</param>
         /// <param name="lvl"> The starting level </param>
-        public GameLoopController(int rows, int cols,int lvl = 1 )
+        public GameLoopController(int rows, int cols, int lvl = 1)
         {
+            // Starts the stopGameToken to false
+            stopGameToken = false;
+
             // Sets the current level to the one given
             CurrentLevel = lvl;
 
@@ -37,11 +43,10 @@ namespace BootlegRoguelike
             scene.GenerateNewScene(CurrentLevel);
 
             // Creates a new Renderer to display information
-            graphics = new Renderer(scene.Room, scene.Player);
+            graphics = new Renderer(scene.Room, scene.Player, CurrentLevel);
 
             // Starts the main Update for the game
             ScheduledUpdate();
-
         }
 
         /// <summary>
@@ -59,7 +64,10 @@ namespace BootlegRoguelike
                 MovePlayer();
 
                 // Checks if the player is stuck or died
-                if (scene.Player.Gameover()) break;
+                if (scene.Player.Gameover() || stopGameToken)
+                {
+                    break;
+                }
 
                 // Checks if the player is at the exit
                 CheckIfOnExit();
@@ -71,7 +79,10 @@ namespace BootlegRoguelike
                 MovePlayer();
 
                 // Checks if the player is stuck or died
-                if (scene.Player.Gameover()) break;
+                if (scene.Player.Gameover() || stopGameToken)
+                {
+                    break;
+                }
 
                 // Checks if the player is at the exit
                 CheckIfOnExit();
@@ -83,7 +94,10 @@ namespace BootlegRoguelike
                 MoveEnemies();
 
                 // Checks if the player is stuck or died
-                if (scene.Player.Gameover()) break;
+                if (scene.Player.Gameover() || stopGameToken)
+                {
+                    break;
+                }
 
                 // In case an AI was on top of a powerup updates the visuals
                 UpdatePowerUps();
@@ -108,7 +122,7 @@ namespace BootlegRoguelike
                 scene.AllPowerUps[i].CheckPlayer();
 
                 // Checks if the position where they are is empty
-                if (scene.Room[scene.AllPowerUps[i].Position] == Enums.Empty)
+                if (scene.Room[scene.AllPowerUps[i].Position] == Piece.Empty)
                 {
                     // Re-adds them to the board
                     scene.Room[scene.AllPowerUps[i].Position] =
@@ -140,29 +154,33 @@ namespace BootlegRoguelike
             Position previousPos = scene.Player.Position;
 
             // Sets the position before moving to empty
-            scene.Room[previousPos] = Enums.Empty;
+            scene.Room[previousPos] = Piece.Empty;
 
             // Asks the player to perform the movement
-            scene.Player.Movement();
+            stopGameToken = scene.Player.Movement();
 
             // Sets the new position of the player on the board
-            scene.Room[scene.Player.Position] = Enums.Player;
+            scene.Room[scene.Player.Position] = Piece.Player;
 
-            // Checks if the player didn't move
-            if (scene.Player.Position.Row == previousPos.Row &&
-                scene.Player.Position.Col == previousPos.Col)
+            // Checks if the user asked to quit
+            if (!stopGameToken)
             {
-                // Shows the board with a simple message
-                graphics.Render("You can't move there");
-                // Calls this method again
-                MovePlayer();
-            }
-            else
-            {
-                // Shows the board and where the player moved to
-                graphics.Render($"Player moved to " +
-                    $"({scene.Player.Position.Row}" +
-                    $",{scene.Player.Position.Col})");
+                // Checks if the player didn't move
+                if (scene.Player.Position.Row == previousPos.Row &&
+                    scene.Player.Position.Col == previousPos.Col)
+                {
+                    // Shows the board with a simple message
+                    graphics.Render("You can't move there");
+                    // Calls this method again
+                    MovePlayer();
+                }
+                else
+                {
+                    // Shows the board and where the player moved to
+                    graphics.Render($"Player moved to " +
+                        $"({scene.Player.Position.Row}" +
+                        $",{scene.Player.Position.Col})");
+                }
             }
         }
 
@@ -178,7 +196,7 @@ namespace BootlegRoguelike
             for (int i = 0; i < scene.AllEnemies.Count; i++)
             {
                 // Resets the position before moving to empty
-                scene.Room[scene.AllEnemies[i].Position] = Enums.Empty;
+                scene.Room[scene.AllEnemies[i].Position] = Piece.Empty;
 
                 // Asks the AI to move
                 scene.AllEnemies[i].Movement();
@@ -225,7 +243,7 @@ namespace BootlegRoguelike
                 scene.Player.Position.Col);
 
             // Checks if the room is an exit on that position
-            if (scene.Room[exitPos] == Enums.Exit)
+            if (scene.Room[exitPos] == Piece.Exit)
             {
                 // Increments the level by one
                 CurrentLevel++;
@@ -244,7 +262,8 @@ namespace BootlegRoguelike
                 scene.GenerateNewScene(CurrentLevel, false);
 
                 // Creates a new Renderer with the info from the scene
-                graphics = new Renderer(scene.Room, scene.Player);
+                graphics = new Renderer
+                    (scene.Room, scene.Player, CurrentLevel);
 
                 // Calls the Update again
                 ScheduledUpdate();

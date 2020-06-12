@@ -6,7 +6,7 @@ namespace BootlegRoguelike
         {
             Position = pos;
             Heal = 8;
-            Type = Enums.PowerMed;
+            Type = Piece.PowerMed;
             this.player = player;
             this.Room = Room;
         }

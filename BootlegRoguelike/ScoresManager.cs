@@ -1,6 +1,6 @@
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 
 namespace BootlegRoguelike
 {
@@ -12,15 +12,16 @@ namespace BootlegRoguelike
         // public int Rows {get; set;}
         // public int Cols {get; set;}
         // const string scoresFile = $"highscoresR{Rows}C{Cols}.txt";
-        const string scoresFile = "highscores.txt";
-        string displayScores;
-        string nameRegister;
+        private const string scoresFile = "highscores.txt";
 
-        const char tab = '\t';
-        int finalScore = 100;
-        StreamReader reader;
-        StreamWriter writer;
-        List<Highscore> scores;
+        private string displayScores;
+        private string nameRegister;
+
+        private const char tab = '\t';
+        private int finalScore = 100;
+        private StreamReader reader;
+        private StreamWriter writer;
+        private readonly List<Highscore> scores;
 
         public ScoresManager()
         {
@@ -46,8 +47,6 @@ namespace BootlegRoguelike
             scores.Add(new Highscore(nameRegister, finalScore));
             scores.Sort();
             //Close();
-            
-            
         }
 
         /// <summary>
@@ -69,6 +68,7 @@ namespace BootlegRoguelike
             // Closes the file
             reader.Close();
         }
+
         public void Close()
         {
             foreach (Highscore highscore in scores)
