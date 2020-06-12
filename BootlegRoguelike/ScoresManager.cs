@@ -16,16 +16,15 @@ namespace BootlegRoguelike
         string displayScores;
         string nameRegister;
 
-        const string tab = "\t";
+        const char tab = '\t';
         int finalScore = 100;
         StreamReader reader;
-        GameLoopController lvl;
         StreamWriter writer;
         List<Highscore> scores;
 
         public ScoresManager()
         {
-            writer = new StreamWriter(scoresFile);
+            // writer = new StreamWriter(scoresFile);
             scores = new List<Highscore>();
             //reader = new StreamReader(scoresFile);
         }
@@ -33,24 +32,22 @@ namespace BootlegRoguelike
         /// <summary>
         /// Registers user's scores
         /// </summary>
-        public void RegisterScores()
+        public void RegisterScores(int score)
         {
+            writer = new StreamWriter(scoresFile);
             // Displays on-screen text
             Console.WriteLine("Register your name for the leaderboards:\t");
             // Stores user input
             nameRegister = Console.ReadLine();
-            finalScore = lvl.CurrentLevel;
+            finalScore = score;
             //finalScore = Int32.Parse(Console.ReadLine());
 
             // Adds highscores
             scores.Add(new Highscore(nameRegister, finalScore));
             scores.Sort();
-
-            // Saves highscores into a file
- 
-
-            // Closes file
-
+            //Close();
+            
+            
         }
 
         /// <summary>
@@ -59,6 +56,7 @@ namespace BootlegRoguelike
         /// <param name="scoresCollection"></param>
         public void DisplayTopScores()
         {
+            reader = new StreamReader(scoresFile);
             // Reads each lines and displays each one on the screen
             while ((displayScores = reader.ReadLine()) != null)
             {

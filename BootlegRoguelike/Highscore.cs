@@ -1,7 +1,7 @@
 using System;
 namespace BootlegRoguelike
 {
-    public class Highscore : IComparable<Highscore>
+    public struct Highscore : IComparable<Highscore>
     {
         public string Name {get;}        
         public int Score {get;}
@@ -13,7 +13,6 @@ namespace BootlegRoguelike
         }
         public int CompareTo(Highscore other)
         {
-            if(other == null) return-1;
             return other.Score - Score;
         }        
     }
