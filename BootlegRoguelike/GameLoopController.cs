@@ -25,7 +25,7 @@ namespace BootlegRoguelike
         /// <param name="rows"> Width of the room </param>
         /// <param name="cols"> Height of the board</param>
         /// <param name="lvl"> The starting level </param>
-        public GameLoopController(int rows, int cols, int lvl = 1)
+        public GameLoopController(int rows, int cols,int lvl = 1 )
         {
             // Sets the current level to the one given
             CurrentLevel = lvl;
@@ -41,6 +41,7 @@ namespace BootlegRoguelike
 
             // Starts the main Update for the game
             ScheduledUpdate();
+
         }
 
         /// <summary>
