@@ -8,16 +8,17 @@ namespace BootlegRoguelike
     /// </summary>
     public class Enemies
     {
-        public Position Position { get; protected set; }
-        protected Position Up;
-        protected Position Down;
-        protected Position Left;
-        protected Position Right;
+        private Position Up;
+        private Position Down;
+        private Position Left;
+        private Position Right;
         private List<Position> checkingArea;
-        protected RoomGenerator Room;
+
         protected int attack;
+        protected RoomGenerator Room;
         protected Player player;
         public Piece Type { get; protected set; }
+        public Position Position { get; protected set; }
 
         protected void SetupEnemy(Position pos)
         {
@@ -105,14 +106,10 @@ namespace BootlegRoguelike
         {
             //Goes throw all von Neumann positions.
             foreach (Position position in checkingArea)
-            {
                 //Sees enum type equals to block.
                 if (Room[position] == Piece.Player)
-                {
                     //calls  the method attack.
                     Attack();
-                }
-            }
         }
 
         /// <summary>

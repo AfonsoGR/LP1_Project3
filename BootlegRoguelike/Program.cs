@@ -26,12 +26,12 @@ namespace BootlegRoguelike
             }
             else if (args[0] == "-r" && args[2] == "-c")
             {
-                if (!int.TryParse(args[1], out rows))
+                if (!Int32.TryParse(args[1], out rows))
                 {
                     ErrorMessage();
                     return;
                 }
-                if (!int.TryParse(args[3], out cols))
+                if (!Int32.TryParse(args[3], out cols))
                 {
                     ErrorMessage();
                     return;
@@ -40,12 +40,12 @@ namespace BootlegRoguelike
             }
             else if (args[0] == "-c" && args[2] == "-r")
             {
-                if (!int.TryParse(args[3], out rows))
+                if (!Int32.TryParse(args[3], out rows))
                 {
                     ErrorMessage();
                     return;
                 }
-                if (!int.TryParse(args[1], out cols))
+                if (!Int32.TryParse(args[1], out cols))
                 {
                     ErrorMessage();
                     return;

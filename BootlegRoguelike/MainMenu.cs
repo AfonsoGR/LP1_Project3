@@ -22,7 +22,7 @@ namespace BootlegRoguelike
         /// <summary>
         /// Creates a variable of ScoresManager
         /// </summary>
-        private readonly ScoresManager scoresManager;
+        private ScoresManager scoresManager;
 
         /// <summary>
         /// Creates a variable of GameLoopController
@@ -56,10 +56,7 @@ namespace BootlegRoguelike
 
             // Asks for input until a valid one is given
             while (!int.TryParse(Console.ReadLine(), out menuChoice)
-                    || menuChoice < 1 || menuChoice > 5)
-            {
-                ;
-            }
+                    || menuChoice < 1 || menuChoice > 5) ;
 
             // Selects section based on user input "menuChoice"
             switch (menuChoice)
@@ -191,10 +188,8 @@ namespace BootlegRoguelike
             }
             // Checks if the quitChoice variable has specified values
             else if (quitChoice == "n" || quitChoice == "N")
-            {
                 // Calls StartupMenu method from this class
                 StartupMenu();
-            }
             // Previous conditions were not met
             else
             {

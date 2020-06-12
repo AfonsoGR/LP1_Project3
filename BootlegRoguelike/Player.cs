@@ -11,7 +11,7 @@ namespace BootlegRoguelike
         public int HP { get; set; }
         public Position Position { get; private set; }
         public Piece Type { get; }
-        private readonly RoomGenerator Room;
+        private RoomGenerator Room;
         public int MaxHP { get; set; }
 
         /// <summary>
@@ -110,9 +110,7 @@ namespace BootlegRoguelike
                 if (Room[position] == Piece.Block ||
                 Room[position] == Piece.Enemy ||
                 Room[position] == Piece.Boss)
-                {
                     deadEnds += 1;
-                }
             }
             if (deadEnds == 4 || HP <= 0)
             {

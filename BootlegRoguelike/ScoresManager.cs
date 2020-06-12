@@ -21,7 +21,7 @@ namespace BootlegRoguelike
         private int finalScore = 100;
         private StreamReader reader;
         private StreamWriter writer;
-        private readonly List<Highscore> scores;
+        private List<Highscore> scores;
 
         public ScoresManager()
         {

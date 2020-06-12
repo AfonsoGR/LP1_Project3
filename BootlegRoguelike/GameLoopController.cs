@@ -64,10 +64,7 @@ namespace BootlegRoguelike
                 MovePlayer();
 
                 // Checks if the player is stuck or died
-                if (scene.Player.Gameover() || stopGameToken)
-                {
-                    break;
-                }
+                if (scene.Player.Gameover() || stopGameToken) break;
 
                 // Checks if the player is at the exit
                 CheckIfOnExit();
@@ -79,10 +76,7 @@ namespace BootlegRoguelike
                 MovePlayer();
 
                 // Checks if the player is stuck or died
-                if (scene.Player.Gameover() || stopGameToken)
-                {
-                    break;
-                }
+                if (scene.Player.Gameover() || stopGameToken) break;
 
                 // Checks if the player is at the exit
                 CheckIfOnExit();
@@ -94,10 +88,7 @@ namespace BootlegRoguelike
                 MoveEnemies();
 
                 // Checks if the player is stuck or died
-                if (scene.Player.Gameover() || stopGameToken)
-                {
-                    break;
-                }
+                if (scene.Player.Gameover() || stopGameToken) break;
 
                 // In case an AI was on top of a powerup updates the visuals
                 UpdatePowerUps();

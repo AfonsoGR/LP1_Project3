@@ -71,10 +71,8 @@ namespace BootlegRoguelike
 
             // Checks if it should reset the player
             if (!generatePlayer)
-            {
                 // Sets the hp to the current players amount
                 hp = Player.HP;
-            }
 
             // Generates a new room layout along with barriers
             CreateNewRoomStructure();
